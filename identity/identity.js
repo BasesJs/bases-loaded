@@ -1,25 +1,23 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const token = require('./token.js');
 const config = require('../config/config.json');
-const axios = require('axios');
 const qs = require('qs');
-const wrapper = require('axios-cookiejar-support').wrapper;
-const CookieJar = require('tough-cookie').CookieJar;
-const jar = new CookieJar();
-const client = wrapper(axios.create({jar}));
 
-
-const identity = {
-    username : "",
-    password : "",
-    token : "",
-    client : client,
-    async connect (username, password){
-        identity.username = username;
-        identity.password = password;
+class identity {
+    username = "";
+    password = "";
+    token = {};
+    client = "";
+    constructor(client, username, password){
+        this.client = client;
+        this.username = username;
+        this.password = password;
+    }
+    async connect(){
         let data = qs.stringify({
         'grant_type': `${config.environment.grant}`,
-        'username': username,
-        'password': password,
+        'username': this.username,
+        'password': this.password,
         'scope': `${config.environment.scope}`,
         'client_id': `${config.environment.clientid}`,
         'client_secret': `${config.environment.secret}`,
@@ -34,24 +32,17 @@ const identity = {
             },
             data : data
         };        
-        const response = await client.request(request);   
-        this.token = await response.data;
-        return this.token;
-    },    
-    async getCookie(){
-        let data = '';
-        let request = {
-            method: 'get',
-            url: `${config.environment.baseuri}${config.environment.apibase}/onbase/core/document-type-groups`,
-            headers: {
-                'Authorization': `${this.token.token_type} ${this.token.access_token}`            
-            },      
-            redirect: 'follow',
-            data : data
-        };
-        const response = await client.request(request);
-        return response.data;
-    },
+        try {
+            let response = await this.client.request(request);
+            this.token = response.data;
+            return true;
+        }
+        catch(err){
+            console.log(err);
+            return false;
+        }
+        
+    };
     async heartbeat(){
         let request = {
             method: 'post',
@@ -62,9 +53,9 @@ const identity = {
                 'Authorization': `${this.token.token_type} ${this.token.access_token}`             
             }            
         };
-        const response = await client.request(request);
+        const response = await this.client.request(request);
         return response.data;
-    },
+    };
     async disconnect(){
         let request = {
             method: 'post',
@@ -75,7 +66,7 @@ const identity = {
             },
             redirect: 'follow',            
         };
-        const response = await client.request(request);
+        const response = await this.client.request(request);
         return response.data;
     }
 }
