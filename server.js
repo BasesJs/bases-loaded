@@ -2,9 +2,14 @@ const basesloaded = require('./bases');
 
 LoadBases()
     .then(bases => {
-                
+        console.log("Bases Loaded");
     })
-
+    .then(()=>{
+        bases.core.filetypes.get("systemName", "Image File Format")
+        .then(items => {
+            console.log(items);
+        })
+    })
 
 async function LoadBases(){
     console.log("Loading basesjs...");

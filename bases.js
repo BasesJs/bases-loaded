@@ -25,6 +25,9 @@ class basesloaded {
         if(success){
             global.bases = this;
         }
+        else{
+            console.log("What went wrong");
+        }
         return success;
     }
 }
