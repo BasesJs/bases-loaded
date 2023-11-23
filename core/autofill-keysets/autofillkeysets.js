@@ -1,9 +1,10 @@
+const { error } = require('console');
 const core = require('../core');
-const doctypegroup = require('./documenttypegroup');
 const searchparams = require('../utilities/searchparams');
+const autofillkeyset = require('./autofillkeyset');
 
-const doctypegroups = {
-    endpoint: "/document-type-groups",
+const autofillkeysets = {
+    endpoint: "/autofill-keyword-sets",
     items:  [],
     async get(paramName = null, params = null){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${this.endpoint}`
@@ -30,10 +31,10 @@ const doctypegroups = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new doctypegroup(item.id, item.name, item.systemName);
+            item = new autofillkeyset(item.id, item.name, item.systemName, item.primaryKeywordTypeId, item.external);
             this.items.push(item);
         });        
         return this.items;
     }
 }
-module.exports = doctypegroups;
+module.exports = autofillkeysets;
