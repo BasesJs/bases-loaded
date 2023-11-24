@@ -5,7 +5,7 @@ LoadBases()
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.autofillkeysets.get()
+        bases.core.doctypes.get("id","334")
         .then(items => {
             console.log(items);
         })

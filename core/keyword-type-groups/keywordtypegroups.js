@@ -1,10 +1,9 @@
-const { error } = require('console');
 const core = require('../core');
+const keytypegroup = require('./keywordtypegroup');
 const searchparams = require('../utilities/searchparams');
-const customquerie = require('./customquerie');
 
-const customqueries = {
-    endpoint: "/custom-queries",
+const keytypegroups = {
+    endpoint: "/keyword-type-groups",
     items:  [],
     async get(paramName = null, params = null){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${this.endpoint}`
@@ -31,7 +30,7 @@ const customqueries = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new customquerie(item.id, item.name, item.systemName, item.instructions, item.dateOptions);
+            item = new keytypegroup(item.id, item.name, item.systemName, item.storageType);
             this.items.push(item);
         });        
         if(this.items.length > 1)
@@ -40,4 +39,4 @@ const customqueries = {
             return this.items[0];
     }
 }
-module.exports = customqueries;
+module.exports = doctypegroups;

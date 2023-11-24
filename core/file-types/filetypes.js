@@ -34,7 +34,10 @@ const filetypes = {
             item = new filetype(item.id, item.name, item.systemName);
             this.items.push(item);
         });        
-        return this.items;
+        if(this.items.length > 1)
+            return this.items;
+        else
+            return this.items[0];
     }
 }
 module.exports = filetypes;

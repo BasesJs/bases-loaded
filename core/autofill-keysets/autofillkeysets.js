@@ -34,7 +34,10 @@ const autofillkeysets = {
             item = new autofillkeyset(item.id, item.name, item.systemName, item.primaryKeywordTypeId, item.external);
             this.items.push(item);
         });        
-        return this.items;
+        if(this.items.length > 1)
+            return this.items;
+        else
+            return this.items[0];
     }
 }
 module.exports = autofillkeysets;

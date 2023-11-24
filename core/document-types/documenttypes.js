@@ -1,10 +1,10 @@
 const { error } = require('console');
 const core = require('../core');
 const searchparams = require('../utilities/searchparams');
-const customquerie = require('./customquerie');
+const doctype = require('./documenttype');
 
-const customqueries = {
-    endpoint: "/custom-queries",
+const doctypes = {
+    endpoint: "/document-types",
     items:  [],
     async get(paramName = null, params = null){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${this.endpoint}`
@@ -31,7 +31,8 @@ const customqueries = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new customquerie(item.id, item.name, item.systemName, item.instructions, item.dateOptions);
+            item = new doctype(item.id, item.name, item.systemName, item.defaultFileTypeId, item.documentDateDisplayName, item.autofillKeywordSetId, 
+                item.documentTypeGroupId, item.revisionRenditionProperties);
             this.items.push(item);
         });        
         if(this.items.length > 1)
@@ -40,4 +41,4 @@ const customqueries = {
             return this.items[0];
     }
 }
-module.exports = customqueries;
+module.exports = doctypes;
