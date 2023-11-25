@@ -30,6 +30,9 @@ class basesloaded {
         }
         return success;
     }
+    async disconnect(){
+        this.identity.disconnect();
+    }
 }
 
 

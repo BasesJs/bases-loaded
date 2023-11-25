@@ -5,6 +5,7 @@ const customqueries = require('./custom-queries/customqueries');
 const doctypes = require('./document-types/documenttypes');
 const keytypegroups = require('./keyword-type-groups/keywordtypegroups');
 const keytypes = require('./keyword-types/keywordtypes');
+const notetypes = require('./note-types/notetypes');
 
 const core = {
     name: "Document Management API",
@@ -15,6 +16,7 @@ const core = {
     keytypegroups: keytypegroups,
     keytypes: keytypes,
     autofillkeysets: autofillkeysets,
-    customqueries: customqueries
+    customqueries: customqueries,
+    notetypes: notetypes
 }
 module.exports = core;

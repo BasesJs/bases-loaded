@@ -50,7 +50,7 @@ class identity {
             url: `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/heartbeat`,
             withCredentials: true,
             headers: {
-                'Authorization': `${this.token.token_type} ${this.token.access_token}`             
+                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`             
             }            
         };
         const response = await this.client.request(request);
@@ -62,7 +62,7 @@ class identity {
             maxBodyLength: Infinity,
             url: `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/disconnect`,
             headers: {
-                'Authorization': `${this.token.token_type} ${this.token.access_token}`                
+                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`               
             },
             redirect: 'follow',            
         };

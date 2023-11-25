@@ -5,7 +5,7 @@ LoadBases()
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.keytypegroups.get()
+        bases.core.notetypes.get()
         .then(items => {
             console.log(items);
         })
