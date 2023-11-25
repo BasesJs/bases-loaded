@@ -4,7 +4,6 @@ class keytype {
         this.id = id;
         this.name = name;
         this.systemName = systemName;
-        this.sotrageType = storageType;
         this.dataType = dataType;
         this.usedForRetrieval = usedForRetrieval;
         this.invisible = invisible;

@@ -39,4 +39,4 @@ const keytypegroups = {
             return this.items[0];
     }
 }
-module.exports = doctypegroups;
+module.exports = keytypegroups;
