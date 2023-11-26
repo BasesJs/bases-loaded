@@ -1,11 +1,12 @@
 const basesloaded = require('./bases');
+const afks = require('./core/autofill-keysets/autofillkeyset');
 
 LoadBases()
     .then(bases => {
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.notetypes.get()
+        bases.core.autofillkeysets.get()
         .then(items => {
             console.log(items);
         })

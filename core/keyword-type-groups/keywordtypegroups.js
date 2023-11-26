@@ -33,10 +33,7 @@ const keytypegroups = {
             item = new keytypegroup(item.id, item.name, item.systemName, item.storageType);
             this.items.push(item);
         });        
-        if(this.items.length > 1)
-            return this.items;
-        else
-            return this.items[0];
+        return this.items;
     }
 }
 module.exports = keytypegroups;
