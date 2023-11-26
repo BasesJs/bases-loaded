@@ -6,7 +6,7 @@ LoadBases()
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.autofillkeysets.get()
+        bases.core.filetypes.bestguess('html')
         .then(items => {
             console.log(items);
         })
