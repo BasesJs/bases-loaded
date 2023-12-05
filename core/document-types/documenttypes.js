@@ -31,9 +31,8 @@ const doctypes = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new doctype(item.id, item.name, item.systemName, item.defaultFileTypeId, item.documentDateDisplayName, item.autofillKeywordSetId, 
-                item.documentTypeGroupId, item.revisionRenditionProperties);
-            this.items.push(item);
+            let dt = new doctype(item);
+            this.items.push(dt);
         });        
         return this.items;
     }

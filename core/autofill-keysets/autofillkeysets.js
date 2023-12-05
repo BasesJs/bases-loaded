@@ -31,8 +31,8 @@ const autofillkeysets = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new autofillkeyset(item.id, item.name, item.systemName, item.primaryKeywordTypeId, item.external);
-            this.items.push(item);
+            let afks = new autofillkeyset(item);
+            this.items.push(afks);
         });        
         return this.items;
     }

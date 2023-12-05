@@ -30,8 +30,8 @@ const notetypes = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new notetype(item.id, item.name, item.systemName, item.color, item.displayFlags, item.flavor, item.fontId, item.iconId, item.userPrivileges);
-            this.items.push(item);
+            let nt = new notetype(item);
+            this.items.push(nt);
         });        
         return this.items;
     }

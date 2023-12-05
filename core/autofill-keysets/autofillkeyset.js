@@ -1,12 +1,12 @@
 const autofillkeysets = require('./autofillkeysets');
 
 class autofillkeyset {
-    constructor(id, name, systemName, primaryKeywordTypeId, external){
-        this.id = id;
-        this.name = name;
-        this.systemName = systemName;
-        this.primaryKeywordTypeId = primaryKeywordTypeId;
-        this.external = external;
+    constructor(item){
+        this.id = item.id;
+        this.name = item.name;
+        this.systemName = item.systemName;
+        this.primaryKeywordTypeId = item.primaryKeywordTypeId;
+        this.external = item.external;
     }
     id = "";
     name = "";

@@ -31,8 +31,8 @@ const customqueries = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new customquerie(item.id, item.name, item.systemName, item.instructions, item.dateOptions);
-            this.items.push(item);
+            let cq = new customquerie(item);
+            this.items.push(cq);
         });        
         return this.items;
     }

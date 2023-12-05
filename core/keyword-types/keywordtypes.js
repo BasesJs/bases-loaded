@@ -30,9 +30,8 @@ const keytypes = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new keytype(item.id, item.name, item.systemName, item.dataType, item.usedForRetrieval, item.invisible, item.alphanumericSettings, 
-                item.currencyFormatId, item.isSecurityMasked, item.maskSettings);
-            this.items.push(item);
+            let kt = new keytype(item);
+            this.items.push(kt);
         });        
         return this.items;
     }

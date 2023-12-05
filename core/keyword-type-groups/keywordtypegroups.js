@@ -30,8 +30,8 @@ const keytypegroups = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new keytypegroup(item.id, item.name, item.systemName, item.storageType);
-            this.items.push(item);
+            let ktg = new keytypegroup(item);
+            this.items.push(ktg);
         });        
         return this.items;
     }

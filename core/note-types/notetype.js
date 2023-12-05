@@ -1,15 +1,15 @@
 
 class notetype {
-    constructor(id, name, systemName, color, displayFlags, flavor, fontId, iconId, userPrivileges){
-        this.id = id;
-        this.name = name;
-        this.systemName = systemName;
-        this.color = color;
-        this.displayFlags = displayFlags;
-        this.flavor = flavor;
-        this.fontId = fontId;
-        this.iconId = iconId;
-        this.userPrivileges = userPrivileges;
+    constructor(item){
+        this.id = item.id;
+        this.name = item.name;
+        this.systemName = item.systemName;
+        this.color = item.color;
+        this.displayFlags = item.displayFlags;
+        this.flavor = item.flavor;
+        this.fontId = item.fontId;
+        this.iconId = item.iconId;
+        this.userPrivileges = item.userPrivileges;
     }
     color = {
       r: "string",

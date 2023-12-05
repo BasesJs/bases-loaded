@@ -1,12 +1,12 @@
 //Import Keyword Types when we get there.
 
 class customquery {
-    constructor(id, name, systemName, instructions, dateOptions){
-        this.id = id;
-        this.name = name;
-        this.systemName = systemName;
-        this.instructions = instructions;
-        this.dateOptions = dateOptions;
+    constructor(item){
+        this.id = item.id;
+        this.name = item.name;
+        this.systemName = item.systemName;
+        this.instructions = item.instructions;
+        this.dateOptions = item.dateOptions;
 
     }
     id = "";

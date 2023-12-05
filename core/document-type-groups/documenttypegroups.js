@@ -30,8 +30,8 @@ const doctypegroups = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new doctypegroup(item.id, item.name, item.systemName);
-            this.items.push(item);
+            let dtg = new doctypegroup(item);
+            this.items.push(dtg);
         });        
         return this.items;
     }

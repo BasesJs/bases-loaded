@@ -1,9 +1,9 @@
 class keytypegroup {
-    constructor(id, name, systemName, storageType){
-        this.id = id;
-        this.name = name;
-        this.systemName = systemName;
-        this.sotrageType = storageType;
+    constructor(item){
+        this.id = item.id;
+        this.name = item.name;
+        this.systemName = item.systemName;
+        this.sotrageType = item.storageType;
     }
     id = "";
     name = "";

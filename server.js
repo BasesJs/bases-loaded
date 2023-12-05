@@ -1,15 +1,18 @@
 const basesloaded = require('./bases');
-const afks = require('./core/autofill-keysets/autofillkeyset');
+const fs = require('node:fs');
+const splitFile = require('./core/utilities/splitFile');
+
 
 LoadBases()
     .then(bases => {
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.filetypes.bestguess('html')
-        .then(items => {
-            console.log(items);
-        })
+        let file = fs.readFileSync('./resources/NPS_PS_Intro.mp4');
+        let stats = fs.statSync('./resources/NPS_PS_Intro.mp4');
+        console.log('ByteLength: ' + file.byteLength);
+        console.log('File Stats Size: ' + stats.size);
+        bases.core.fileUpload('mp4', file, 'SYS Unidentified Items')
     })
 
 async function LoadBases(){

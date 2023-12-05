@@ -1,8 +1,8 @@
 class filetype {
-    constructor(id, name, systemName){
-        this.id = id;
-        this.name = name;
-        this.systemName = systemName;
+    constructor(item){
+        this.id = item.id;
+        this.name = item.name;
+        this.systemName = item.systemName;
     }
     id = "";
     name = "";

@@ -30,8 +30,8 @@ const filetypes = {
         };
         const response = await global.bases.client.request(request);
         response.data.items.forEach(item => {
-            item = new filetype(item.id, item.name, item.systemName);
-            this.items.push(item);
+            let ft = new filetype(item);
+            this.items.push(ft);
         });        
         return this.items;
     },

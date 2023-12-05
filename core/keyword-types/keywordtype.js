@@ -1,16 +1,15 @@
 class keytype {
-    constructor(id, name, systemName, dataType, usedForRetrieval, invisible, alphanumericSettings, 
-        currencyFormatId, isSecurityMasked, maskSettings){
-        this.id = id;
-        this.name = name;
-        this.systemName = systemName;
-        this.dataType = dataType;
-        this.usedForRetrieval = usedForRetrieval;
-        this.invisible = invisible;
-        this.alphanumericSettings = alphanumericSettings;
-        this.currencyFormatId = currencyFormatId;
-        this.isSecurityMasked = isSecurityMasked;
-        this.maskSettings = maskSettings;
+    constructor(item){
+        this.id = item.id;
+        this.name = item.name;
+        this.systemName = item.systemName;
+        this.dataType = item.dataType;
+        this.usedForRetrieval = item.usedForRetrieval;
+        this.invisible = item.invisible;
+        this.alphanumericSettings = item.alphanumericSettings;
+        this.currencyFormatId = item.currencyFormatId;
+        this.isSecurityMasked = item.isSecurityMasked;
+        this.maskSettings = item.maskSettings;
     }
     id = "";
     name = "";
