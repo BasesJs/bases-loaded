@@ -33,6 +33,7 @@ const filetypes = {
             let ft = new filetype(item);
             this.items.push(ft);
         });        
+
         return this.items;
     },
     async bestguess(fileExtension){
@@ -50,7 +51,7 @@ const filetypes = {
             data : data
         };
         const response = await global.bases.client.request(request);
-        return response.data;
+        return response.data.id;
     }
 }
 module.exports = filetypes;

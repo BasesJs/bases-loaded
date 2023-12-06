@@ -1,6 +1,7 @@
 const basesloaded = require('./bases');
+const documentupload = require('./core/upload/documentupload');
+const keywordcollection = require('./core/keywords/keywordcollection');
 const fs = require('node:fs');
-const splitFile = require('./core/utilities/splitFile');
 
 
 LoadBases()
@@ -9,10 +10,23 @@ LoadBases()
     })
     .then(()=>{
         let file = fs.readFileSync('./resources/NPS_PS_Intro.mp4');
-        let stats = fs.statSync('./resources/NPS_PS_Intro.mp4');
-        console.log('ByteLength: ' + file.byteLength);
-        console.log('File Stats Size: ' + stats.size);
-        bases.core.fileUpload('mp4', file, 'SYS Unidentified Items')
+        documentupload.create(file, 'mp4', 'SYS Unidentified Items')
+        .then(docupload => {            
+            docupload.documentinfo.keywordCollection.addKeyword("Description", ["Success"])
+            .then(()=>{
+                console.log(docupload.documentinfo.keywordCollection)
+                docupload.uploadParts()
+                .then(()=>{
+                    docupload.post()
+                    .then(resp =>{
+                        console.log(resp.data);
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                    })
+                })
+            })
+        })     
     })
 
 async function LoadBases(){

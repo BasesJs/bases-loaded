@@ -17,4 +17,5 @@ async function uploadpart(uploadId, partNum, partBinary){
     const response = await global.bases.client.request(request);
     return response.data;
 }
+
 module.exports = uploadpart;

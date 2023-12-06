@@ -1,4 +1,4 @@
-async function splitFile(file, partSize, numberOfParts){
+async function splitFile(file, numberOfParts, partSize){
     console.log({
         fileSize: file.byteLength,
         partSize: partSize,
