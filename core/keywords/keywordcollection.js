@@ -25,7 +25,7 @@ class keywordcollection {
     }
     static async create(documentTypeId){
         const kwC = new keywordcollection()
-        let dt = await global.bases.core.doctypes.getById(documentTypeId);
+        let dt = await global.bases.core.doctypes.getById(documentTypeId); //We should have the doctype ID why get it again?
         let data = await dt.defaultKeywords();
         kwC.keywordGuid = data.keywordGuid;
         //kwC.items = data.items;

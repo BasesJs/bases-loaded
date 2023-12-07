@@ -12,10 +12,9 @@ LoadBases()
         let file = fs.readFileSync('./resources/NPS_PS_Intro.mp4');
         documentupload.create(file, 'mp4', 'SYS Unidentified Items')
         .then(docupload => {            
-            docupload.documentinfo.keywordCollection.addKeyword("Description", ["Success"])
+            docupload.documentinfo.keywordCollection.addKeyword("Description", ["Success"]) //pathetically lacking
             .then(()=>{
-                console.log(docupload.documentinfo.keywordCollection)
-                docupload.uploadParts()
+                docupload.uploadParts() // figure out if we can still send all parts at once / loop
                 .then(()=>{
                     docupload.post()
                     .then(resp =>{
