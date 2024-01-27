@@ -1,42 +1,29 @@
+const splitfile = require('../utilities/splitFile');
+const stageupload = require('./stageupload');
+const uploadpart = require('./uploadpart');
+const deleteupload = require('./deleteupload');
+const bestguess = require('./bestguessfiletype');
+const core = require('../core');
+import documentinfo from "./documentinfo";
 
-import { documentinfo } from './documentinfo';
-import { stageupload } from './stageupload';
-import { uploadpart } from './uploadpart';
-import { deleteupload } from './deleteupload';
-import { splitFile } from '../utilities/splitFile';
-
-export class documentupload {
-    constructor(parts:any[] = [], documentinfo:any = "", uploadId:string = ""){       
-        if(documentinfo != null){
-            this.documentinfo = documentinfo;
-        }
-        if(parts != null){
-            this.parts = parts
-        }
-        if(uploadId != null){
-            this.uploadId = uploadId;
-        }
+class documentimport {
+    constructor(uploadId:string, parts:any[], documentinfo:documentinfo){
+        this.uploadId = uploadId;
+        this.parts = parts;
+        this.docinfo = documentinfo;
     }
-    uploadId:string = "";
-    parts:any[] = [];
-    documentinfo:any = "";
+    uploadId:string;
+    parts:any[];
+    docinfo:documentinfo;
     async setFileTypeByName(fileTypeName:string){
-        this.documentinfo.fileTypeId = await global.bases.core.filetypes.get(fileTypeName);        
+        this.docinfo.fileTypeId = await global.bases.core.filetypes.get(fileTypeName)[0]; 
+    }
+    async bestGuessFileType(fileExtension:string){
+        this.docinfo.fileTypeId = await bestguess(fileExtension);
     }
     async uploadParts(){
-        console.log('Uploading Parts...');
-        let uploaded = 0;
-        let x = 100 / this.parts.length;
-        for(const part of this.parts){
-            let resp = await uploadpart(this.uploadId, part.partNum, part.bytes)
-            uploaded++;
-            console.log(`Uploading: ${Math.round(uploaded * x)}%`);
-        }        
-    }
-    async post(){
-        console.log("Posting Metadata");
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents`
-        let data = JSON.stringify(this.documentinfo);
+        let data = JSON.stringify(this.docinfo);
         console.log(data);
         let request = {
             method: 'post',
@@ -52,6 +39,16 @@ export class documentupload {
         const response = await global.bases.client.request(request);             
         return response;
     }
+    async post(){
+        console.log('Uploading Parts...');
+        let uploaded = 0;
+        let x = 100 / this.parts.length;
+        for(const part of this.parts){
+            let resp = await uploadpart(this.uploadId, part.partNum, part.bytes)
+            uploaded++;
+            console.log(`Uploading: ${Math.round(uploaded * x)}%`);
+        }  
+    }
     static async create(file:any, fileExtension:string, documentTypeName:string, documentDate:Date){ 
         const docinfo = await documentinfo.create(documentTypeName, fileExtension, documentDate);        
         let stageResp = await stageupload(fileExtension, file.byteLength);
@@ -59,8 +56,9 @@ export class documentupload {
             "id":`${stageResp.id}`
         }
         docinfo.uploads.push(upload);        
-        let parts:any[] = await splitFile(file, stageResp.numberOfParts, stageResp.filePartSize);
-        const docupload = new documentupload(parts, docinfo, stageResp.id);  
+        let parts:any[] = await splitfile(file, stageResp.numberOfParts, stageResp.filePartSize);
+        const docupload = new documentimport(stageResp.id, parts, docinfo) 
         return docupload;
     }
 }
+module.exports = documentimport;

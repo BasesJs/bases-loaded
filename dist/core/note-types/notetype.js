@@ -1,39 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.notetype = void 0;
-const baseclass_1 = require("../baseclass/baseclass");
-class notetype extends baseclass_1.base {
+const baseclass_1 = __importDefault(require("../baseclass/baseclass"));
+class notetype extends baseclass_1.default {
     constructor(item) {
         super(item.id, item.name, item.systemName);
-        this.color = {
-            r: "",
-            g: "",
-            b: "",
-            a: ""
-        };
-        this.displayFlags = {
-            allPages: true,
-            allRevisions: true,
-            createOpenNoteWindow: true,
-            deleteWithPage: true,
-            floatOnWindow: true,
-            hideNoteWindow: true,
-            moveable: true,
-            noPrivacyOptions: true,
-            open: true,
-            privacyNoDelete: true,
-            privacyNoModify: true,
-            privacyNoView: true,
-            stampKeepOriginalSize: true,
-            stampTransparent: true
-        };
-        this.flavor = "";
-        this.fontId = "";
-        this.iconId = "";
-        this.userPrivileges = {
-            create: false,
-            view: false
-        };
         this.color = item.color;
         this.displayFlags = item.displayFlags;
         this.flavor = item.flavor;
@@ -41,5 +14,34 @@ class notetype extends baseclass_1.base {
         this.iconId = item.iconId;
         this.userPrivileges = item.userPrivileges;
     }
+    color = {
+        r: "",
+        g: "",
+        b: "",
+        a: ""
+    };
+    displayFlags = {
+        allPages: true,
+        allRevisions: true,
+        createOpenNoteWindow: true,
+        deleteWithPage: true,
+        floatOnWindow: true,
+        hideNoteWindow: true,
+        moveable: true,
+        noPrivacyOptions: true,
+        open: true,
+        privacyNoDelete: true,
+        privacyNoModify: true,
+        privacyNoView: true,
+        stampKeepOriginalSize: true,
+        stampTransparent: true
+    };
+    flavor = "";
+    fontId = "";
+    iconId = "";
+    userPrivileges = {
+        create: false,
+        view: false
+    };
 }
-exports.notetype = notetype;
+module.exports = notetype;

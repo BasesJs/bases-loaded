@@ -2,13 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.token = void 0;
 class token {
-    constructor() {
-        this.access_token = "";
-        this.expires_in = 0;
-        this.token_type = "";
-        this.scope = "";
-        this.expiration = new Date();
-    }
+    constructor() { }
+    access_token = "";
+    expires_in = 0;
+    token_type = "";
+    scope = "";
+    expiration = new Date();
     static create(jsonToken) {
         let tok = new token();
         tok.access_token = jsonToken.access_token;

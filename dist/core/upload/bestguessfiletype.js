@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-async function deleteupload(uploadId) {
-    let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads/${uploadId}`;
+async function bestguess(fileExtension) {
+    let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
     let data = "";
     let request = {
-        method: 'del',
+        method: 'get',
         maxBodyLength: Infinity,
         url: fullUrl,
         headers: {
@@ -15,6 +15,6 @@ async function deleteupload(uploadId) {
         data: data
     };
     const response = await global.bases.client.request(request);
-    return response.data;
+    return response.data.id;
 }
-module.exports = deleteupload;
+module.exports = bestguess;

@@ -1,32 +1,22 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.keywordtypegroups = void 0;
-const baseclass_1 = require("../baseclass/baseclass");
-const keywordtypegroup_1 = require("./keywordtypegroup");
-class keywordtypegroups extends baseclass_1.group {
-    constructor() {
-        super(...arguments);
-        this.endpoint = "/keyword-type-groups";
-        this.items = [];
-    }
-    get(paramName, params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this._get(this.endpoint, paramName, params);
-            data.items.forEach((item) => {
-                let ktg = new keywordtypegroup_1.keywordtypegroup(item);
-                this.items.push(ktg);
-            });
-            return this.items;
+const basegroup_1 = require("../baseclass/basegroup");
+const keywordtypegroup = require('./keywordtypegroup');
+const keywordtypegroups = {
+    endpoint: "/keyword-type-groups",
+    items: [],
+    async get(paramName, params) {
+        const data = await (0, basegroup_1._get)(this.endpoint, paramName, params);
+        data.items.forEach((item) => {
+            let ktg = new keywordtypegroup(item);
+            this.items.push(ktg);
         });
+        return this.items;
+    },
+    async getbyid(id) {
+        const data = await (0, basegroup_1._getbyid)(id, this.endpoint);
+        let ktg = new keywordtypegroup(data);
+        return ktg;
     }
-}
-exports.keywordtypegroups = keywordtypegroups;
+};
+module.exports = keywordtypegroups;

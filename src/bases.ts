@@ -1,6 +1,6 @@
 const config = require('../config/config.json');
 import {identity} from './identity/identity';
-import {core} from './core/core';
+const core = require('./core/core');
 const axios = require('axios');
 const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;
@@ -24,7 +24,7 @@ export class basesloaded {
             global.bases = this;
         }
         else{
-            console.log("What went wrong");
+            console.log("Could not get an authentication token.");
         }
         return success;
     }
@@ -32,6 +32,3 @@ export class basesloaded {
         return await this.identity.disconnect();
     }
 }
-
-
-module.exports = basesloaded;

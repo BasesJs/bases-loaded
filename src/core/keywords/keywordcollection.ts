@@ -1,7 +1,7 @@
-import { keyword } from './keyword';
-import { documenttype } from '../document-types/documenttype';
+const documenttype = require('../document-types/documenttype');
+const keyword = require('./keyword')
 
-export class keywordcollection {
+class keywordcollection {
     constructor(keywordGuid?:string, items?:any[]){
         if(keywordGuid != null){
             this.keywordGuid = keywordGuid;

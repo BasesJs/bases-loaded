@@ -1,7 +1,7 @@
-import { base } from '../baseclass/baseclass';
+import base  from '../baseclass/baseclass';
 //Import Keyword Types when we get there.
 
-export class customquery extends base{
+class customquery extends base{
     constructor(item: any){
         super(item.id, item.name, item.systemName);
         this.instructions = item.instructions;
@@ -17,3 +17,4 @@ export class customquery extends base{
     }
     querytype = "DocumentType"
 }
+module.exports = customquery;

@@ -1,6 +1,4 @@
-import { keywordtype } from '../keyword-types/keywordtype'
-
-export class keyword {
+class keyword {
     constructor(typeId = null, values =[]){
         if(typeId != null){
             this.typeId = typeId;
@@ -32,3 +30,4 @@ export class keyword {
         return kw;   
     }
 }
+module.exports = keyword;

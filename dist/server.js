@@ -1,15 +1,18 @@
-import { basesloaded } from "./bases";
-import { documentupload } from "./core/upload/documentupload";
-import { keywordcollection } from "./core/keywords/keywordcollection";
+const basesloaded = require("./bases");
+const documentupload = require("./core/upload/documentupload");
 const fs = require('node:fs');
-
-
 LoadBases()
     .then(bases => {
         console.log("Bases Loaded");
     })
     .then(()=>{
-        let file = fs.readFileSync('../resources/NPS_PS_Intro.mp4');
+        bases.core.documenttypes.getbyid('5')
+        .then((dts) =>{
+            console.log(dts);
+        })
+        
+        
+        /*let file = fs.readFileSync('../resources/NPS_PS_Intro.mp4');
         documentupload.create(file, 'mp4', 'SYS Unidentified Items', new Date())
         .then((docupload) => {            
             docupload.documentinfo.keywordCollection.addKeyword("Description", ["Success"]) //pathetically lacking
@@ -28,13 +31,14 @@ LoadBases()
                     })
                 })
             })
-        })     
+            .catch(err => console.log(err.message))
+        })     */
     })    
     .catch((err) => { console.error(err)})
 
 async function LoadBases(){
     console.log("Loading basesjs...");
     const bases = new basesloaded();
-    let success = await bases.connect("Template.Service", "ENR4RjYZr2jZH48VxW2V28Zqz");
+    let success = await bases.connect("MANAGER", "P@ssw0rd");
     return bases;
 }

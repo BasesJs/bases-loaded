@@ -1,6 +1,6 @@
-import { base } from '../baseclass/baseclass'
+import base from '../baseclass/baseclass'
 
-export class notetype extends base{
+class notetype extends base{
     constructor(item:any){
       super(item.id, item.name, item.systemName);
       this.color = item.color;
@@ -40,3 +40,4 @@ export class notetype extends base{
       view: false
     }
 }
+module.exports = notetype;

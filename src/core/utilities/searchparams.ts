@@ -1,4 +1,4 @@
-export class searchparams {
+export default class searchparams {
     constructor(paramName:string, parameters:string){
         this.paramname = paramName;
         if(Array.isArray(parameters))

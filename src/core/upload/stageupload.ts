@@ -1,4 +1,6 @@
-export async function stageupload(fileExtension:string, fileSize:number){
+const core = require('../core');
+
+async function stageupload(fileExtension:string, fileSize:number){
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads`;
     let data = JSON.stringify({
         "fileExtension": `${fileExtension}`,
@@ -18,3 +20,4 @@ export async function stageupload(fileExtension:string, fileSize:number){
     const response = await global.bases.client.request(request);
     return response.data;
 }
+module.exports = stageupload;

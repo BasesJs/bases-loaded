@@ -1,21 +1,23 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.customquery = void 0;
-const baseclass_1 = require("../baseclass/baseclass");
-class customquery extends baseclass_1.base {
+const baseclass_1 = __importDefault(require("../baseclass/baseclass"));
+class customquery extends baseclass_1.default {
     constructor(item) {
         super(item.id, item.name, item.systemName);
-        this.instructions = "";
-        this.dateOptions = {
-            dateSearch: "noDate",
-            defaultDateRange: {
-                start: "",
-                end: "",
-            }
-        };
-        this.querytype = "DocumentType";
         this.instructions = item.instructions;
         this.dateOptions = item.dateOptions;
     }
+    instructions = "";
+    dateOptions = {
+        dateSearch: "noDate",
+        defaultDateRange: {
+            start: "",
+            end: "",
+        }
+    };
+    querytype = "DocumentType";
 }
-exports.customquery = customquery;
+module.exports = customquery;

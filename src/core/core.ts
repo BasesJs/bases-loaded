@@ -1,22 +1,23 @@
-import { filetypes } from './file-types/filetypes'
-import { documenttypegroups } from './document-type-groups/documenttypegroups';
-import { documenttypes } from './document-types/documenttypes';
-import { keywordtypegroups } from './keyword-type-groups/keywordtypegroups';
-import { keywordtypes } from './keyword-types/keywordtypes';
-import { autofillkeysets } from './autofill-keysets/autofillkeysets';
-import { customqueries } from './custom-queries/customqueries';
-import { notetypes } from './note-types/notetypes';
+const filetypes = require('./file-types/filetypes');
+const documenttypegroups = require('./document-type-groups/documenttypegroups');
+const documenttypes = require('./document-types/documenttypes');
+const keywordtypegroups = require('./keyword-type-groups/keywordtypegroups');
+const keywordtypes = require('./keyword-types/keywordtypes');
+const autofillkeysets = require('./autofill-keysets/autofillkeysets');
+const customqueries = require('./custom-queries/customqueries');
+const notetypes = require('./note-types/notetypes');
 
-export const core = {
+const core = {
     name: "Document Management API",
     endpoint: "/onbase/core",
-    filetypes: new filetypes(),
-    documenttypegroups: new documenttypegroups(),
-    documenttypes: new documenttypes(),
-    keywordtypegroups: new keywordtypegroups(),
-    keywordtypes: new keywordtypes(),
-    autofillkeysets: new autofillkeysets(),
-    customqueries: new customqueries(),
-    notetypes: new notetypes()  
+    filetypes: filetypes,
+    documenttypegroups: documenttypegroups,
+    documenttypes: documenttypes,
+    keywordtypegroups: keywordtypegroups,
+    keywordtypes: keywordtypes,
+    autofillkeysets: autofillkeysets,
+    customqueries: customqueries,
+    notetypes: notetypes  
 }
+module.exports = core;
 

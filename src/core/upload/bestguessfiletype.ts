@@ -1,11 +1,8 @@
-
-const core = require('../core');
-
-async function uploadpart(uploadId:string, partNum:string, partBinary:string){
-    let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads/${uploadId}?filePart=${partNum}`;    
-    let data = partBinary;
+async function bestguess(fileExtension:string){
+    let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
+    let data = "";
     let request = {
-        method: 'put',
+        method: 'get',
         maxBodyLength: Infinity,
         url: fullUrl,
         headers: {
@@ -16,6 +13,6 @@ async function uploadpart(uploadId:string, partNum:string, partBinary:string){
         data : data
     };
     const response = await global.bases.client.request(request);
-    return response.data;
+    return response.data.id;
 }
-module.exports = uploadpart
+module.exports = bestguess;
