@@ -1,6 +1,8 @@
-const config = require('../config/config.json');
-import {identity} from './identity/identity';
-const core = require('./core/core');
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+import { config } from './config/config.js';
+import {identity} from './identity/identity.js';
+import { core } from './core/core.js'; 
 const axios = require('axios');
 const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;

@@ -1,6 +1,6 @@
-import base from '../baseclass/baseclass';
+import base from '../baseclass/baseclass.js';
 
-export default class keywordtype extends base {
+export class keywordtype extends base {
     constructor(item:any){
         super(item.id, item.name, item.systemName);
         this.dataType = item.dataType;

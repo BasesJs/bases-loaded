@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-async function deleteupload(uploadId) {
+export async function deleteupload(uploadId) {
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads/${uploadId}`;
     let data = "";
     let request = {
@@ -17,4 +15,3 @@ async function deleteupload(uploadId) {
     const response = await global.bases.client.request(request);
     return response.data;
 }
-module.exports = deleteupload;

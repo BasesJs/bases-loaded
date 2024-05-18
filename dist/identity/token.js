@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.token = void 0;
-class token {
+export class token {
     constructor() { }
     access_token = "";
     expires_in = 0;
@@ -24,4 +21,3 @@ class token {
             return false;
     }
 }
-exports.token = token;

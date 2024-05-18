@@ -1,7 +1,4 @@
-
-const core = require('../core');
-
-async function uploadpart(uploadId:string, partNum:string, partBinary:string){
+export async function uploadpart(uploadId:string, partNum:string, partBinary:string){
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads/${uploadId}?filePart=${partNum}`;    
     let data = partBinary;
     let request = {
@@ -18,4 +15,3 @@ async function uploadpart(uploadId:string, partNum:string, partBinary:string){
     const response = await global.bases.client.request(request);
     return response.data;
 }
-module.exports = uploadpart

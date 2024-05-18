@@ -1,7 +1,7 @@
-import { group, _get, _getbyid }  from '../baseclass/basegroup';
-const autofillkeyset = require('./autofillkeyset');
+import { group, _get, _getbyid }  from '../baseclass/basegroup.js';
+import { autofillkeyset } from './autofillkeyset.js';
 
-const autofillkeysets:group = {
+export const autofillkeysets:group = {
     endpoint:  "/autofill-keyword-sets",
     items: [],
     async get(paramName?:string, params?:string){
@@ -18,4 +18,3 @@ const autofillkeysets:group = {
         return dt;
     }
 }
-module.exports = autofillkeysets;

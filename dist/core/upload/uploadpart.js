@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const core = require('../core');
-async function uploadpart(uploadId, partNum, partBinary) {
+export async function uploadpart(uploadId, partNum, partBinary) {
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads/${uploadId}?filePart=${partNum}`;
     let data = partBinary;
     let request = {
@@ -18,4 +15,3 @@ async function uploadpart(uploadId, partNum, partBinary) {
     const response = await global.bases.client.request(request);
     return response.data;
 }
-module.exports = uploadpart;

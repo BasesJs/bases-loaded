@@ -1,7 +1,7 @@
-import { group, _get, _getbyid } from '../baseclass/basegroup';
-const customquery = require('./customquery');
+import { group, _get, _getbyid } from '../baseclass/basegroup.js';
+import { customquery } from './customquery.js';
 
-const customqueries:group = {
+export const customqueries:group = {
     endpoint:"/custom-queries",
     items: [],
     async get(paramName?:string, params?:string){        
@@ -18,4 +18,3 @@ const customqueries:group = {
         return cq;
     }
 }
-module.exports = customqueries;

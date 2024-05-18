@@ -1,7 +1,7 @@
-import { group, _get, _getbyid }  from '../baseclass/basegroup';
-const notetype = require('./notetype');
+import { group, _get, _getbyid }  from '../baseclass/basegroup.js';
+import { notetype } from './notetype.js';
 
-const notetypes:group = {
+export const notetypes:group = {
     endpoint:"/note-types",
     items:[],
     async get(paramName?:string, params?:string){        
@@ -18,4 +18,3 @@ const notetypes:group = {
         return dt;
     }
 }
-module.exports = notetypes;

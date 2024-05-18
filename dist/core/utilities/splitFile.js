@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-async function splitFile(file, numberOfParts, partSize) {
+export async function splitfile(file, numberOfParts, partSize) {
     console.log({
         fileSize: file.byteLength,
         partSize: partSize,
@@ -29,4 +27,3 @@ async function splitFile(file, numberOfParts, partSize) {
     console.log(`Returning ${parts.length} parts`);
     return parts;
 }
-exports.default = splitFile;

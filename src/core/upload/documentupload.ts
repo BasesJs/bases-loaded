@@ -1,12 +1,12 @@
-const splitfile = require('../utilities/splitFile');
-const stageupload = require('./stageupload');
-const uploadpart = require('./uploadpart');
-const deleteupload = require('./deleteupload');
-const bestguess = require('./bestguessfiletype');
-const core = require('../core');
-import documentinfo from "./documentinfo";
+import { splitfile } from '../utilities/splitFile.js';
+import { stageupload } from './stageupload.js';
+import { uploadpart } from './uploadpart.js';
+import { deleteupload } from './deleteupload.js';
+import { bestguess } from './bestguessfiletype.js';
+import { core } from '../core.js';
+import { documentinfo } from "./documentinfo.js";
 
-class documentimport {
+export class documentupload {
     constructor(uploadId:string, parts:any[], documentinfo:documentinfo){
         this.uploadId = uploadId;
         this.parts = parts;
@@ -57,8 +57,7 @@ class documentimport {
         }
         docinfo.uploads.push(upload);        
         let parts:any[] = await splitfile(file, stageResp.numberOfParts, stageResp.filePartSize);
-        const docupload = new documentimport(stageResp.id, parts, docinfo) 
+        const docupload = new documentupload(stageResp.id, parts, docinfo) 
         return docupload;
     }
 }
-module.exports = documentimport;

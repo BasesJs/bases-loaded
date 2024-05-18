@@ -1,16 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const splitfile = require('../utilities/splitFile');
-const stageupload = require('./stageupload');
-const uploadpart = require('./uploadpart');
-const deleteupload = require('./deleteupload');
-const bestguess = require('./bestguessfiletype');
-const core = require('../core');
-const documentinfo_1 = __importDefault(require("./documentinfo"));
-class documentimport {
+import { splitfile } from '../utilities/splitFile.js';
+import { stageupload } from './stageupload.js';
+import { uploadpart } from './uploadpart.js';
+import { bestguess } from './bestguessfiletype.js';
+import { documentinfo } from "./documentinfo.js";
+export class documentupload {
     constructor(uploadId, parts, documentinfo) {
         this.uploadId = uploadId;
         this.parts = parts;
@@ -54,15 +47,14 @@ class documentimport {
         }
     }
     static async create(file, fileExtension, documentTypeName, documentDate) {
-        const docinfo = await documentinfo_1.default.create(documentTypeName, fileExtension, documentDate);
+        const docinfo = await documentinfo.create(documentTypeName, fileExtension, documentDate);
         let stageResp = await stageupload(fileExtension, file.byteLength);
         let upload = {
             "id": `${stageResp.id}`
         };
         docinfo.uploads.push(upload);
         let parts = await splitfile(file, stageResp.numberOfParts, stageResp.filePartSize);
-        const docupload = new documentimport(stageResp.id, parts, docinfo);
+        const docupload = new documentupload(stageResp.id, parts, docinfo);
         return docupload;
     }
 }
-module.exports = documentimport;

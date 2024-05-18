@@ -1,7 +1,7 @@
-const documenttype = require('../document-types/documenttype');
-const keyword = require('./keyword')
+import { documenttype } from '../document-types/documenttype.js'
+import { keyword } from './keyword.js';
 
-class keywordcollection {
+export class keywordcollection {
     constructor(keywordGuid?:string, items?:any[]){
         if(keywordGuid != null){
             this.keywordGuid = keywordGuid;
@@ -24,10 +24,9 @@ class keywordcollection {
     }
     static async create(documentTypeId:string){
         const kwC = new keywordcollection()
-        let dt = await global.bases.core.documenttypes.getById(documentTypeId);
+        let dt = await global.bases.core.documenttypes.getbyid(documentTypeId);
         let data = await dt.defaultKeywords();
         kwC.keywordGuid = data.keywordGuid;
         return kwC;
     }
 }
-module.exports = keywordcollection;

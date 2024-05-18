@@ -1,4 +1,5 @@
-import {basesloaded} from './bases';
+
+import {basesloaded} from './bases.js';
 export {};
 
 declare global {

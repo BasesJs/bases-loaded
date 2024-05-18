@@ -1,14 +1,13 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.identity = void 0;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-const token_js_1 = require("./token.js");
-const config = require('../../config/config.json');
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+import { token } from './token.js';
+import { config } from '../config/config.js';
 const qs = require('qs');
-class identity {
+export class identity {
     username = "";
     password = "";
-    token = new token_js_1.token();
+    token = new token();
     client = "";
     constructor() {
     }
@@ -40,7 +39,7 @@ class identity {
         };
         try {
             let response = await this.client.request(request);
-            this.token = token_js_1.token.create(response.data);
+            this.token = token.create(response.data);
             return true;
         }
         catch (err) {
@@ -76,4 +75,3 @@ class identity {
         return response.data;
     }
 }
-exports.identity = identity;

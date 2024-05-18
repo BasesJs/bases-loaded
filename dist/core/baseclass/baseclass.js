@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class base {
+export default class base {
     id = "";
     name = "";
     systemName = "";
@@ -10,4 +8,3 @@ class base {
         this.systemName = systenName;
     }
 }
-exports.default = base;

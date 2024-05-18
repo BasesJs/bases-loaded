@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const documenttype = require('../document-types/documenttype');
-const keyword = require('./keyword');
-class keywordcollection {
+import { keyword } from './keyword.js';
+export class keywordcollection {
     constructor(keywordGuid, items) {
         if (keywordGuid != null) {
             this.keywordGuid = keywordGuid;
@@ -24,10 +21,9 @@ class keywordcollection {
     }
     static async create(documentTypeId) {
         const kwC = new keywordcollection();
-        let dt = await global.bases.core.documenttypes.getById(documentTypeId);
+        let dt = await global.bases.core.documenttypes.getbyid(documentTypeId);
         let data = await dt.defaultKeywords();
         kwC.keywordGuid = data.keywordGuid;
         return kwC;
     }
 }
-module.exports = keywordcollection;

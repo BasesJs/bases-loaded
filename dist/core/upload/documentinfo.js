@@ -1,10 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const keywordcollection = require('../keywords/keywordcollection');
-const documenttype = require('../document-types/documenttype');
-const core = require('../core');
-const bestguess = require('./bestguessfiletype');
-class documentinfo {
+import { keywordcollection } from '../keywords/keywordcollection.js';
+import { bestguess } from './bestguessfiletype.js';
+export class documentinfo {
     constructor(documentTypeId, fileTypeId, documentDate) {
         if (documentTypeId != null) {
             this.documentTypeId = documentTypeId;
@@ -33,5 +29,3 @@ class documentinfo {
         return docInfo;
     }
 }
-exports.default = documentinfo;
-module.exports = documentinfo;

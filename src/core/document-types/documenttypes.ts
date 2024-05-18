@@ -1,7 +1,7 @@
-import { group, _get, _getbyid } from '../baseclass/basegroup';
-const documenttype = require('./documenttype');
+import { group, _get, _getbyid } from '../baseclass/basegroup.js';
+import { documenttype } from './documenttype.js';
 
-const documenttypes:group = {
+export const documenttypes:group = {
     endpoint:"/document-types",
     items:[],
     async get(paramName?:string, params?:string){        
@@ -18,4 +18,3 @@ const documenttypes:group = {
         return dt;
     }
 }
-module.exports = documenttypes;

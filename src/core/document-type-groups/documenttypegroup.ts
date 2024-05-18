@@ -1,8 +1,7 @@
-import base from '../baseclass/baseclass';
+import base from '../baseclass/baseclass.js';
 
-class documenttypegroup extends base{
+export class documenttypegroup extends base{
     constructor(item:any){
         super(item.id, item.name, item.systemName);
     }
 }
-module.exports = documenttypegroup;

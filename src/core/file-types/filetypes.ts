@@ -1,7 +1,7 @@
-import { group, _get, _getbyid}  from '../baseclass/basegroup';
-const filetype = require('./filetype');
+import { group, _get, _getbyid}  from '../baseclass/basegroup.js';
+import { filetype } from './filetype.js';
 
-const filetypes:group = {
+export const filetypes:group = {
     endpoint:"/file-types",
     items:[],
     async get(paramName?:string, params?:string){        
@@ -9,8 +9,7 @@ const filetypes:group = {
         data.items.forEach((item:any) => {
             let ft = new filetype(item);
             this.items.push(ft);
-        });        
-
+        });   
         return this.items;
     },
     async getbyid(id:string){        
@@ -19,4 +18,3 @@ const filetypes:group = {
         return ft;
     }    
 }
-module.exports = filetypes;

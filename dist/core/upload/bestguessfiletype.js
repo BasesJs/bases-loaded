@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-async function bestguess(fileExtension) {
+export async function bestguess(fileExtension) {
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
     let data = "";
     let request = {
@@ -17,4 +15,3 @@ async function bestguess(fileExtension) {
     const response = await global.bases.client.request(request);
     return response.data.id;
 }
-module.exports = bestguess;

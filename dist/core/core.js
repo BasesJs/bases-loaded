@@ -1,14 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const filetypes = require('./file-types/filetypes');
-const documenttypegroups = require('./document-type-groups/documenttypegroups');
-const documenttypes = require('./document-types/documenttypes');
-const keywordtypegroups = require('./keyword-type-groups/keywordtypegroups');
-const keywordtypes = require('./keyword-types/keywordtypes');
-const autofillkeysets = require('./autofill-keysets/autofillkeysets');
-const customqueries = require('./custom-queries/customqueries');
-const notetypes = require('./note-types/notetypes');
-const core = {
+import { filetypes } from './file-types/filetypes.js';
+import { documenttypegroups } from './document-type-groups/documenttypegroups.js';
+import { documenttypes } from './document-types/documenttypes.js';
+import { keywordtypegroups } from './keyword-type-groups/keywordtypegroups.js';
+import { keywordtypes } from './keyword-types/keywordtypes.js';
+import { autofillkeysets } from './autofill-keysets/autofillkeysets.js';
+import { customqueries } from './custom-queries/customqueries.js';
+import { notetypes } from './note-types/notetypes.js';
+export const core = {
     name: "Document Management API",
     endpoint: "/onbase/core",
     filetypes: filetypes,
@@ -20,4 +18,3 @@ const core = {
     customqueries: customqueries,
     notetypes: notetypes
 };
-module.exports = core;

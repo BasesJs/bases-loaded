@@ -1,15 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.basesloaded = void 0;
-const config = require('../config/config.json');
-const identity_1 = require("./identity/identity");
-const core = require('./core/core');
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+import { config } from './config/config.js';
+import { identity } from './identity/identity.js';
+import { core } from './core/core.js';
 const axios = require('axios');
 const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;
 const jar = new CookieJar();
 const axclient = wrapper(axios.create({ jar }));
-class basesloaded {
+export class basesloaded {
     constructor() {
         this.apiURI = `${config.environment.baseuri}${config.environment.apibase}`;
         this.idpURI = `${config.environment.baseuri}${config.environment.idpbase}`;
@@ -17,16 +16,16 @@ class basesloaded {
     idpURI = "";
     apiURI = "";
     client = axclient;
-    identity = new identity_1.identity();
+    identity = new identity();
     core = core;
     async connect(username, password) {
-        this.identity = identity_1.identity.create(this.client, username, password);
+        this.identity = identity.create(this.client, username, password);
         let success = await this.identity.connect();
         if (success) {
             global.bases = this;
         }
         else {
-            console.log("What went wrong");
+            console.log("Could not get an authentication token.");
         }
         return success;
     }
@@ -34,5 +33,3 @@ class basesloaded {
         return await this.identity.disconnect();
     }
 }
-exports.basesloaded = basesloaded;
-module.exports = basesloaded;

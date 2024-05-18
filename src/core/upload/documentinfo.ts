@@ -1,9 +1,9 @@
-const keywordcollection = require('../keywords/keywordcollection');
-const documenttype = require('../document-types/documenttype');
-const core = require('../core');
-const bestguess = require('./bestguessfiletype');
+import { keywordcollection } from '../keywords/keywordcollection.js';
+import { documenttype } from '../document-types/documenttype.js';
+import { core } from '../core.js';
+import { bestguess } from './bestguessfiletype.js';
 
-export default class documentinfo {
+export class documentinfo {
     constructor(documentTypeId?:string, fileTypeId?:string, documentDate?:Date)
     {
         if(documentTypeId != null){
@@ -32,4 +32,4 @@ export default class documentinfo {
         return docInfo;
     }
 }
-module.exports= documentinfo;
+

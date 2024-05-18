@@ -1,4 +1,4 @@
-async function deleteupload(uploadId:string){
+export async function deleteupload(uploadId:string){
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads/${uploadId}`
     let data = "";
     let request = {
@@ -15,4 +15,3 @@ async function deleteupload(uploadId:string){
     const response = await global.bases.client.request(request);
     return response.data;
 }
-module.exports = deleteupload;

@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class keyword {
+export class keyword {
     constructor(typeId = null, values = []) {
         if (typeId != null) {
             this.typeId = typeId;
@@ -32,4 +30,3 @@ class keyword {
         return kw;
     }
 }
-module.exports = keyword;

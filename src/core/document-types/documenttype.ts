@@ -1,6 +1,6 @@
-import base from '../baseclass/baseclass';
+import base from '../baseclass/baseclass.js';
 
-class documenttype extends base{
+export class documenttype extends base{
     constructor(item:any){
         super(item.id, item.name, item.systemName);
         this.defaultFileTypeId = item.defaultFileTypeId;
@@ -57,4 +57,3 @@ class documenttype extends base{
         return response.data;
     }   
 }
-module.exports = documenttype;

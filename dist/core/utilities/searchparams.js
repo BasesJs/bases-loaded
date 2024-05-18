@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class searchparams {
+export default class searchparams {
     constructor(paramName, parameters) {
         this.paramname = paramName;
         if (Array.isArray(parameters))
@@ -22,4 +20,3 @@ class searchparams {
         return str;
     }
 }
-exports.default = searchparams;

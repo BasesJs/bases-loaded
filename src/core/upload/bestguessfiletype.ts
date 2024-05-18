@@ -1,4 +1,4 @@
-async function bestguess(fileExtension:string){
+export async function bestguess(fileExtension:string){
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
     let data = "";
     let request = {
@@ -15,4 +15,3 @@ async function bestguess(fileExtension:string){
     const response = await global.bases.client.request(request);
     return response.data.id;
 }
-module.exports = bestguess;

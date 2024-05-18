@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const core = require('../core');
-async function stageupload(fileExtension, fileSize) {
+export async function stageupload(fileExtension, fileSize) {
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads`;
     let data = JSON.stringify({
         "fileExtension": `${fileExtension}`,
@@ -21,4 +18,3 @@ async function stageupload(fileExtension, fileSize) {
     const response = await global.bases.client.request(request);
     return response.data;
 }
-module.exports = stageupload;

@@ -1,6 +1,6 @@
-import base from '../baseclass/baseclass';
+import base from '../baseclass/baseclass.js';
 
-class autofillkeyset extends base {
+export class autofillkeyset extends base {
     constructor(item: any){
         super(item.id, item.name, item.systemName);
         this.primaryKeywordTypeId = item.primaryKeywordTypeId;
@@ -34,4 +34,3 @@ class autofillkeyset extends base {
             return items; 
     }
 }
-module.exports = autofillkeyset;

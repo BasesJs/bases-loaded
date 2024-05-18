@@ -1,7 +1,7 @@
-import { group, _get, _getbyid }  from '../baseclass/basegroup';
-const keywordtypegroup = require('./keywordtypegroup');
+import { group, _get, _getbyid } from '../baseclass/basegroup.js';
+import { keywordtypegroup } from './keywordtypegroup.js';
 
-const keywordtypegroups:group = {
+export const keywordtypegroups:group = {
     endpoint: "/keyword-type-groups",
     items: [],
     async get(paramName?:string, params?:string){
@@ -18,4 +18,3 @@ const keywordtypegroups:group = {
         return ktg;
     }
 }
-module.exports = keywordtypegroups;

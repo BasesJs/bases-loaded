@@ -1,6 +1,8 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-import {token} from './token.js';
-const config = require('../../config/config.json');
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+import { token } from './token.js';
+import { config } from '../config/config.js';
 const qs = require('qs');
 
 export class identity {
@@ -74,4 +76,3 @@ export class identity {
         return response.data;
     }
 }
-//module.exports = identity;

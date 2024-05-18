@@ -1,21 +1,20 @@
-const basesloaded = require("./bases");
-const documentupload = require("./core/upload/documentupload");
-const fs = require('node:fs');
+import { basesloaded } from "../bases.js";
+import { documentupload } from "../core/upload/documentupload.js";
+
+
 LoadBases()
     .then(bases => {
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.documenttypes.getbyid('5')
+        bases.core.documenttypes.getbyid('209')
         .then((dts) =>{
             console.log(dts);
-        })
-        
-        
+        })  
         /*let file = fs.readFileSync('../resources/NPS_PS_Intro.mp4');
         documentupload.create(file, 'mp4', 'SYS Unidentified Items', new Date())
         .then((docupload) => {            
-            docupload.documentinfo.keywordCollection.addKeyword("Description", ["Success"]) //pathetically lacking
+            docupload.documentinfo.kseywordCollection.addKeyword("Description", ["Success"]) //pathetically lacking
             .then(()=>{
                 docupload.uploadParts() // figure out if we can still send all parts at once / loop
                 .then(()=>{
