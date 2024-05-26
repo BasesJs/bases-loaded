@@ -13,16 +13,15 @@ export async function RunRequest(options: RequestOptions):Promise<any>{
 }
 
 export class RequestOptions {
-    constructor(method: httpMethod, maxBodyLength: number, url: string, headers: { 'Content-Type': string; 'Authorization': string; }, redirect: string, data: string) {
-        this.method = method.toString();;
-        this.maxBodyLength = maxBodyLength;
+    constructor(method: httpMethod, url: string, headers: { 'Content-Type': string; 'Authorization': string; }, redirect: string, data: string) {
+        this.method = method.toString();
         this.url = url;
         this.headers = headers;
         this.redirect = redirect;
         this.data = data;
     }
     method: string;
-    maxBodyLength: number;
+    maxBodyLength: number = Infinity;
     url: string;
     headers: {
         'Content-Type': string;
@@ -31,7 +30,7 @@ export class RequestOptions {
     redirect: string;
     data: string;
     static create(method: httpMethod, maxBodyLength: number, url: string, headers: { 'Content-Type': string; 'Authorization': string; }, redirect: string, data: string):RequestOptions {
-        return new RequestOptions(method, maxBodyLength, url, headers, redirect, data);        
+        return new RequestOptions(method, url, headers, redirect, data);        
     }
 }
 

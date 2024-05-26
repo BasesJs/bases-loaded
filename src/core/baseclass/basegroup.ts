@@ -1,6 +1,6 @@
 import searchparams from '../utilities/searchparams.js';
 import { error } from 'console';
-import { RunRequest, RequestOptions, httpMethod } from '../http/httprequest.js';
+import { RunRequest, RequestOptions, httpMethod } from '../../helpers/http/httprequest.js';
 
 export interface group {
     endpoint:string;
@@ -19,9 +19,9 @@ export async function _get(endpoint:string, paramName?:string, params?:string){
     else if((paramName != null && params == null) || (paramName == null && params != null) ){
         throw error("When using search parameters, both variables are required.");
     }
-    let options = new RequestOptions(httpMethod.GET, Infinity, 
-        fullUrl, 
-        
+    let options = new RequestOptions(
+        httpMethod.GET, 
+        fullUrl,         
         {
             'Content-Type': 'application/json', 
             'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
@@ -33,7 +33,8 @@ export async function _get(endpoint:string, paramName?:string, params?:string){
 }
 
 export async function _getbyid(id:any, endpoint:string){
-    let options = new RequestOptions(httpMethod.GET, Infinity,
+    let options = new RequestOptions(
+        httpMethod.GET,
         `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}/${id}`, 
         {
             'Content-Type': 'application/json', 

@@ -6,6 +6,7 @@ import { keywordtypes } from './keyword-types/keywordtypes.js';
 import { autofillkeysets } from './autofill-keysets/autofillkeysets.js';
 import { customqueries } from './custom-queries/customqueries.js';
 import { notetypes } from './note-types/notetypes.js';
+import { documenttype } from './document-types/documenttype.js';
 
 export const core = {
     name: "Document Management API",
@@ -20,4 +21,8 @@ export const core = {
     notetypes: notetypes  
 }
 
+interface upload {
+    documentType: documenttype;
+    
 
+}

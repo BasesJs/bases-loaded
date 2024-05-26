@@ -1,4 +1,5 @@
 import base from '../baseclass/baseclass.js';
+import { RequestOptions, RunRequest, httpMethod } from '../../helpers/http/httprequest.js';
 
 export class documenttype extends base{
     constructor(item:any){
@@ -24,36 +25,31 @@ export class documenttype extends base{
     }   
     async defaultKeywords(){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/default-keywords`
-        let data = "";
-        let request = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: fullUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`            
-            },      
-            redirect: 'follow',
-            data : data
-        };
-        const response =  await global.bases.client.request(request);
+        let options = new RequestOptions(
+            httpMethod.GET,
+            fullUrl,             
+            {
+                'Content-Type': 'application/json', 
+                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
+            },
+            'follow',        
+            '');
+        const response = await RunRequest(options);   
         return response.data;
     }    
     async keywordTypes(){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/keyword-type-groups`
-        let data = "";
-        let request = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: fullUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`            
-            },      
-            redirect: 'follow',
-            data : data
-        };
-        const response =  await global.bases.client.request(request);
+        let options = new RequestOptions(
+            httpMethod.GET,
+            fullUrl,
+            {
+                'Content-Type': 'application/json', 
+                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
+            },
+            'follow',
+            ''
+        );
+        const response = await RunRequest(options);   
         return response.data;
     }   
 }
