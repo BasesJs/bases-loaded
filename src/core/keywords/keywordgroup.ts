@@ -7,6 +7,7 @@ export class keywordgroup extends base {
         super(item.typeGroupId, item.name? item.systemName : "", item.systemName? item.systemName : "");
         this.keywords = item.keywords;
         this.groupId = item.groupId;
+        this.typeGroupId = item.typeGroupId;
         keywordtypegroups.getbyid(item.typeGroupId)
         .then((ktg:any) => {
             this.storageType = ktg.storageType;
@@ -19,5 +20,9 @@ export class keywordgroup extends base {
     storageType: string = "";
     instanceId: string = "";
     groupId: string;
+    typeGroupId: string;
     keywords: keyword[];
+    async getKTGInfo(){
+        return await keywordtypegroups.getbyid(this.typeGroupId);
+    }
 }

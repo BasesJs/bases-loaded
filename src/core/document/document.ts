@@ -34,7 +34,7 @@ export class document extends base {
 
 const endpoint1 = "/documents";
 
-async function get(id:string, getkeywords = true ): Promise<any> {
+async function get(id:string, getkeywords = true): Promise<any> {
     const data = await _getbyid(endpoint1, id);
     const doc = new document(data);
     if(getkeywords){
