@@ -7,13 +7,9 @@ LoadBases()
         console.log("Bases Loaded");
     })
     .then(()=>{
-        bases.core.documenttypes.getbyid('209')
-        .then((dts) =>{
-            console.log(dts);
-            dts.keywordTypes()
-            .then((kts) => {
-                console.log(kts);
-            })
+        bases.core.getDocument("149")
+        .then(() =>{
+            console.log("The End");
         })  
         /*let file = fs.readFileSync('./resources/NPS_PS_Intro.mp4');
         documentupload.create(file, 'mp4', 'SYS Unidentified Items', new Date())

@@ -31,15 +31,3 @@ export class document extends base {
     mikgs: keywordgroup[];    
     keywordGuid: string;
 }
-
-const endpoint1 = "/documents";
-
-async function get(id:string, getkeywords = true): Promise<any> {
-    const data = await _getbyid(endpoint1, id);
-    const doc = new document(data);
-    if(getkeywords){
-        const keywords = await _getbyid(id+"/keywords", endpoint1);
-        
-    }
-
-}

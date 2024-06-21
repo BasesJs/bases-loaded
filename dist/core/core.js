@@ -6,6 +6,7 @@ import { keywordtypes } from './keyword-types/keywordtypes.js';
 import { autofillkeysets } from './autofill-keysets/autofillkeysets.js';
 import { customqueries } from './custom-queries/customqueries.js';
 import { notetypes } from './note-types/notetypes.js';
+import { getDocument } from './utilities/getdocument.js';
 export const core = {
     name: "Document Management API",
     endpoint: "/onbase/core",
@@ -16,5 +17,6 @@ export const core = {
     keywordtypes: keywordtypes,
     autofillkeysets: autofillkeysets,
     customqueries: customqueries,
-    notetypes: notetypes
+    notetypes: notetypes,
+    getDocument: getDocument
 };

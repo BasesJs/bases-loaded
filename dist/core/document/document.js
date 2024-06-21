@@ -1,5 +1,4 @@
 import base from '../baseclass/baseclass.js';
-import { _getbyid } from '../baseclass/basegroup.js';
 export class document extends base {
     constructor(item) {
         super(item.id, item.name, item.systemName ? item.systemName : "");
@@ -24,12 +23,4 @@ export class document extends base {
     sikgs;
     mikgs;
     keywordGuid;
-}
-const endpoint1 = "/documents";
-async function get(id, getkeywords = true) {
-    const data = await _getbyid(endpoint1, id);
-    const doc = new document(data);
-    if (getkeywords) {
-        const keywords = await _getbyid(id + "/keywords", endpoint1);
-    }
 }
