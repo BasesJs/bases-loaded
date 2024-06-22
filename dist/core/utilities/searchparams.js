@@ -19,4 +19,12 @@ export default class searchparams {
         }
         return str;
     }
+    static create(value) {
+        let idSearch = false;
+        if (typeof value === 'number' || !isNaN(value)) {
+            idSearch = true;
+        }
+        let paramName = idSearch ? "id" : "systemName";
+        return new searchparams(paramName, value);
+    }
 }

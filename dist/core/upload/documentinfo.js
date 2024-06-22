@@ -20,7 +20,7 @@ export class documentinfo {
     keywordCollection = new keywords();
     static async create(documentTypeName, fileExtension, documentDate) {
         const docInfo = new documentinfo();
-        let items = await bases.core.documenttypes.get('systemName', documentTypeName);
+        let items = await bases.core.documenttypes.get(documentTypeName);
         let doctype = items[0];
         docInfo.documentTypeId = items[0].id;
         docInfo.fileTypeId = await bestguess(fileExtension);

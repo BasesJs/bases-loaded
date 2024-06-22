@@ -1,4 +1,4 @@
-import {filetypes} from './file-types/filetypes.js';
+import { filetypes } from './file-types/filetypes.js';
 import { documenttypegroups } from './document-type-groups/documenttypegroups.js';
 import { documenttypes } from './document-types/documenttypes.js';
 import { keywordtypegroups } from './keyword-type-groups/keywordtypegroups.js';
@@ -7,7 +7,7 @@ import { autofillkeysets } from './autofill-keysets/autofillkeysets.js';
 import { customqueries } from './custom-queries/customqueries.js';
 import { notetypes } from './note-types/notetypes.js';
 import { documenttype } from './document-types/documenttype.js';
-import { getDocument } from './utilities/getdocument.js';
+import { document } from './document/document.js';
 
 export const core = {
     name: "Document Management API",
@@ -20,7 +20,10 @@ export const core = {
     autofillkeysets: autofillkeysets,
     customqueries: customqueries,
     notetypes: notetypes,
-    getDocument: getDocument 
+    async getDocument(id:string, getKeywords:boolean = true): Promise<any> {
+        const data = await document.get(id, getKeywords);
+        return data;
+    }
 }
 
 interface upload {

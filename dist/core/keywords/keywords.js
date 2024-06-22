@@ -21,7 +21,7 @@ export class keywords {
     }
     static async create(documentTypeId) {
         const kwC = new keywords();
-        let dt = await global.bases.core.documenttypes.getbyid(documentTypeId);
+        let dt = await global.bases.core.documenttypes.get(documentTypeId);
         let data = await dt.defaultKeywords();
         kwC.keywordGuid = data.keywordGuid;
         let keywordTypes = data.items.find((item) => item.keywordType == "Document");

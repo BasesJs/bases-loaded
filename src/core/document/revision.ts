@@ -8,4 +8,6 @@ export class revision {
     id:string;
     revisionNumber:string;
     rendtions:rendition[] = [];
+    static endpoint:string = "/revisions";
 }
+

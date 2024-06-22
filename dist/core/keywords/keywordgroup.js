@@ -1,26 +1,41 @@
-import base from '../baseclass/baseclass.js';
 import { keywordtypegroups } from '../keyword-type-groups/keywordtypegroups.js';
-export class keywordgroup extends base {
-    constructor(item) {
-        super(item.typeGroupId, item.name ? item.systemName : "", item.systemName ? item.systemName : "");
-        this.keywords = item.keywords;
-        this.groupId = item.groupId;
-        this.typeGroupId = item.typeGroupId;
-        keywordtypegroups.getbyid(item.typeGroupId)
-            .then((ktg) => {
-            this.storageType = ktg.storageType;
-            if (ktg.storageType === "MultiInstance") {
-                this.groupId = item.groupId;
-                this.instanceId = item.instanceId;
-            }
-        });
+export class multirecordgroup {
+    constructor(id) {
+        this.typeId = id;
     }
-    storageType = "";
-    instanceId = "";
-    groupId;
-    typeGroupId;
+    typeId;
+    recordgroups = [];
+    name = "";
+    add(item) {
+        let record = new recordgroup(item.groupId, item.instanceId, item.keywords);
+        this.recordgroups.push(record);
+    }
+    static async createbyid(id, item) {
+        let group = new multirecordgroup(id);
+        group.name = await keywordtypegroups.get(id).name;
+        group.add(item);
+        return group;
+    }
+    static async createbyname(name, item) {
+        let mrg = await keywordtypegroups.get(name);
+        let group = new multirecordgroup(mrg.id);
+        group.name = mrg.name;
+        group.add(item);
+        return group;
+    }
+}
+export class recordgroup {
+    constructor(id, instanceId, keywords) {
+        this.id = id;
+        this.instanceId = instanceId;
+        this.keywords = keywords;
+    }
+    id;
+    name = "";
     keywords;
-    async getKTGInfo() {
-        return await keywordtypegroups.getbyid(this.typeGroupId);
+    instanceId;
+    static async createbyid(id, instanceId, keywords) {
+    }
+    static async createbyname(name, item) {
     }
 }

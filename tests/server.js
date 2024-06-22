@@ -8,30 +8,10 @@ LoadBases()
     })
     .then(()=>{
         bases.core.getDocument("149")
-        .then(() =>{
-            console.log("The End");
-        })  
-        /*let file = fs.readFileSync('./resources/NPS_PS_Intro.mp4');
-        documentupload.create(file, 'mp4', 'SYS Unidentified Items', new Date())
-        .then((docupload) => {            
-            docupload.documentinfo.kseywordCollection.addKeyword("Description", ["Success"]) //pathetically lacking
-            .then(()=>{
-                docupload.uploadParts() // figure out if we can still send all parts at once / loop
-                .then(()=>{
-                    docupload.post()
-                    .then((resp) =>{
-                        console.log(resp.data);
-                    })
-                    .then(()=>{
-                        bases.disconnect()
-                    })
-                    .catch((err)=>{
-                        console.log(err);
-                    })
-                })
-            })
-            .catch(err => console.log(err.message))
-        })     */
+        .then((doc) =>{
+            console.log(doc);
+        })
+        
     })    
     .catch((err) => { console.error(err)})
 

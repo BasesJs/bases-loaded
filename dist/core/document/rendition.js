@@ -1,15 +1,14 @@
 export class rendition {
-    constructor(item: any) {
+    constructor(item) {
         this.comment = item.comment;
         this.created = item.created;
         this.createdByUserId = item.createdByUserId;
         this.fileTypeId = item.fileTypeId;
         this.pageCount = item.pageCount;
     }
-    comment:string;
-    created:string;
-    createdByUserId:string;
-    fileTypeId:string;
-    pageCount:string;
-    static endpoint:string = "/renditions";
+    comment;
+    created;
+    createdByUserId;
+    fileTypeId;
+    pageCount;
 }

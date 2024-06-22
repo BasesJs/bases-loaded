@@ -42,6 +42,9 @@ export class document extends base {
         }              
         return doc;
     };
+    async getRevisions(): Promise<any> {
+        
+    }
     async getKeywords(): Promise<any> {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${document.endpoint}/${this.id}/keywords`;
         let options = new RequestOptions(
