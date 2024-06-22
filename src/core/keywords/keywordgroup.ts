@@ -1,28 +1,46 @@
-import base from '../baseclass/baseclass.js';
 import { keyword } from './keyword.js';
 import { keywordtypegroups } from '../keyword-type-groups/keywordtypegroups.js';
 
-export class keywordgroup extends base {
-    constructor(item: any) {
-        super(item.typeGroupId, item.name? item.systemName : "", item.systemName? item.systemName : "");
-        this.keywords = item.keywords;
-        this.groupId = item.groupId;
-        this.typeGroupId = item.typeGroupId;
-        keywordtypegroups.getbyid(item.typeGroupId)
-        .then((ktg:any) => {
-            this.storageType = ktg.storageType;
-            if(ktg.storageType === "MultiInstance"){
-                this.groupId = item.groupId;
-                this.instanceId = item.instanceId;
-            }
-        });
+export class multirecordgroup {
+    constructor(id:string) {
+        this.typeId = id;
     }    
-    storageType: string = "";
-    instanceId: string = "";
-    groupId: string;
-    typeGroupId: string;
-    keywords: keyword[];
-    async getKTGInfo(){
-        return await keywordtypegroups.getbyid(this.typeGroupId);
+    typeId:string;
+    recordgroups:recordgroup[] = [];
+    name:string = "";
+    add(item:any){
+        let record = new recordgroup(item.groupId, item.instanceId, item.keywords);
+        this.recordgroups.push(record);
+    }
+    static async createbyid(id:string, item:any){
+        let group = new multirecordgroup(id);
+        group.name = await keywordtypegroups.get(id).name;        
+        group.add(item);
+        return group;
+    }
+    static async createbyname(name:string, item:any){
+        let mrg = await keywordtypegroups.get(name);
+        let group = new multirecordgroup(mrg.id);
+        group.name = mrg.name;
+        group.add(item);
+        return group;
+    }
+}
+
+export class recordgroup {
+    constructor(id:string, instanceId:string, keywords:keyword[]) {
+        this.id = id;    
+        this.instanceId = instanceId;   
+        this.keywords =keywords;
+    }    
+    id:string;
+    name:string = "";
+    keywords:keyword[];
+    instanceId:string;
+    static async createbyid(id:string, instanceId:string, keywords:keyword[]){
+        
+    }
+    static async createbyname(name:string, item:any){
+        
     }
 }
