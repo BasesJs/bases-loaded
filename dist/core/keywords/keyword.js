@@ -1,33 +1,46 @@
+import { keywordtype } from '../keyword-types/keywordtype.js';
 export class keyword {
-    constructor(typeId = null, values = []) {
-        if (typeId != null) {
-            this.id = typeId;
-        }
-        if (values.length > 0) {
-            this.values = values;
-        }
+    constructor(id, name, values) {
+        this.id = id;
+        this.name = name;
+        this.values = values;
     }
     id = "";
     name = "";
     values = [];
-    static async create(keywordName, values) {
-        const kw = new keyword();
-        let items = await global.bases.core.keywordtypes.get(keywordName);
-        kw.id = items[0].id;
-        if (Array.isArray(values)) {
-            values.forEach((item) => {
-                let value = {
-                    "value": item
-                };
-                kw.values.push(value);
-            });
-        }
-        else {
-            let value = {
-                "value": values
-            };
-            kw.values.push(value);
-        }
-        return kw;
+    static parse(item) {
+        let values = [];
+        item.values.forEach((val) => {
+            values.push(keywordvalue.parse(val));
+        });
+        return new keyword(item.typeId, item.name ? item.name : undefined, values);
     }
+    static async parseAsync(item) {
+        if (item.typeId === undefined) {
+            throw new Error("No TypeId found in keyword");
+        }
+        let keyType = await keywordtype.get(item.typeId);
+        let id = keyType.id;
+        let name = keyType.name;
+        let values = [];
+        item.values.forEach((val) => {
+            values.push(keywordvalue.parse(val));
+        });
+        return new keyword(id, name, values);
+    }
+}
+export class keywordvalue {
+    constructor(value, formattedValue) {
+        this.value = value;
+        this.formattedValue = formattedValue;
+    }
+    value;
+    formattedValue;
+    static parse(item) {
+        return new keywordvalue(item.value, item.formattedValue);
+    }
+}
+export class keywords {
+    constructor() { }
+    items = [];
 }

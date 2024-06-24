@@ -3,11 +3,13 @@ const require = createRequire(import.meta.url);
 import { config } from './config/config.js';
 import {identity} from './identity/identity.js';
 import { core } from './core/core.js'; 
+import { RunRequest, RequestOptions, httpMethod } from './helpers/http/httprequest.js';
 const axios = require('axios');
 const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;
 const jar = new CookieJar();
 const axclient = wrapper(axios.create({jar}));
+
 
 export class basesloaded {
     constructor(){        
@@ -31,6 +33,27 @@ export class basesloaded {
         return success;
     }
     async disconnect(){
-        return await this.identity.disconnect();
+        let options = new RequestOptions(httpMethod.POST, 
+            `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/disconnect`,
+            {
+                'Content-Type': '*/*', 
+                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
+            },
+            'follow',        
+            '');        
+        const response = await RunRequest(options);
+        return response.data;
+    }
+    async heartbeat(){
+        let options = new RequestOptions(httpMethod.GET, 
+            `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/heartbeat`, 
+            {
+                'Content-Type': '*/*', 
+                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
+            },
+            'follow',        
+            '');        
+        const response = await RunRequest(options);
+        return response.data;
     }
 }

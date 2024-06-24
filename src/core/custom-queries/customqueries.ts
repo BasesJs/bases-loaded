@@ -7,14 +7,9 @@ export const customqueries:group = {
     async get(searchTerm?:any){        
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((it:any) => {
-            let cq = new customquery(it);
+            let cq = customquery.parse(it);
             this.items.push(cq);
         });        
         return this.items;
-    },
-/*     async getbyid(id:string){
-        const data = await _getbyid(id, this.endpoint);
-        let cq = new customquery(data);       
-        return cq;
-    } */
+    }
 }

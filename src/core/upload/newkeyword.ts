@@ -1,7 +1,7 @@
-import { documenttype } from '../document-types/documenttype.js'
-import { keyword } from './keyword.js';
+/* import { documenttype } from '../document-types/documenttype.js'
+import { keyword } from '../keywords/keyword.js';
 
-export class keywords {
+export class importkeywords {
     constructor(keywordGuid?:string, items?:any[]){
         if(keywordGuid != null){
             this.keywordGuid = keywordGuid;
@@ -11,7 +11,7 @@ export class keywords {
         }
     }
     keywordGuid = "";
-    items:any = [];    
+    items:any[] = [];    
     async addKeyword(keywordName:string, values:string[]){
         //need to look this over
         let keywords =[];        
@@ -23,11 +23,11 @@ export class keywords {
         this.items.push(keys); 
     }
     static async create(documentTypeId:string){
-        const kwC = new keywords()
+        const kwC = new importkeywords()
         let dt = await global.bases.core.documenttypes.get(documentTypeId);
         let data = await dt.defaultKeywords();
         kwC.keywordGuid = data.keywordGuid;
         let keywordTypes = data.items.find((item:any) => item.keywordType == "Document");
         return kwC;
     }
-}
+} */

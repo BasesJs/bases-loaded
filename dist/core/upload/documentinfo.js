@@ -1,4 +1,3 @@
-import { keywords } from '../keywords/keywords.js';
 import { bestguess } from './bestguessfiletype.js';
 export class documentinfo {
     constructor(documentTypeId, fileTypeId, documentDate) {
@@ -17,14 +16,12 @@ export class documentinfo {
     fileTypeId = "";
     documentDate = "";
     uploads = [];
-    keywordCollection = new keywords();
     static async create(documentTypeName, fileExtension, documentDate) {
         const docInfo = new documentinfo();
         let items = await bases.core.documenttypes.get(documentTypeName);
         let doctype = items[0];
         docInfo.documentTypeId = items[0].id;
         docInfo.fileTypeId = await bestguess(fileExtension);
-        docInfo.keywordCollection = await keywords.create(docInfo.documentTypeId);
         docInfo.documentDate = documentDate.toString();
         return docInfo;
     }

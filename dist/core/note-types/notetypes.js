@@ -6,7 +6,7 @@ export const notetypes = {
     async get(searchTerm) {
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((item) => {
-            let nt = new notetype(item);
+            let nt = notetype.parse(item);
             this.items.push(nt);
         });
         return this.items;

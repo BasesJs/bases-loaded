@@ -1,4 +1,3 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 import { token } from './token.js';
@@ -49,30 +48,4 @@ export class identity {
         }
         
     };
-    async heartbeat(){
-        let request = {
-            method: 'post',
-            maxBodyLength: Infinity,
-            url: `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/heartbeat`,
-            withCredentials: true,
-            headers: {
-                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`             
-            }            
-        };
-        const response = await this.client.request(request);
-        return response.data;
-    };
-    async disconnect(){
-        let request = {
-            method: 'post',
-            maxBodyLength: Infinity,
-            url: `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/disconnect`,
-            headers: {
-                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`               
-            },
-            redirect: 'follow',            
-        };
-        const response = await this.client.request(request);
-        return response.data;
-    }
 }

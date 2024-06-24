@@ -18,8 +18,8 @@ export const core = {
     autofillkeysets: autofillkeysets,
     customqueries: customqueries,
     notetypes: notetypes,
-    async getDocument(id, getKeywords = true) {
-        const data = await document.get(id, getKeywords);
+    async getDocument(id, getKeywords, getRevisions) {
+        const data = await document.get(id, getKeywords, getRevisions);
         return data;
     }
 };

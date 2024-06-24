@@ -6,7 +6,7 @@ export const keywordtypes = {
     async get(searchTerm) {
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((item) => {
-            let kt = new keywordtype(item);
+            let kt = keywordtype.parse(item);
             this.items.push(kt);
         });
         return this.items;

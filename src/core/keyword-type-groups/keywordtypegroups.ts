@@ -7,7 +7,7 @@ export const keywordtypegroups:group = {
     async get(searchTerm?:any){
         const data = await _get(this.endpoint, searchTerm)
         data.items.forEach((item:any) => {
-            let ktg = new keywordtypegroup(item);
+            let ktg = keywordtypegroup.parse(item);
             this.items.push(ktg);
         });        
         return this.items;

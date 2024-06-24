@@ -1,0 +1,31 @@
+{
+  "groupId": "101",
+  "instanceId": "507bc524-917b-4d52-8a3f-6ea85dcb2442",
+  "keywords": [
+    { "typeId": "290", "values": [{ "formattedValue": "35", "value": "35" }] },
+    {
+      "typeId": "289",
+      "values": [{ "formattedValue": "Bob Barker", "value": "Bob Barker" }]
+    },
+    {
+      "typeId": "295",
+      "values": [{ "formattedValue": "HOME", "value": "HOME" }]
+    },
+    {
+      "typeId": "293",
+      "values": [
+        { "formattedValue": "11252 Road Street", "value": "11252 Road Street" }
+      ]
+    },
+    {
+      "typeId": "291",
+      "values": [{ "formattedValue": "Townsville", "value": "Townsville" }]
+    },
+    { "typeId": "292", "values": [{ "formattedValue": "OH", "value": "OH" }] },
+    {
+      "typeId": "294",
+      "values": [{ "formattedValue": "44107-    ", "value": "44107" }]
+    }
+  ],
+  "typeGroupId": "116"
+}

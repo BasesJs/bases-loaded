@@ -7,7 +7,7 @@ export const autofillkeysets:group = {
     async get(searchTerm?:any){
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((it:any) => {
-            let afks = new autofillkeyset(it);
+            let afks = autofillkeyset.parse(it);
             this.items.push(afks);
         });        
         return this.items;

@@ -6,7 +6,7 @@ export const documenttypegroups = {
     async get(searchTerm) {
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((it) => {
-            let dtg = new documenttypegroup(it);
+            let dtg = documenttypegroup.parse(it);
             this.items.push(dtg);
         });
         return this.items;

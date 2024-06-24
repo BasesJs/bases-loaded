@@ -1,14 +1,22 @@
-import base from '../baseclass/baseclass.js';
+import { base, _getbyid } from '../baseclass/baseclass.js';
+import { autofillkeysets } from './autofillkeysets.js';
 export class autofillkeyset extends base {
-    constructor(item) {
-        super(item.id, item.name, item.systemName);
-        this.primaryKeywordTypeId = item.primaryKeywordTypeId;
-        this.external = item.external;
+    constructor(id, name, systemName, primaryKeywordTypeId, external) {
+        super(id, name, systemName);
+        this.primaryKeywordTypeId = primaryKeywordTypeId;
+        this.external = external;
     }
-    primaryKeywordTypeId = "";
-    external = false;
+    primaryKeywordTypeId;
+    external;
+    static parse(item) {
+        return new autofillkeyset(item.id, item.name, item.systemName, item.primaryKeywordTypeId, item.external);
+    }
+    static async get(id) {
+        let response = await _getbyid(autofillkeysets.endpoint, id);
+        return autofillkeyset.parse(response);
+    }
     getdata = async (primaryValue) => {
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.autofillkeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
+        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${autofillkeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
         let data = "";
         let request = {
             method: 'get',

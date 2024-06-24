@@ -6,7 +6,7 @@ export const filetypes = {
     async get(searchTerm) {
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((item) => {
-            let ft = new filetype(item);
+            let ft = filetype.parse(item);
             this.items.push(ft);
         });
         return this.items;

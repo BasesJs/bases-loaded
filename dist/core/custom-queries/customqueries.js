@@ -6,9 +6,9 @@ export const customqueries = {
     async get(searchTerm) {
         const data = await _get(this.endpoint, searchTerm);
         data.items.forEach((it) => {
-            let cq = new customquery(it);
+            let cq = customquery.parse(it);
             this.items.push(cq);
         });
         return this.items;
-    },
+    }
 };
