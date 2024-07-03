@@ -3,7 +3,7 @@ const require = createRequire(import.meta.url);
 import { config } from './config/config.js';
 import {identity} from './identity/identity.js';
 import { core } from './core/core.js'; 
-import { RunRequest, RequestOptions, httpMethod } from './helpers/http/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod } from './helpers/http/httprequest.js';
 const axios = require('axios');
 const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;
@@ -23,17 +23,14 @@ export class basesloaded {
     core = core;
     async connect(username: string, password: string){        
         this.identity = identity.create(this.client, username, password);
-        let success = await this.identity.connect();
-        if(success){
-            global.bases = this;
-        }
-        else{
-            console.log("Could not get an authentication token.");
-        }
-        return success;
+        global.bases = this;
+        return await this.identity.connect();
+    }
+    async isConnected(){
+        return await this.heartbeat();
     }
     async disconnect(){
-        let options = new RequestOptions(httpMethod.POST, 
+        let options = new RequestOptions(HttpMethod.POST, 
             `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/disconnect`,
             {
                 'Content-Type': '*/*', 
@@ -41,11 +38,21 @@ export class basesloaded {
             },
             'follow',        
             '');        
-        const response = await RunRequest(options);
-        return response.data;
+            if(!this.isConnected()){
+                return;
+            }
+        
+        try{
+            let res = await RunRequest(options);
+        }    
+        catch(err){
+            //already disconnected
+        }
+
+
     }
     async heartbeat(){
-        let options = new RequestOptions(httpMethod.GET, 
+        let options = new RequestOptions(HttpMethod.GET, 
             `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/heartbeat`, 
             {
                 'Content-Type': '*/*', 
@@ -53,7 +60,17 @@ export class basesloaded {
             },
             'follow',        
             '');        
-        const response = await RunRequest(options);
-        return response.data;
+        RunRequest(options)
+        .then(()=>{return true;})
+        .catch(()=>{ return false;})        
+    }
+    connectCallback(result: boolean){
+        if(result){
+            console.log("Connected to OnBase API");
+            
+        }
+        else{
+            console.log("Could not connect to OnBase API");
+        }
     }
 }

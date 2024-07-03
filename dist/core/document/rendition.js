@@ -1,5 +1,5 @@
 import { document } from "./document.js";
-import { RunRequest, RequestOptions, httpMethod } from '../../helpers/http/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod } from '../../helpers/http/httprequest.js';
 import { revision } from "./revision.js";
 export class rendition {
     constructor(comment, created, createdByUserId, fileTypeId, pageCount) {
@@ -21,7 +21,7 @@ export class rendition {
 }
 export async function getRenditions(documentId, revisionId = "latest") {
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${document.endpoint}/${documentId}${revision.endpoint}/${revisionId}${rendition.endpoint}`;
-    let options = new RequestOptions(httpMethod.GET, fullUrl, {
+    let options = new RequestOptions(HttpMethod.GET, fullUrl, {
         'Content-Type': 'application/json',
         'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
     }, 'follow', '');

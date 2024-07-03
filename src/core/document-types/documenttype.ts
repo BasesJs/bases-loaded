@@ -1,6 +1,6 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
 import { documenttypes } from './documenttypes.js';
-import { RequestOptions, RunRequest, httpMethod } from '../../helpers/http/httprequest.js';
+import { RequestOptions, RunRequest, HttpMethod } from '../../helpers/http/httprequest.js';
 
 export class documenttype extends base{
     constructor(id:string, name:string, systemName:string, defaultFileTypeId:string, documentDateDisplayName:string, autofillKeywordSetId:string, documentTypeGroupId:string, revisionRenditionProperties:revisionRenditionProperties){
@@ -26,7 +26,7 @@ export class documenttype extends base{
     async defaultKeywords(){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/default-keywords`
         let options = new RequestOptions(
-            httpMethod.GET,
+            HttpMethod.GET,
             fullUrl,             
             {
                 'Content-Type': 'application/json', 
@@ -40,7 +40,7 @@ export class documenttype extends base{
     async keywordTypes(){
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/keyword-type-groups`
         let options = new RequestOptions(
-            httpMethod.GET,
+            HttpMethod.GET,
             fullUrl,
             {
                 'Content-Type': 'application/json', 

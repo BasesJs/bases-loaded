@@ -27,20 +27,6 @@ export class keywordtype extends base {
         let response = await _getbyid(id, keywordtypes.endpoint);
         return keywordtype.parse(response);    
     }
-    /*static async createnew(keywordName:string, values:string[]){
-        
-        let items = await global.bases.core.keywordtypes.get(keywordName);
-        kw.id = items[0].id;
-        kw.name = items[0].name;
-        values.forEach((item:string) => {
-            let value = {
-                "value": item
-            }
-            kw.values.push(new keywordvalue(value));
-        }); 
-        const kw = new keyword();  
-        return kw;   
-    }*/
 }
 
 export class alphanumericSettings {

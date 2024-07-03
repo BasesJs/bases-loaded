@@ -1,37 +1,39 @@
-export async function RunRequest(options) {
-    let request = {
-        method: options.method,
-        maxBodyLength: options.maxBodyLength,
-        url: options.url,
-        headers: options.headers,
-        redirect: options.redirect,
-        data: options.data
-    };
-    const response = await global.bases.client.request(request);
-    return response;
-}
+import axios from 'axios';
+export var HttpMethod;
+(function (HttpMethod) {
+    HttpMethod["GET"] = "get";
+    HttpMethod["POST"] = "post";
+    HttpMethod["PUT"] = "put";
+    HttpMethod["DELETE"] = "delete";
+})(HttpMethod || (HttpMethod = {}));
 export class RequestOptions {
-    constructor(method, url, headers, redirect, data) {
-        this.method = method.toString();
-        this.url = url;
-        this.headers = headers;
-        this.redirect = redirect;
-        this.data = data;
-    }
     method;
-    maxBodyLength = Infinity;
     url;
     headers;
     redirect;
     data;
+    maxBodyLength;
+    constructor(method, url, headers, redirect, data, maxBodyLength = Infinity) {
+        this.method = method;
+        this.url = url;
+        this.headers = headers;
+        this.redirect = redirect;
+        this.data = data;
+        this.maxBodyLength = maxBodyLength;
+    }
     static create(method, maxBodyLength, url, headers, redirect, data) {
-        return new RequestOptions(method, url, headers, redirect, data);
+        return new RequestOptions(method, url, headers, redirect, data, maxBodyLength);
     }
 }
-export var httpMethod;
-(function (httpMethod) {
-    httpMethod["GET"] = "get";
-    httpMethod["POST"] = "post";
-    httpMethod["PUT"] = "put";
-    httpMethod["DELETE"] = "delete";
-})(httpMethod || (httpMethod = {}));
+export async function RunRequest(options) {
+    const request = {
+        method: options.method,
+        url: options.url,
+        headers: options.headers,
+        maxBodyLength: options.maxBodyLength,
+        data: options.data,
+        maxRedirects: options.redirect === 'follow' ? 5 : 0
+    };
+    const response = await axios.request(request);
+    return response.data;
+}

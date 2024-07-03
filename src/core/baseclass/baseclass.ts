@@ -1,6 +1,6 @@
-import { RunRequest, RequestOptions, httpMethod } from '../../helpers/http/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod } from '../../helpers/http/httprequest.js';
 
-export class base {
+export abstract class base {
     id:string = "";
     name:string ="";
     systemName:string ="";    
@@ -12,7 +12,7 @@ export class base {
 }
 export async function _getbyid(id:any, endpoint:string){
     let options = new RequestOptions(
-        httpMethod.GET,
+        HttpMethod.GET,
         `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}/${id}`, 
         {
             'Content-Type': 'application/json', 

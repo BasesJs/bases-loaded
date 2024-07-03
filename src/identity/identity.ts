@@ -4,6 +4,7 @@ import { token } from './token.js';
 import { config } from '../config/config.js';
 const qs = require('qs');
 
+
 export class identity {
     username: string = "";
     password: string = "";
@@ -37,15 +38,14 @@ export class identity {
             },
             data : data
         };        
-        try {
-            let response = await this.client.request(request);
-            this.token = token.create(response.data);
+        try{
+            console.log("Succes: Authentication token received")
+            let res = await this.client.request(request);
+            this.token = token.create(res.data);
             return true;
         }
-        catch(err){
-            //console.log(err);
-            return false;
-        }
-        
+        catch(err:any){
+            throw new Error(`Error: Could not get an authentication token. ${err.message}, ${err.stack}`);            
+        }       
     };
 }

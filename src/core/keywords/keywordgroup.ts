@@ -1,6 +1,37 @@
-import { keyword, keywords } from './keyword.js';
+import { keyword } from './keyword.js';
 import { keywordtypegroups } from '../keyword-type-groups/keywordtypegroups.js';
+import { document } from '../document/document.js';
 
+export class recordgroup {
+    constructor(id:string, keywords:keyword[], instanceId?:string) {
+        this.id = id;    
+        this.instanceId = instanceId;   
+        this.keywords = keywords;
+    }    
+    id:string;
+    name:string = "";
+    keywords:keyword[];
+    instanceId?:string;
+    static parse(item:any){
+        let keywords:keyword[] = [];
+        item.keywords.forEach((kw:any) => {
+            keywords.push(keyword.parse(kw));
+        });
+        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined);
+    }
+    static async parseAsync(item:any){        
+        let keywords:keyword[] = [];
+        if(item.keywords === undefined){
+            //console.log("Item has no keywords", item);
+        }
+        else{
+            item.keywords.forEach(async (kw:any) => {
+                keywords.push(await keyword.parseAsync(kw));
+            });
+        }        
+        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined);
+    }
+}
 export class multirecordgroup {
     constructor(id:string) {
         this.typeGroupId = id;
@@ -24,65 +55,35 @@ export class multirecordgroup {
         return group;
     }
 }
-export class recordgroup {
-    constructor(id:string, keywords:keyword[], instanceId?:string) {
-        this.id = id;    
-        this.instanceId = instanceId;   
-        this.keywords = keywords;
-    }    
-    id:string;
-    name:string = "";
-    keywords:keyword[];
-    instanceId?:string;
-    static parse(item:any){
-        let keywords:keyword[] = [];
-        item.keywords.forEach((kw:any) => {
-            keywords.push(keyword.parse(kw));
-        });
-        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined);
-    }
-    static async parseAsync(item:any){        
-        let keywords:keyword[] = [];
-        if(item.keywords === undefined){
-            console.log(item);
-            //throw new Error("No keywords found in recordgroup");
-        }
-        else{
-            item.keywords.forEach(async (kw:any) => {
-                keywords.push(await keyword.parseAsync(kw));
-            });
-        }        
-        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined);
-    }
-}
-export class multirecordgroups {
+/*export class multirecordgroups extends Map<string, multirecordgroup>{
     constructor(){}
     mikgs:multirecordgroup[] = [];
-    async add(item:multirecordgroup){
-        if(item.recordgroups === undefined || item.recordgroups.length === 0){
-            console.log(`No recordgroups found for ${item.typeGroupId}`);
-            return;
-        }
-        let existingGroup = this.mikgs.find((group) => group.typeGroupId === item.typeGroupId);
-        if(existingGroup === undefined){
-            console.log(`No group found for ${item.typeGroupId}`);
-        }
-        if(existingGroup){
-            console.log(`Group found for ${item.typeGroupId}`);
+    async add(item:multirecordgroup){        
+        /* GROUPS ARE NOT BEING ADDED CORRECTLY */
+        /*let existingGroup:multirecordgroup | null = new multirecordgroup("");
+        this.mikgs.forEach(
+            (group) => {                
+                if(group.typeGroupId === item.typeGroupId){
+                    existingGroup = group;
+                }
+            }
+        );
+        
+        if(existingGroup !== null){
+            //console.log("An existing group was found, adding to it", item)
             await existingGroup.add(await multirecordgroup.parseAsync(item));
         }
         else{
-            console.log(`Creating new group for ${item.typeGroupId}`);
             let group = await multirecordgroup.parseAsync(item);
             await group.add(item);
             this.mikgs.push(group);
         }
-    }
-    static async parseAsync(item:any){
+    }*/
+    /*static async parseAsync(item:any){
         let groups = new multirecordgroups();
         item.forEach(async (group:any) => {
             await groups.add(group);
         });
         return groups;
     }
-}
+}*/

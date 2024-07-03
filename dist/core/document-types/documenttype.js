@@ -1,6 +1,6 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
 import { documenttypes } from './documenttypes.js';
-import { RequestOptions, RunRequest, httpMethod } from '../../helpers/http/httprequest.js';
+import { RequestOptions, RunRequest, HttpMethod } from '../../helpers/http/httprequest.js';
 export class documenttype extends base {
     constructor(id, name, systemName, defaultFileTypeId, documentDateDisplayName, autofillKeywordSetId, documentTypeGroupId, revisionRenditionProperties) {
         super(id, name, systemName);
@@ -24,7 +24,7 @@ export class documenttype extends base {
     }
     async defaultKeywords() {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/default-keywords`;
-        let options = new RequestOptions(httpMethod.GET, fullUrl, {
+        let options = new RequestOptions(HttpMethod.GET, fullUrl, {
             'Content-Type': 'application/json',
             'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
         }, 'follow', '');
@@ -33,7 +33,7 @@ export class documenttype extends base {
     }
     async keywordTypes() {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/keyword-type-groups`;
-        let options = new RequestOptions(httpMethod.GET, fullUrl, {
+        let options = new RequestOptions(HttpMethod.GET, fullUrl, {
             'Content-Type': 'application/json',
             'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
         }, 'follow', '');

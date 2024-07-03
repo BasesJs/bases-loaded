@@ -1,5 +1,5 @@
 import { document } from "./document.js";
-import { RunRequest, RequestOptions, httpMethod } from '../../helpers/http/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod } from '../../helpers/http/httprequest.js';
 import { revision } from "./revision.js";
 
 export class rendition {
@@ -24,7 +24,7 @@ export class rendition {
 export async function getRenditions(documentId:string, revisionId:string = "latest"){   
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${document.endpoint}/${documentId}${revision.endpoint}/${revisionId}${rendition.endpoint}`;
     let options = new RequestOptions(
-        httpMethod.GET, 
+        HttpMethod.GET, 
         fullUrl,         
         {
             'Content-Type': 'application/json', 

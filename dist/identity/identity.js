@@ -37,12 +37,13 @@ export class identity {
             data: data
         };
         try {
-            let response = await this.client.request(request);
-            this.token = token.create(response.data);
+            console.log("Succes: Authentication token received");
+            let res = await this.client.request(request);
+            this.token = token.create(res.data);
             return true;
         }
         catch (err) {
-            return false;
+            throw new Error(`Error: Could not get an authentication token. ${err.message}, ${err.stack}`);
         }
     }
     ;
