@@ -3,13 +3,14 @@ import { keywordtypegroups } from '../keyword-type-groups/keywordtypegroups.js';
 import { document } from '../document/document.js';
 
 export class recordgroup {
-    constructor(id:string, keywords:keyword[], instanceId?:string) {
+    constructor(id:string, keywords:keyword[], instanceId?:string, name?:string) {
         this.id = id;    
         this.instanceId = instanceId;   
         this.keywords = keywords;
+        this.name = name;
     }    
     id:string;
-    name:string = "";
+    name:string | undefined;
     keywords:keyword[];
     instanceId?:string;
     static parse(item:any){
@@ -21,6 +22,7 @@ export class recordgroup {
     }
     static async parseAsync(item:any){        
         let keywords:keyword[] = [];
+        let groupcfg = await keywordtypegroups.get(item.typeGroupId);
         if(item.keywords === undefined){
             //console.log("Item has no keywords", item);
         }
@@ -29,7 +31,7 @@ export class recordgroup {
                 keywords.push(await keyword.parseAsync(kw));
             });
         }        
-        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined);
+        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : "Boobs are Cool");
     }
 }
 export class multirecordgroup {
@@ -50,7 +52,8 @@ export class multirecordgroup {
     }
     static async parseAsync(item:any){
         let group = new multirecordgroup(item.typeGroupId);
-        group.name = await keywordtypegroups.get(item.typeGroupId).name;
+        let groupcfg = await keywordtypegroups.get(item.typeGroupId);
+        group.name = groupcfg.name;
         group.recordgroups.push(await recordgroup.parseAsync(item));
         return group;
     }

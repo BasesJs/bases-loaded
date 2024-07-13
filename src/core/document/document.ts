@@ -24,7 +24,7 @@ export class document extends base {
     captureProperties?:captureProperties;
     keywords:keyword[] = [];
     recordgroups:recordgroup[] = [];
-    multirecordgroups:Map<string,multirecordgroup[]> = new Map<string,multirecordgroup[]>();   
+    multirecordgroups:multirecordgroup[] = [];   
     revisions:revision[] = [];
     keywordGuid: string = "";
     static endpoint:string = "/documents";
@@ -74,7 +74,7 @@ export class document extends base {
             this.keywords.push(kw);                     
         }); 
         console.log("Keyword Count: ", keys.length);
-        /*let sikgs = response.data.items.filter((item:any) => item.typeGroupId != undefined && item.groupId == undefined);
+        let sikgs = response.data.items.filter((item:any) => item.typeGroupId != undefined && item.groupId == undefined);
         console.log("SIKG Count: ", sikgs.length);
         sikgs.forEach(async (item:any) => {
             let sikg = await recordgroup.parseAsync(item);
@@ -83,11 +83,8 @@ export class document extends base {
         let mikgs = response.data.items.filter((item:any) => item.typeGroupId != undefined && item.groupId != undefined);
         console.log("MIKG Count: ", mikgs.length);
         mikgs.forEach(async (item:any) => {
-            let mikg = await multirecordgroup.parseAsync(item);
-            if(this.multirecordgroups.has(mikg.typeGroupId)){
-                let existingGroup = this.multirecordgroups.get(mikg.typeGroupId).recordgroups.push(await multirecordgroup.parseAsync(item));
-            }
-        });*/        
+            this.multirecordgroups.push(await multirecordgroup.parseAsync(item));
+        });  
     };
     async download(revision:string = "latest", rendition:string ="default"): Promise<any> {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${document.endpoint}/${this.id}/revisions/${revision}/renditions/${rendition}`;
