@@ -1,4 +1,4 @@
-export async function stageupload(fileExtension:string, fileSize:number){
+export async function stageupload(fileExtension: string, fileSize: number) {
     let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/uploads`;
     let data = JSON.stringify({
         "fileExtension": `${fileExtension}`,
@@ -10,10 +10,10 @@ export async function stageupload(fileExtension:string, fileSize:number){
         url: fullUrl,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`            
-        },      
+            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
+        },
         redirect: 'follow',
-        data : data
+        data: data
     };
     const response = await global.bases.client.request(request);
     return response.data;

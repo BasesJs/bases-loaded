@@ -10,42 +10,42 @@ export class identity {
     password: string = "";
     token: token = new token();
     client: any = "";
-    constructor(){     
+    constructor() {
     }
-    static create(client: any, username: string, password: string){
+    static create(client: any, username: string, password: string) {
         const ident = new identity();
         ident.client = client;
         ident.username = username;
         ident.password = password;
         return ident;
     }
-    async connect(){
+    async connect() {
         let data = qs.stringify({
-        'grant_type': `${config.environment.grant}`,
-        'username': this.username,
-        'password': this.password,
-        'scope': `${config.environment.scope}`,
-        'client_id': `${config.environment.clientid}`,
-        'client_secret': `${config.environment.secret}`,
-        'tenant': `${config.environment.tenant}` 
+            'grant_type': `${config.environment.grant}`,
+            'username': this.username,
+            'password': this.password,
+            'scope': `${config.environment.scope}`,
+            'client_id': `${config.environment.clientid}`,
+            'client_secret': `${config.environment.secret}`,
+            'tenant': `${config.environment.tenant}`
         });
         let request = {
             method: 'post',
             maxBodyLength: Infinity,
             url: `${config.environment.baseuri}${config.environment.idpbase}/connect/token`,
-            headers: { 
+            headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data : data
-        };        
-        try{
+            data: data
+        };
+        try {
             console.log("Succes: Authentication token received")
             let res = await this.client.request(request);
             this.token = token.create(res.data);
             return true;
         }
-        catch(err:any){
-            throw new Error(`Error: Could not get an authentication token. ${err.message}, ${err.stack}`);            
-        }       
+        catch (err: any) {
+            throw new Error(`Error: Could not get an authentication token. ${err.message}, ${err.stack}`);
+        }
     };
 }

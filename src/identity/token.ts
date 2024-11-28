@@ -1,11 +1,11 @@
 export class token {
-    constructor(){}
+    constructor() { }
     access_token: string = "";
     expires_in: number = 0;
     token_type: string = "";
     scope: string = "";
     expiration: Date = new Date();
-    static create(jsonToken: any){
+    static create(jsonToken: any) {
         let tok = new token();
         tok.access_token = jsonToken.access_token;
         tok.expires_in = jsonToken.expires_in;
@@ -15,7 +15,7 @@ export class token {
         return tok;
     }
     isExpired() {
-        if(this.expiration.valueOf() < Date.now())
+        if (this.expiration.valueOf() < Date.now())
             return true;
         else
             return false;

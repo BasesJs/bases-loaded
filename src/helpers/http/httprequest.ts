@@ -1,14 +1,14 @@
 
-export async function RunRequest(options: RequestOptions):Promise<any>{
+export async function RunRequest(options: RequestOptions): Promise<any> {
     let request = {
         method: options.method,
         maxBodyLength: options.maxBodyLength,
         url: options.url,
         headers: options.headers,
         redirect: options.redirect,
-        data : options.data
+        data: options.data
     }
-    const response = await global.bases.client.request(request); 
+    const response = await global.bases.client.request(request);
     return response;
 }
 
@@ -29,8 +29,8 @@ export class RequestOptions {
     };
     redirect: string;
     data: string;
-    static create(method: HttpMethod, maxBodyLength: number, url: string, headers: { 'Content-Type': string; 'Authorization': string; }, redirect: string, data: string):RequestOptions {
-        return new RequestOptions(method, url, headers, redirect, data);        
+    static create(method: HttpMethod, maxBodyLength: number, url: string, headers: { 'Content-Type': string; 'Authorization': string; }, redirect: string, data: string): RequestOptions {
+        return new RequestOptions(method, url, headers, redirect, data);
     }
 }
 
@@ -38,5 +38,5 @@ export enum HttpMethod {
     GET = 'get',
     POST = 'post',
     PUT = 'put',
-    DELETE = 'delete'    
+    DELETE = 'delete'
 }

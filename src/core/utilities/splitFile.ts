@@ -1,4 +1,4 @@
-export async function splitfile(file:any, numberOfParts:number, partSize:number){
+export async function splitfile(file: any, numberOfParts: number, partSize: number) {
     console.log({
         fileSize: file.byteLength,
         partSize: partSize,
@@ -8,13 +8,13 @@ export async function splitfile(file:any, numberOfParts:number, partSize:number)
     let start = 0;
     let remainder = file.byteLength;
     let runSize = partSize;
-    for(let i= 0; i < numberOfParts; i++){
-        if(runSize > remainder){
+    for (let i = 0; i < numberOfParts; i++) {
+        if (runSize > remainder) {
             runSize = remainder;
-        }            
+        }
         let partEnd = start + runSize;
         let partBytes = file.slice(start, partEnd);
-        let partNum = i+1;
+        let partNum = i + 1;
         let part = {
             partNum: partNum,
             partSize: runSize,

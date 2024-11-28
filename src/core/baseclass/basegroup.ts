@@ -18,7 +18,7 @@ export async function _get(endpoint: string, searchTerm?: Object): Promise<any> 
         if (searchTerm) {
             fullUrl = `${fullUrl}${searchParams.create(searchTerm).stringify()}`;
         }
-        
+
         const options = new RequestOptions(
             HttpMethod.GET,
             fullUrl,
