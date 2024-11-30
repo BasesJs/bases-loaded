@@ -26,10 +26,20 @@ export class basesloaded {
         global.bases = this;
         return await this.identity.connect();
     }
-    async isConnected() {
-        return await this.heartbeat();
+    isConnected() {
+        this.heartbeat()
+        .then(()=>{
+            return true;
+        })
+        .catch(()=>{
+            return false;
+        })
+        return true;
     }
     async disconnect() {
+        if (!this.isConnected()) {
+            return;
+        }
         let options = new RequestOptions(HttpMethod.POST,
             `${config.environment.baseuri}${config.environment.apibase}/onbase/core/session/disconnect`,
             {
@@ -37,11 +47,7 @@ export class basesloaded {
                 'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
             },
             'follow',
-            '');
-        if (!this.isConnected()) {
-            return;
-        }
-
+            '');        
         try {
             let res = await RunRequest(options);
         }

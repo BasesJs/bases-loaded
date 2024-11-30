@@ -1,5 +1,5 @@
-import { _get } from '../baseclass/basegroup.js';
-import { keywordtype } from './keywordtype.js';
+import { _get } from "../baseclass/basegroup.js";
+import { keywordtype } from "./keywordtype.js";
 export const keywordtypes = {
     endpoint: "/keyword-types",
     items: [],
@@ -10,5 +10,5 @@ export const keywordtypes = {
             this.items.push(kt);
         });
         return this.items;
-    }
+    },
 };

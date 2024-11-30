@@ -66,18 +66,23 @@ export class document extends base {
             let kw = await keyword.parseAsync(k);
             this.keywords.push(kw);
         });
-        console.log("Keyword Count: ", keys.length);
         let sikgs = response.data.items.filter((item) => item.typeGroupId != undefined && item.groupId == undefined);
-        console.log("SIKG Count: ", sikgs.length);
         sikgs.forEach(async (item) => {
             let sikg = await recordgroup.parseAsync(item);
             this.recordgroups.push(sikg);
         });
         let mikgs = response.data.items.filter((item) => item.typeGroupId != undefined && item.groupId != undefined);
-        console.log("MIKG Count: ", mikgs.length);
         mikgs.forEach(async (item) => {
-            this.multirecordgroups.push(await multirecordgroup.parseAsync(item));
+            let mikg = await multirecordgroup.parseAsync(item);
+            let existingGroup = this.multirecordgroups.find(grp => grp.typeGroupId === mikg.typeGroupId);
+            if (existingGroup !== undefined) {
+                existingGroup.recordgroups.push(mikg.recordgroups[0]);
+            }
+            else {
+                this.multirecordgroups.push(mikg);
+            }
         });
+        console.log(this.multirecordgroups);
     }
     ;
     async download(revision = "latest", rendition = "default") {

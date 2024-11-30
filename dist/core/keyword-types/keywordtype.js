@@ -1,5 +1,5 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
-import { keywordtypes } from './keywordtypes.js';
+import { base, _getbyid } from "../baseclass/baseclass.js";
+import { keywordtypes } from "./keywordtypes.js";
 export class keywordtype extends base {
     constructor(id, name, systemName, dataType, usedForRetrieval, invisible, isSecurityMasked, alphanumericSettings, currencyFormatId, maskSettings) {
         super(id, name, systemName);
@@ -19,7 +19,9 @@ export class keywordtype extends base {
     isSecurityMasked;
     maskSettings;
     static parse(item) {
-        return new keywordtype(item.id, item.name, item.systemName, item.dataType, item.usedForRetrieval, item.invisible, item.isSecurityMasked, item.alphanumericSettings ? alphanumericSettings.parse(item.alphanumericSettings) : undefined, item.currencyFormatId, item.maskSettings ? maskSettings.parse(item.maskSettings) : undefined);
+        return new keywordtype(item.id, item.name, item.systemName, item.dataType, item.usedForRetrieval, item.invisible, item.isSecurityMasked, item.alphanumericSettings
+            ? alphanumericSettings.parse(item.alphanumericSettings)
+            : undefined, item.currencyFormatId, item.maskSettings ? maskSettings.parse(item.maskSettings) : undefined);
     }
     static async get(id) {
         let response = await _getbyid(id, keywordtypes.endpoint);

@@ -1,8 +1,8 @@
 import { splitfile } from '../utilities/splitFile.js';
-import { stageupload } from './stageupload.js';
-import { uploadpart } from './uploadpart.js';
-import { deleteupload } from './deleteupload.js';
-import { bestguess } from './bestguessfiletype.js';
+import { stageupload } from './utilities/stageupload.js';
+import { uploadpart } from './utilities/uploadpart.js';
+import { deleteupload } from './utilities/deleteupload.js';
+import { bestguess } from './utilities/bestguessfiletype.js';
 import { core } from '../core.js';
 import { documentinfo } from "./documentinfo.js";
 

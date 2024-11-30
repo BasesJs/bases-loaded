@@ -1,0 +1,297 @@
+{
+  "id": "149",
+  "name": "CUS Invoice - 5/18/2024",
+  "systemName": "CUS Invoice - 5/18/2024",
+  "typeId": "209",
+  "createdByUserId": "2",
+  "storedDate": "2024-05-18T15:45:44",
+  "documentDate": "2024-05-18",
+  "status": "Active",
+  "keywords": [
+    {
+      "id": "296",
+      "name": "Invoice Number",
+      "values": [
+        {
+          "value": "12345",
+          "formattedValue": "12345"
+        }
+      ],
+      "dataType": "Alphanumeric"
+    },
+    {
+      "id": "298",
+      "name": "Due Date",
+      "values": [
+        {
+          "value": "2024-06-18",
+          "formattedValue": "6/18/2024"
+        }
+      ],
+      "dataType": "Date"
+    },
+    {
+      "id": "297",
+      "name": "Customer PO",
+      "values": [
+        {
+          "value": "PO100101",
+          "formattedValue": "PO100101"
+        }
+      ],
+      "dataType": "Alphanumeric"
+    },
+    {
+      "id": "300",
+      "name": "Amount",
+      "values": [
+        {
+          "value": "500.00",
+          "formattedValue": "$500.00"
+        }
+      ],
+      "dataType": "Currency"
+    }
+  ],
+  "recordgroups": [
+    {
+      "id": "115",
+      "name": "Document Information",
+      "keywords": [
+        {
+          "id": "288",
+          "name": "Document Id",
+          "values": [
+            {
+              "value": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb",
+              "formattedValue": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb"
+            }
+          ],
+          "dataType": "Alphanumeric"
+        },
+        {
+          "id": "287",
+          "name": "System of Origin",
+          "values": [
+            {
+              "value": "INTEGRATION",
+              "formattedValue": "INTEGRATION"
+            }
+          ],
+          "dataType": "Alphanumeric"
+        },
+        {
+          "id": "285",
+          "name": "File Size",
+          "values": [
+            {
+              "value": "2719744",
+              "formattedValue": "2719744"
+            }
+          ],
+          "dataType": "Numeric20"
+        },
+        {
+          "id": "2",
+          "name": "File Name",
+          "values": [
+            {
+              "value": "THISFILE.PDF",
+              "formattedValue": "THISFILE.PDF"
+            }
+          ],
+          "dataType": "Alphanumeric"
+        },
+        {
+          "id": "286",
+          "name": "Document DateTime",
+          "values": [
+            {
+              "value": "2024-05-18T09:00:00",
+              "formattedValue": "5/18/2024 9:00:00 AM"
+            }
+          ],
+          "dataType": "DateTime"
+        }
+      ]
+    }
+  ],
+  "multirecordgroups": [
+    {
+      "typeGroupId": "116",
+      "recordgroups": [
+        {
+          "id": "101",
+          "name": "Customer Information",
+          "keywords": [
+            {
+              "id": "293",
+              "name": "Customer Address",
+              "values": [
+                {
+                  "value": "11252 Road Street",
+                  "formattedValue": "11252 Road Street"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "291",
+              "name": "Customer City",
+              "values": [
+                {
+                  "value": "Townsville",
+                  "formattedValue": "Townsville"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "290",
+              "name": "Customer Id",
+              "values": [
+                {
+                  "value": "35",
+                  "formattedValue": "35"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "295",
+              "name": "Customer Address Type",
+              "values": [
+                {
+                  "value": "HOME",
+                  "formattedValue": "HOME"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "294",
+              "name": "Customer ZipCode",
+              "values": [
+                {
+                  "value": "44107",
+                  "formattedValue": "44107-    "
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "292",
+              "name": "Customer State",
+              "values": [
+                {
+                  "value": "OH",
+                  "formattedValue": "OH"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "289",
+              "name": "Customer Name",
+              "values": [
+                {
+                  "value": "Bob Barker",
+                  "formattedValue": "Bob Barker"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            }
+          ],
+          "instanceId": "ea26e033-d34b-40c7-967f-2ad76e5a111a"
+        },
+        {
+          "id": "102",
+          "name": "Customer Information",
+          "keywords": [
+            {
+              "id": "289",
+              "name": "Customer Name",
+              "values": [
+                {
+                  "value": "Jane Barker",
+                  "formattedValue": "Jane Barker"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "290",
+              "name": "Customer Id",
+              "values": [
+                {
+                  "value": "15",
+                  "formattedValue": "15"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "291",
+              "name": "Customer City",
+              "values": [
+                {
+                  "value": "Townsville",
+                  "formattedValue": "Townsville"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "295",
+              "name": "Customer Address Type",
+              "values": [
+                {
+                  "value": "HOME",
+                  "formattedValue": "HOME"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "292",
+              "name": "Customer State",
+              "values": [
+                {
+                  "value": "OH",
+                  "formattedValue": "OH"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "293",
+              "name": "Customer Address",
+              "values": [
+                {
+                  "value": "11252 Road Street",
+                  "formattedValue": "11252 Road Street"
+                }
+              ],
+              "dataType": "Alphanumeric"
+            },
+            {
+              "id": "294",
+              "name": "Customer ZipCode",
+              "values": [
+                {
+                  "value": "44107",
+                  "formattedValue": "44107-    "
+                }
+              ],
+              "dataType": "Alphanumeric"
+            }
+          ],
+          "instanceId": "a3dde5b9-f48d-4044-9c38-59d40b88b235"
+        }
+      ],
+      "name": "Customer Information"
+    }
+  ],
+  "revisions": [],
+  "keywordGuid": "cd0a9a51-22ad-40e8-ade1-f34ca61b41d0"
+}

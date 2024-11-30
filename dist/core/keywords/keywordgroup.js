@@ -1,5 +1,5 @@
 import { keyword } from './keyword.js';
-import { keywordtypegroups } from '../keyword-type-groups/keywordtypegroups.js';
+import { keywordtypegroup } from '../keyword-type-groups/keywordtypegroup.js';
 export class recordgroup {
     constructor(id, keywords, instanceId, name) {
         this.id = id;
@@ -20,15 +20,16 @@ export class recordgroup {
     }
     static async parseAsync(item) {
         let keywords = [];
-        let groupcfg = await keywordtypegroups.get(item.typeGroupId);
+        let groupcfg = await keywordtypegroup.get(item.typeGroupId);
         if (item.keywords === undefined) {
+            console.log("Item has no keywords");
         }
         else {
             item.keywords.forEach(async (kw) => {
                 keywords.push(await keyword.parseAsync(kw));
             });
         }
-        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : "Boobs are Cool");
+        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : undefined);
     }
 }
 export class multirecordgroup {
@@ -44,12 +45,18 @@ export class multirecordgroup {
     }
     static parse(item) {
         let group = multirecordgroup.parse(item.typeGroupId);
-        group.name = keywordtypegroups.get(item.typeGroupId).name;
+        keywordtypegroup.get(item.typeGroupId)
+            .then((groupcfg) => {
+            group.name = groupcfg.name;
+        })
+            .catch((e) => {
+            console.log(e);
+        });
         return group;
     }
     static async parseAsync(item) {
         let group = new multirecordgroup(item.typeGroupId);
-        let groupcfg = await keywordtypegroups.get(item.typeGroupId);
+        let groupcfg = await keywordtypegroup.get(item.typeGroupId);
         group.name = groupcfg.name;
         group.recordgroups.push(await recordgroup.parseAsync(item));
         return group;

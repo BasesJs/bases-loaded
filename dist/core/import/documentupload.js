@@ -1,7 +1,7 @@
 import { splitfile } from '../utilities/splitFile.js';
-import { stageupload } from './stageupload.js';
-import { uploadpart } from './uploadpart.js';
-import { bestguess } from './bestguessfiletype.js';
+import { stageupload } from './utilities/stageupload.js';
+import { uploadpart } from './utilities/uploadpart.js';
+import { bestguess } from './utilities/bestguessfiletype.js';
 import { documentinfo } from "./documentinfo.js";
 export class documentupload {
     constructor(uploadId, parts, documentinfo) {

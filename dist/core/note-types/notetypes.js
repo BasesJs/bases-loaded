@@ -1,5 +1,5 @@
-import { _get } from '../baseclass/basegroup.js';
-import { notetype } from './notetype.js';
+import { _get } from "../baseclass/basegroup.js";
+import { notetype } from "./notetype.js";
 export const notetypes = {
     endpoint: "/note-types",
     items: [],
@@ -10,5 +10,5 @@ export const notetypes = {
             this.items.push(nt);
         });
         return this.items;
-    }
+    },
 };

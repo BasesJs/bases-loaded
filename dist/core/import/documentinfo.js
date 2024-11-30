@@ -1,4 +1,4 @@
-import { bestguess } from './bestguessfiletype.js';
+import { bestguess } from './utilities/bestguessfiletype.js';
 export class documentinfo {
     constructor(documentTypeId, fileTypeId, documentDate) {
         if (documentTypeId != null) {

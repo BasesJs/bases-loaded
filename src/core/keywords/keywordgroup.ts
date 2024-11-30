@@ -1,4 +1,5 @@
 import { keyword } from './keyword.js';
+import { keywordtypegroup } from '../keyword-type-groups/keywordtypegroup.js';
 import { keywordtypegroups } from '../keyword-type-groups/keywordtypegroups.js';
 import { document } from '../document/document.js';
 
@@ -22,16 +23,16 @@ export class recordgroup {
     }
     static async parseAsync(item: any) {
         let keywords: keyword[] = [];
-        let groupcfg = await keywordtypegroups.get(item.typeGroupId);
+        let groupcfg = await keywordtypegroup.get(item.typeGroupId);
         if (item.keywords === undefined) {
-            //console.log("Item has no keywords", item);
+            console.log("Item has no keywords");
         }
         else {
             item.keywords.forEach(async (kw: any) => {
                 keywords.push(await keyword.parseAsync(kw));
             });
         }
-        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : "Boobs are Cool");
+        return new recordgroup(item.groupId ? item.groupId : item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : undefined);
     }
 }
 export class multirecordgroup {
@@ -47,16 +48,22 @@ export class multirecordgroup {
     }
     static parse(item: any) {
         let group: multirecordgroup = multirecordgroup.parse(item.typeGroupId);
-        group.name = keywordtypegroups.get(item.typeGroupId).name;
+        keywordtypegroup.get(item.typeGroupId)
+        .then((groupcfg: any) => {
+            group.name = groupcfg.name;
+        })
+        .catch((e: any) => {
+            console.log(e);
+        });
         return group;
     }
     static async parseAsync(item: any) {
         let group = new multirecordgroup(item.typeGroupId);
-        let groupcfg = await keywordtypegroups.get(item.typeGroupId);
+        let groupcfg = await keywordtypegroup.get(item.typeGroupId);
         group.name = groupcfg.name;
         group.recordgroups.push(await recordgroup.parseAsync(item));
         return group;
-    }
+    }   
 }
 /*export class multirecordgroups extends Map<string, multirecordgroup>{
     constructor(){}

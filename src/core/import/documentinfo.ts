@@ -1,7 +1,7 @@
 //import { keywords } from '../keywords/keywords.js';
 import { documenttype } from '../document-types/documenttype.js';
 import { core } from '../core.js';
-import { bestguess } from './bestguessfiletype.js';
+import { bestguess } from './utilities/bestguessfiletype.js';
 
 export class documentinfo {
     constructor(documentTypeId?: string, fileTypeId?: string, documentDate?: Date) {

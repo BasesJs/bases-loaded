@@ -1,26 +1,18 @@
-import { basesloaded } from "../dist/bases.js";
-import { documenttype } from "../dist/core/document-types/documenttype.js";
+import { stringify } from "querystring";
+import { basesloaded } from "../dist/bases.js"; 
 import { document } from "../dist/core/document/document.js";
-import { multirecordgroup } from "../dist/core/keywords/keywordgroup.js";
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-
-LoadBases()
-    .then(bases => { 
-        
-        document.get(149, true, true)
-        .then((doc)=> {
-            let myGroups = doc.multirecordgroups.filter((item) => item.typeGroupId == '116');
-            console.log(myGroups);
-        })
-        .catch((err) => { console.error("failed: ", err.stack)})
-        .finally(() => {
-            bases.disconnect()
-            .catch((err) => { console.error("")})
-        })    
-    })           
-    .catch((err) => { console.error("Can not connect to OnBase: ", err.message)})
-
+// bases object goe into global scope
+const bases = await LoadBases()
+console.log("Connected to OnBase API");
+const doc = await document.get(149);
+await doc.getKeywords();
+setTimeout(async () => {
+    let json = JSON.stringify(doc);
+    console.log(json);
+    await bases.disconnect();
+}, 2000);
 
 async function LoadBases(){
     console.log("Loading basesjs...");
@@ -28,4 +20,3 @@ async function LoadBases(){
     await bases.connect("RESTAPI", "P@ssw0rd");
     return bases;
 }
-
