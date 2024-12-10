@@ -1,9 +1,9 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
-import { documenttypes } from './documenttypes.js';
-import { RequestOptions, RunRequest, HttpMethod } from '../../helpers/http/httprequest.js';
+import { DocumentTypes } from './documenttypes.js';
+import { RequestOptions, RunRequest, HttpMethod } from '../../http/axios/httprequest.js';
 
-export class documenttype extends base {
-    constructor(id: string, name: string, systemName: string, defaultFileTypeId: string, documentDateDisplayName: string, autofillKeywordSetId: string, documentTypeGroupId: string, revisionRenditionProperties: revisionRenditionProperties) {
+export class DocumentType extends base {
+    constructor(id: string, name: string, systemName: string, defaultFileTypeId: string, documentDateDisplayName: string, autofillKeywordSetId: string, documentTypeGroupId: string, revisionRenditionProperties: RevisionRenditionProperties) {
         super(id, name, systemName);
         this.defaultFileTypeId = defaultFileTypeId;
         this.documentDateDisplayName = documentDateDisplayName;
@@ -15,16 +15,16 @@ export class documenttype extends base {
     documentDateDisplayName: string;
     autofillKeywordSetId: string;
     documentTypeGroupId: string;
-    revisionRenditionProperties: revisionRenditionProperties;
+    revisionRenditionProperties: RevisionRenditionProperties;
     static async parse(item: any) {
-        return new documenttype(item.id, item.name, item.systemName, item.defaultFileTypeId, item.documentDateDisplayName, item.autofillKeywordSetId, item.documentTypeGroupId, revisionRenditionProperties.parse(item.revisionRenditionProperties));
+        return new DocumentType(item.id, item.name, item.systemName, item.defaultFileTypeId, item.documentDateDisplayName, item.autofillKeywordSetId, item.documentTypeGroupId, RevisionRenditionProperties.parse(item.revisionRenditionProperties));
     }
     static async get(id: string) {
-        let response = await _getbyid(id, documenttypes.endpoint);
-        return documenttype.parse(response);
+        let response = await _getbyid(id, DocumentTypes.endpoint);
+        return DocumentType.parse(response);
     }
     async defaultKeywords() {
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/default-keywords`
+        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${DocumentTypes.endpoint}/${this.id}/default-keywords`
         let options = new RequestOptions(
             HttpMethod.GET,
             fullUrl,
@@ -38,7 +38,7 @@ export class documenttype extends base {
         return response.data;
     }
     async keywordTypes() {
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${global.bases.core.documenttypes.endpoint}/${this.id}/keyword-type-groups`
+        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${DocumentTypes.endpoint}/${this.id}/keyword-type-groups`
         let options = new RequestOptions(
             HttpMethod.GET,
             fullUrl,
@@ -53,7 +53,7 @@ export class documenttype extends base {
         return response.data;
     }
 }
-export class revisionRenditionProperties {
+export class RevisionRenditionProperties {
     constructor(revisable: boolean, renditionable: boolean, commentSettings: any) {
         this.revisable = revisable;
         this.renditionable = renditionable;
@@ -61,12 +61,12 @@ export class revisionRenditionProperties {
     }
     revisable: boolean = false;
     renditionable: boolean = false;
-    commentSettings: commentSettings;
+    commentSettings: CommentSettings;
     static parse(item: any) {
-        return new revisionRenditionProperties(item.revisable, item.renditionable, commentSettings.parse(item.commentSettings));
+        return new RevisionRenditionProperties(item.revisable, item.renditionable, CommentSettings.parse(item.commentSettings));
     }
 }
-export class commentSettings {
+export class CommentSettings {
     constructor(allowComments: boolean, forceComment: boolean, firstRevisionNoComment: boolean) {
         this.allowComments = allowComments;
         this.forceComment = forceComment;
@@ -76,6 +76,6 @@ export class commentSettings {
     forceComment: boolean;
     firstRevisionNoComment: boolean;
     static parse(item: any) {
-        return new commentSettings(item.allowComments, item.forceComment, item.firstRevisionNoComment);
+        return new CommentSettings(item.allowComments, item.forceComment, item.firstRevisionNoComment);
     }
 }

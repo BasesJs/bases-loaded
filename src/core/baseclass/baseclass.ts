@@ -1,4 +1,4 @@
-import { RunRequest, RequestOptions, HttpMethod } from '../../helpers/http/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
 
 export abstract class base {
     id: string = "";

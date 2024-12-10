@@ -1,8 +1,8 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
-import { customqueries } from './customqueries.js';
+import { CustomQueries } from './customqueries.js';
 
-export class customquery extends base {
-    constructor(id: string, name: string, systemName: string, instructions: string, dateOptions: dateOptions) {
+export class CustomQuery extends base {
+    constructor(id: string, name: string, systemName: string, instructions: string, dateOptions: DateOptions) {
         super(id, name, systemName);
         this.instructions = instructions;
         this.dateOptions = dateOptions;
@@ -17,27 +17,27 @@ export class customquery extends base {
     }
     querytype = "DocumentType"
     static parse(item: any) {
-        return new customquery(item.id, item.name, item.systemName, item.instructions, dateOptions.parse(item.dateOptions));
+        return new CustomQuery(item.id, item.name, item.systemName, item.instructions, DateOptions.parse(item.dateOptions));
     }
     static async get(id: string) {
-        let response = await _getbyid(id, customqueries.endpoint);
-        return customquery.parse(response);
+        let response = await _getbyid(id, CustomQueries.endpoint);
+        return CustomQuery.parse(response);
     }
 }
 
-export class dateOptions {
+export class DateOptions {
     constructor(dateSearch: string, defaultDateRange: any) {
         this.dateSearch = dateSearch;
         this.defaultDateRange = defaultDateRange;
     }
     dateSearch: string = "noDate";
-    defaultDateRange: dateRange;
+    defaultDateRange: DateRange;
     static parse(item: any) {
-        return new dateOptions(item.dateSearch, dateRange.parse(item.defaultDateRange));
+        return new DateOptions(item.dateSearch, DateRange.parse(item.defaultDateRange));
     }
 }
 
-export class dateRange {
+export class DateRange {
     constructor(start: string, end: string) {
         this.start = start;
         this.end = end;
@@ -45,6 +45,6 @@ export class dateRange {
     start: string = "";
     end: string = "";
     static parse(item: any) {
-        return new dateRange(item.start, item.end);
+        return new DateRange(item.start, item.end);
     }
 }

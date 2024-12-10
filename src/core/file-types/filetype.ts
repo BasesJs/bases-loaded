@@ -1,8 +1,8 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
-import { filetypes } from './filetypes.js';
+import { FileTypes } from './filetypes.js';
 import mime from 'mime';
 
-export class filetype extends base {
+export class FileType extends base {
     constructor(id: string, name: string, systemName: string) {
         super(id, name, systemName)
     }
@@ -10,11 +10,11 @@ export class filetype extends base {
         return mime.getType(this.name);
     }
     static parse(item: any) {
-        return new filetype(item.id, item.name, item.systemName);
+        return new FileType(item.id, item.name, item.systemName);
     }
     static async get(id: string) {
-        let response = await _getbyid(id, filetypes.endpoint);
-        return filetype.parse(response);
+        let response = await _getbyid(id, FileTypes.endpoint);
+        return FileType.parse(response);
     }
     static async bestguess(fileExtension: string) {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
@@ -31,6 +31,6 @@ export class filetype extends base {
             data: data
         };
         const response = await global.bases.client.request(request);
-        return await filetype.get(response.id);
+        return await FileType.get(response.id);
     }
 }

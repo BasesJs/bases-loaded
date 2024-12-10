@@ -3,7 +3,7 @@ const require = createRequire(import.meta.url);
 import { config } from './config/config.js';
 import { identity } from './identity/identity.js';
 import { core } from './core/core.js';
-import { RunRequest, RequestOptions, HttpMethod } from './helpers/http/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod } from './http/axios/httprequest.js';
 const axios = require('axios');
 const wrapper = require('axios-cookiejar-support').wrapper;
 const CookieJar = require('tough-cookie').CookieJar;

@@ -1,12 +1,12 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
-import { RunRequest, RequestOptions, HttpMethod } from '../../helpers/http/httprequest.js';
-import { keyword } from '../keywords/keyword.js';
-import { multirecordgroup, recordgroup } from '../keywords/keywordgroup.js';
-import { filetypes } from '../file-types/filetypes.js';
-import { revision, getRevisions } from './revision.js';
-import { rendition, getRenditions } from './rendition.js';
-export class document extends base {
-    constructor(id: string, name: string, typeId: string, createdByUserId: string, storedDate: string, documentDate: string, status: string, captureProperties?: captureProperties) {
+import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
+import { Keyword } from '../keywords/keyword.js';
+import { MultiRecordGroup, RecordGroup } from '../keywords/keywordgroup.js';
+import { FileTypes } from '../file-types/filetypes.js';
+import { Revision, getRevisions } from './revision.js';
+import { getRenditions } from './rendition.js';
+export class Document extends base {
+    constructor(id: string, name: string, typeId: string, createdByUserId: string, storedDate: string, documentDate: string, status: string, captureProperties?: CaptureProperties) {
         super(id, name, name);
         this.typeId = typeId;
         this.createdByUserId = createdByUserId;
@@ -20,19 +20,19 @@ export class document extends base {
     storedDate: string;
     documentDate: string;
     status: string;
-    captureProperties?: captureProperties;
-    keywords: keyword[] = [];
-    recordgroups: recordgroup[] = [];
-    multirecordgroups: multirecordgroup[] = [];
-    revisions: revision[] = [];
+    captureProperties?: CaptureProperties;
+    keywords: Keyword[] = [];
+    recordgroups: RecordGroup[] = [];
+    multirecordgroups: MultiRecordGroup[] = [];
+    revisions: Revision[] = [];
     keywordGuid: string = "";
-    static endpoint: string = "/documents";
-    static parse(data: any): document {
-        return new document(data.id, data.name, data.typeId, data.createdByUserId, data.storedDate, data.documentDate, data.status, data.captureProperties);
+    static readonly endpoint: string = "/documents";
+    static parse(data: any): Document {
+        return new Document(data.id, data.name, data.typeId, data.createdByUserId, data.storedDate, data.documentDate, data.status, data.captureProperties);
     }
     static async get(id: string, getKeywords: boolean, getRevisions: boolean): Promise<any> {
         const data = await _getbyid(id, this.endpoint);
-        const doc = document.parse(data);
+        const doc = Document.parse(data);
         if (getKeywords) {
             await doc.getKeywords();
         }
@@ -44,8 +44,8 @@ export class document extends base {
     async getRevisions(): Promise<any> {
         try {
             this.revisions = await getRevisions(this.id);
-            this.revisions.forEach(async (rev: revision) => {
-                rev.rendtions = await getRenditions(this.id, rev.id);
+            this.revisions.forEach(async (rev: Revision) => {
+                rev.renditions = await getRenditions(this.id, rev.id);
             });
         }
         catch (e) {
@@ -53,7 +53,7 @@ export class document extends base {
         }
     }
     async getKeywords(): Promise<any> {
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${document.endpoint}/${this.id}/keywords`;
+        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${this.id}/keywords`;
         let options = new RequestOptions(
             HttpMethod.GET,
             fullUrl,
@@ -66,19 +66,18 @@ export class document extends base {
         const response = await RunRequest(options);
         this.keywordGuid = response.data.keywordGuid;
         let keys = response.data.items.filter((item: any) => item.typeGroupId === undefined && item.groupId == undefined);
-        //There's only ever 1 standalone keyword object that contains all of the loose keywords.
         keys[0].keywords.forEach(async (k: any) => {
-            let kw = await keyword.parseAsync(k);
+            let kw = await Keyword.parseAsync(k);
             this.keywords.push(kw);
         });
         let sikgs = response.data.items.filter((item: any) => item.typeGroupId != undefined && item.groupId == undefined);
         sikgs.forEach(async (item: any) => {
-            let sikg = await recordgroup.parseAsync(item);
+            let sikg = await RecordGroup.parseAsync(item);
             this.recordgroups.push(sikg);
         });
         let mikgs = response.data.items.filter((item: any) => item.typeGroupId != undefined && item.groupId != undefined);
         mikgs.forEach(async (item: any) => {
-            let mikg = await multirecordgroup.parseAsync(item);
+            let mikg = await MultiRecordGroup.parseAsync(item);
             let existingGroup = this.multirecordgroups.find(grp => grp.typeGroupId === mikg.typeGroupId);
             if(existingGroup !== undefined){
                 existingGroup.recordgroups.push(mikg.recordgroups[0]);
@@ -87,16 +86,27 @@ export class document extends base {
                 this.multirecordgroups.push(mikg);
             }
         });
+        //TODO: Sort multirecordgroups by typeGroupId or 
+        // this.multirecordgroups.sort((a: MultiRecordGroup, b: MultiRecordGroup) => {
+        //     if (a.typeGroupId < b.typeGroupId) {
+        //         return -1;
+        //     }
+        //     if (a.typeGroupId > b.typeGroupId) {
+        //         return 1;
+        //     }
+        //     return 0;
+        // });
         console.log(this.multirecordgroups);
     };
     async download(revision: string = "latest", rendition: string = "default"): Promise<any> {
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${document.endpoint}/${this.id}/revisions/${revision}/renditions/${rendition}`;
-        let data = await _getbyid(`${this.id}/revisions/${revision}/renditions/${rendition}`, document.endpoint);
+        //TODO: Finish download function
+        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${this.id}/revisions/${revision}/renditions/${rendition}`;
+        let data = await _getbyid(`${this.id}/revisions/${revision}/renditions/${rendition}`, Document.endpoint);
         let fileTypeId = data.fileTypeId;
-        let filetype = await filetypes.get(fileTypeId);
+        let filetype = await FileTypes.get(fileTypeId);
     }
 }
-export class captureProperties {
+export class CaptureProperties {
     constructor(unidentified?: boolean, reviewStatus?: string) {
         this.unidentified = unidentified;
         this.reviewStatus = reviewStatus;
@@ -104,6 +114,6 @@ export class captureProperties {
     unidentified?: boolean;
     reviewStatus?: string;
     static parse(item: any) {
-        return new captureProperties(item.unidentified, item.reviewStatus);
+        return new CaptureProperties(item.unidentified, item.reviewStatus);
     }
 }

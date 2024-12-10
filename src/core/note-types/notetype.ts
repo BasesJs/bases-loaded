@@ -1,8 +1,8 @@
 import { base, _getbyid } from '../baseclass/baseclass.js'
-import { notetypes } from './notetypes.js'
+import { NoteTypes } from './notetypes.js'
 
-export class notetype extends base {
-    constructor(id: string, name: string, systemName: string, color: color, displayFlags: displayFlags, flavor: string, fontId: string, iconId: string, userPrivileges: userPrivileges) {
+export class NoteType extends base {
+    constructor(id: string, name: string, systemName: string, color: Color, displayFlags: DisplayFlags, flavor: string, fontId: string, iconId: string, userPrivileges: UserPrivileges) {
         super(id, name, systemName);
         this.color = color;
         this.displayFlags = displayFlags;
@@ -11,21 +11,21 @@ export class notetype extends base {
         this.iconId = iconId;
         this.userPrivileges = userPrivileges;
     }
-    color: color;
-    displayFlags: displayFlags;
+    color: Color;
+    displayFlags: DisplayFlags;
     flavor: string;
     fontId: string;
     iconId: string;
-    userPrivileges: userPrivileges
+    userPrivileges: UserPrivileges
     static parse(item: any) {
-        return new notetype(item.id, item.name, item.systemName, color.parse(item.color), displayFlags.parse(item.displayFlags), item.flavor, item.fontId, item.iconId, userPrivileges.parse(item.userPrivileges));
+        return new NoteType(item.id, item.name, item.systemName, Color.parse(item.color), DisplayFlags.parse(item.displayFlags), item.flavor, item.fontId, item.iconId, UserPrivileges.parse(item.userPrivileges));
     }
     async get(id: string) {
-        let response = await _getbyid(id, notetypes.endpoint);
-        return notetype.parse(response);
+        let response = await _getbyid(id, NoteTypes.endpoint);
+        return NoteType.parse(response);
     }
 }
-export class color {
+export class Color {
     constructor(r: string, g: string, b: string, a: string) {
         this.r = r;
         this.g = g;
@@ -37,10 +37,10 @@ export class color {
     b: string;
     a: string;
     static parse(item: any) {
-        return new color(item.r, item.g, item.b, item.a);
+        return new Color(item.r, item.g, item.b, item.a);
     }
 }
-export class displayFlags {
+export class DisplayFlags {
     constructor(allPages: boolean, allRevisions: boolean, createOpenNoteWindow: boolean, deleteWithPage: boolean, floatOnWindow: boolean, hideNoteWindow: boolean, moveable: boolean, noPrivacyOptions: boolean, open: boolean, privacyNoDelete: boolean, privacyNoModify: boolean, privacyNoView: boolean, stampKeepOriginalSize: boolean, stampTransparent: boolean) {
         this.allPages = allPages;
         this.allRevisions = allRevisions;
@@ -72,10 +72,10 @@ export class displayFlags {
     stampKeepOriginalSize: boolean;
     stampTransparent: boolean;
     static parse(item: any) {
-        return new displayFlags(item.allPages, item.allRevisions, item.createOpenNoteWindow, item.deleteWithPage, item.floatOnWindow, item.hideNoteWindow, item.moveable, item.noPrivacyOptions, item.open, item.privacyNoDelete, item.privacyNoModify, item.privacyNoView, item.stampKeepOriginalSize, item.stampTransparent);
+        return new DisplayFlags(item.allPages, item.allRevisions, item.createOpenNoteWindow, item.deleteWithPage, item.floatOnWindow, item.hideNoteWindow, item.moveable, item.noPrivacyOptions, item.open, item.privacyNoDelete, item.privacyNoModify, item.privacyNoView, item.stampKeepOriginalSize, item.stampTransparent);
     }
 }
-export class userPrivileges {
+export class UserPrivileges {
     constructor(create: boolean, view: boolean) {
         this.create = create;
         this.view = view;
@@ -83,6 +83,6 @@ export class userPrivileges {
     create: boolean;
     view: boolean;
     static parse(item: any) {
-        return new userPrivileges(item.create, item.view);
+        return new UserPrivileges(item.create, item.view);
     }
 }

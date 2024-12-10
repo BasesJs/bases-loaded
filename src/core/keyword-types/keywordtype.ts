@@ -1,6 +1,8 @@
 import { base, _getbyid } from "../baseclass/baseclass.js";
-import { keywordtypes } from "./keywordtypes.js";
-export class keywordtype extends base {
+import { KeywordTypes } from "./keywordtypes.js";
+import { NewKeyword } from "../keywords/keyword.js";
+import { NewKeywordValue } from "../keywords/keywordvalue.js";
+export class KeywordType extends base {
   constructor(
     id: string,
     name: string,
@@ -9,9 +11,9 @@ export class keywordtype extends base {
     usedForRetrieval: boolean,
     invisible: boolean,
     isSecurityMasked: boolean,
-    alphanumericSettings?: alphanumericSettings,
+    alphanumericSettings?: AlphanumericSettings,
     currencyFormatId?: string,
-    maskSettings?: maskSettings
+    maskSettings?: MaskSettings
   ) {
     super(id, name, systemName);
     this.dataType = dataType;
@@ -25,12 +27,12 @@ export class keywordtype extends base {
   dataType: string;
   usedForRetrieval: boolean;
   invisible: boolean;
-  alphanumericSettings?: alphanumericSettings;
+  alphanumericSettings?: AlphanumericSettings;
   currencyFormatId?: string;
   isSecurityMasked: boolean;
-  maskSettings?: maskSettings;
+  maskSettings?: MaskSettings;
   static parse(item: any) {
-    return new keywordtype(
+    return new KeywordType(
       item.id,
       item.name,
       item.systemName,
@@ -39,18 +41,26 @@ export class keywordtype extends base {
       item.invisible,
       item.isSecurityMasked,
       item.alphanumericSettings
-        ? alphanumericSettings.parse(item.alphanumericSettings)
+        ? AlphanumericSettings.parse(item.alphanumericSettings)
         : undefined,
       item.currencyFormatId,
-      item.maskSettings ? maskSettings.parse(item.maskSettings) : undefined
+      item.maskSettings ? MaskSettings.parse(item.maskSettings) : undefined
     );
   }
   static async get(id: string) {
-    let response = await _getbyid(id, keywordtypes.endpoint);
-    return keywordtype.parse(response);
+    let response = await _getbyid(id, KeywordTypes.endpoint);
+    return KeywordType.parse(response);
+  }
+  create(values:string[]): NewKeyword{
+    let newValues: NewKeywordValue[] = [];
+    let newKeyword = new NewKeyword(this.id, newValues);
+    values.forEach((value: string) => {
+      newKeyword.values.push(new NewKeywordValue(value));
+    });
+    return newKeyword;
   }
 }
-export class alphanumericSettings {
+export class AlphanumericSettings {
   constructor(
     caseOptions?: string,
     maximumLength?: number,
@@ -64,14 +74,14 @@ export class alphanumericSettings {
   maximumLength?: number;
   storageOptions?: string;
   static parse(item: any) {
-    return new alphanumericSettings(
+    return new AlphanumericSettings(
       item.caseOptions,
       item.maximumLength,
       item.storageOptions
     );
   }
 }
-export class maskSettings {
+export class MaskSettings {
   constructor(
     fullfieldRequired?: boolean,
     maskString?: string,
@@ -88,7 +98,7 @@ export class maskSettings {
   staticCharacters?: string;
   storeMask?: boolean;
   static parse(item: any) {
-    return new maskSettings(
+    return new MaskSettings(
       item.fullfieldRequired,
       item.maskString,
       item.staticCharacters,

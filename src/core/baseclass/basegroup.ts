@@ -1,24 +1,20 @@
-import searchParams from '../utilities/searchparams.js';
-import { RunRequest, RequestOptions, HttpMethod } from '../../helpers/http/httprequest.js';
-
+import SearchParams from './utilities/searchparams.js';
+import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
 export interface group {
-    endpoint: string;
+    readonly endpoint: string;
     items: any[];
     get(searchTerm: any): any;
 }
-
 const createHeaders = () => ({
     'Content-Type': 'application/json',
     'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`,
 });
-
-export async function _get(endpoint: string, searchTerm?: Object): Promise<any> {
+export async function _get(endpoint: string, searchTerm?: any): Promise<any> {
     try {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}`;
         if (searchTerm) {
-            fullUrl = `${fullUrl}${searchParams.create(searchTerm).stringify()}`;
+            fullUrl = `${fullUrl}${SearchParams.create(searchTerm).stringify()}`;
         }
-
         const options = new RequestOptions(
             HttpMethod.GET,
             fullUrl,
@@ -26,7 +22,6 @@ export async function _get(endpoint: string, searchTerm?: Object): Promise<any> 
             'follow',
             ''
         );
-
         const response = await RunRequest(options);
         return response.data;
     } catch (error) {
