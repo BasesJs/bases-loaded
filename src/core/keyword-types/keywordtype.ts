@@ -1,8 +1,20 @@
-import { base, _getbyid } from "../baseclass/baseclass.js";
+import { _getbyid } from "../baseclass/baseclass.js";
 import { KeywordTypes } from "./keywordtypes.js";
 import { NewKeyword } from "../keywords/keyword.js";
 import { NewKeywordValue } from "../keywords/keywordvalue.js";
-export class KeywordType extends base {
+
+export class KeywordType implements KeywordTypeItem {
+  id: string;
+  name: string;
+  systemName: string;
+  dataType: string;
+  usedForRetrieval: boolean;
+  invisible: boolean;
+  isSecurityMasked: boolean;
+  alphanumericSettings?: AlphanumericSettings;
+  currencyFormatId?: string;
+  maskSettings?: MaskSettings;
+
   constructor(
     id: string,
     name: string,
@@ -15,23 +27,19 @@ export class KeywordType extends base {
     currencyFormatId?: string,
     maskSettings?: MaskSettings
   ) {
-    super(id, name, systemName);
+    this.id = id;
+    this.name = name;
+    this.systemName = systemName;
     this.dataType = dataType;
     this.usedForRetrieval = usedForRetrieval;
     this.invisible = invisible;
+    this.isSecurityMasked = isSecurityMasked;
     this.alphanumericSettings = alphanumericSettings;
     this.currencyFormatId = currencyFormatId;
-    this.isSecurityMasked = isSecurityMasked;
     this.maskSettings = maskSettings;
   }
-  dataType: string;
-  usedForRetrieval: boolean;
-  invisible: boolean;
-  alphanumericSettings?: AlphanumericSettings;
-  currencyFormatId?: string;
-  isSecurityMasked: boolean;
-  maskSettings?: MaskSettings;
-  static parse(item: any) {
+
+  static parse(item: KeywordTypeItem): KeywordType {
     return new KeywordType(
       item.id,
       item.name,
@@ -47,33 +55,35 @@ export class KeywordType extends base {
       item.maskSettings ? MaskSettings.parse(item.maskSettings) : undefined
     );
   }
-  static async get(id: string) {
-    let response = await _getbyid(id, KeywordTypes.endpoint);
-    return KeywordType.parse(response);
+
+  static async get(id: string | number): Promise<KeywordType | null> {
+    try {
+      const response = await _getbyid(KeywordTypes.endpoint, id);
+      return KeywordType.parse(response);
+    } catch (error) {
+      console.error(`Error fetching KeywordType with ID: ${id}`, error);
+      return null;
+    }
   }
-  create(values:string[]): NewKeyword{
-    let newValues: NewKeywordValue[] = [];
-    let newKeyword = new NewKeyword(this.id, newValues);
-    values.forEach((value: string) => {
-      newKeyword.values.push(new NewKeywordValue(value));
-    });
-    return newKeyword;
+
+  create(values: string[]): NewKeyword {
+    const newValues = values.map(value => new NewKeywordValue(value));
+    return new NewKeyword(this.id, newValues);
   }
 }
+
 export class AlphanumericSettings {
-  constructor(
-    caseOptions?: string,
-    maximumLength?: number,
-    storageOptions?: string
-  ) {
+  caseOptions?: string;
+  maximumLength?: number;
+  storageOptions?: string;
+
+  constructor(caseOptions?: string, maximumLength?: number, storageOptions?: string) {
     this.caseOptions = caseOptions;
     this.maximumLength = maximumLength;
     this.storageOptions = storageOptions;
   }
-  caseOptions?: string;
-  maximumLength?: number;
-  storageOptions?: string;
-  static parse(item: any) {
+
+  static parse(item: AlphanumericSettingsItem): AlphanumericSettings {
     return new AlphanumericSettings(
       item.caseOptions,
       item.maximumLength,
@@ -81,7 +91,13 @@ export class AlphanumericSettings {
     );
   }
 }
+
 export class MaskSettings {
+  fullfieldRequired?: boolean;
+  maskString?: string;
+  staticCharacters?: string;
+  storeMask?: boolean;
+
   constructor(
     fullfieldRequired?: boolean,
     maskString?: string,
@@ -93,11 +109,8 @@ export class MaskSettings {
     this.staticCharacters = staticCharacters;
     this.storeMask = storeMask;
   }
-  fullfieldRequired?: boolean;
-  maskString?: string;
-  staticCharacters?: string;
-  storeMask?: boolean;
-  static parse(item: any) {
+
+  static parse(item: MaskSettingsItem): MaskSettings {
     return new MaskSettings(
       item.fullfieldRequired,
       item.maskString,
@@ -105,4 +118,29 @@ export class MaskSettings {
       item.storeMask
     );
   }
+}
+export interface KeywordTypeItem {
+  id: string;
+  name: string;
+  systemName: string;
+  dataType: string;
+  usedForRetrieval: boolean;
+  invisible: boolean;
+  isSecurityMasked: boolean;
+  alphanumericSettings?: AlphanumericSettingsItem;
+  currencyFormatId?: string;
+  maskSettings?: MaskSettingsItem;
+}
+
+interface AlphanumericSettingsItem {
+  caseOptions?: string;
+  maximumLength?: number;
+  storageOptions?: string;
+}
+
+interface MaskSettingsItem {
+  fullfieldRequired?: boolean;
+  maskString?: string;
+  staticCharacters?: string;
+  storeMask?: boolean;
 }

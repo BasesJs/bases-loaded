@@ -1,15 +1,18 @@
-import { group, _get } from '../baseclass/basegroup.js';
-import { CustomQuery } from './customquery.js';
+import { group, _get } from '@/core/baseclass/basegroup.js';
+import { CustomQuery, CustomQueryItem } from './customquery.js';
 
 export const CustomQueries: group = {
     endpoint: "/custom-queries",
-    items: [],
-    async get(searchTerm?: any) {
-        const data = await _get(this.endpoint, searchTerm);
-        data.items.forEach((it: any) => {
-            let cq = CustomQuery.parse(it);
-            this.items.push(cq);
-        });
-        return this.items;
+    items: [] as CustomQuery[],
+
+    async get(searchTerm?: string | number): Promise<CustomQuery[]> {
+        try {
+            const data = await _get(this.endpoint, searchTerm);
+            this.items = data.items.map((item: CustomQueryItem) => CustomQuery.parse(item));
+            return this.items;
+        } catch (error) {
+            console.error("Error retrieving custom queries:", error);
+            throw error;
+        }
     }
-}
+};

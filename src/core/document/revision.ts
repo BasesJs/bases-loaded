@@ -2,23 +2,26 @@ import { Rendition, getRenditions } from './rendition.js';
 import { Document } from "./document.js";
 import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
 
-export class Revision {
-    constructor(id: string, RevisionNumber: string) {
-        this.id = id;
-        this.RevisionNumber = RevisionNumber;
-    }
+export class Revision implements RevisionItem {
     id: string;
-    RevisionNumber: string;
+    revisionNumber: string;
     renditions: Rendition[] = [];
+
+    constructor(id: string, revisionNumber: string) {
+        this.id = id;
+        this.revisionNumber = revisionNumber;
+    }
+
     static readonly endpoint: string = "/Revisions";
-    static parse(item: any) {
-        return new Revision(item.id, item.RevisionNumber);
+
+    static parse(item: RevisionItem): Revision {
+        return new Revision(item.id, item.revisionNumber);
     }
 }
 
-export async function getRevisions(documentId: string) {
-    let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}`;
-    let options = new RequestOptions(
+export async function getRevisions(documentId: string): Promise<Revision[]> {
+    const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}`;
+    const options = new RequestOptions(
         HttpMethod.GET,
         fullUrl,
         {
@@ -26,12 +29,19 @@ export async function getRevisions(documentId: string) {
             'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
         },
         'follow',
-        '');
-    const response = await RunRequest(options);
-    let Revisions: Revision[] = [];
-    response.data.items.forEach((item: any) => {
-        Revisions.push(Revision.parse(item));
-    });
-    return Revisions;
+        ''
+    );
+
+    try {
+        const response = await RunRequest(options);
+        return response.data.items.map((item: RevisionItem) => Revision.parse(item));
+    } catch (error) {
+        console.error('Failed to get revisions:', error);
+        throw error;
+    }
 }
 
+interface RevisionItem {
+    id: string;
+    revisionNumber: string;
+}

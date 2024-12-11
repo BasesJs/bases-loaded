@@ -1,17 +1,18 @@
 import { group, _get } from '../baseclass/basegroup.js';
-import { FileType } from './filetype.js';
-
+import { FileType, FileTypeItem } from './filetype.js';
 
 export const FileTypes: group = {
     endpoint: "/file-types",
-    items: [],
-    async get(searchTerm?: any) {
-        const data = await _get(this.endpoint, searchTerm);
-        data.items.forEach((item: any) => {
-            let ft = FileType.parse(item);
-            this.items.push(ft);
-        });
-        return this.items;
-    }
-}
+    items: [] as FileType[],
 
+    async get(searchTerm?: string | number): Promise<FileType[]> {
+        try {
+            const data = await _get(this.endpoint, searchTerm);
+            this.items = data.items.map((item: FileTypeItem) => FileType.parse(item));
+            return this.items;
+        } catch (error) {
+            console.error('Error fetching file types:', error);
+            throw error;
+        }
+    }
+};

@@ -1,30 +1,32 @@
-import { NewKeyword } from '../keywords/keyword.js';
-import { NewRecordGroup, NewMultiRecordGroup } from '../keywords/keywordgroup.js';
-import { IKeywordCollection } from './keywordcollection.js';
+import { NewKeyword, KeywordItem } from '../keywords/keyword.js';
+import { NewRecordGroupItem, NewMultiRecordGroupItem, NewRecordGroup, NewMultiRecordGroup } from '../keywords/keywordgroup.js';
+import { DefaultKeywordCollection, DefaultKeywordCollectionItem } from './keywordcollection.js';
 
-export class NewKeywordCollection implements IKeywordCollection {
+
+export class NewKeywordCollection implements DefaultKeywordCollection {
     keywordGuid: string;
-    Keywords: NewKeyword[];
-    RecordGroups: NewRecordGroup[];
-    MultiRecordGroups: NewMultiRecordGroup[];
+    Keywords: KeywordItem[];
+    RecordGroups: NewRecordGroupItem[];
+    MultiRecordGroups: NewRecordGroupItem[];
+    items: DefaultKeywordCollectionItem[];
 
-    constructor(keywordGuid: string, Keywords: NewKeyword[] = [], RecordGroups: NewRecordGroup[] = [], MultiRecordGroups: NewMultiRecordGroup[] = []) {
+    constructor(keywordGuid: string, items: DefaultKeywordCollectionItem[], Keywords: NewKeyword[] = [], RecordGroups: NewRecordGroupItem[] = [], MultiRecordGroups: NewMultiRecordGroupItem[] = []) {
         this.keywordGuid = keywordGuid;
         this.Keywords = Keywords;
         this.RecordGroups = RecordGroups;
         this.MultiRecordGroups = MultiRecordGroups;
+        this.items = items;
     }
-
-    addKeyword(keyword: NewKeyword): void {
-        const existingKeyword = this.Keywords.find(kw => kw.id === keyword.id);
-        if (existingKeyword) {
-            existingKeyword.values = keyword.values;
-            return;
+    addKeyword(keyword: KeywordItem): void {
+        let newKeyword = NewKeyword.parse(keyword);
+        const kws = this.items.filter(item => item.typeGroupId === undefined && item.instanceId === undefined)[0];
+        const foundItem = kws.keywords.find(it => it.typeId === newKeyword.typeId);
+        if (!foundItem) {
+            throw new Error("Keyword does not exist in the default keyword collection so it cannot be added.");
         }
-        throw new Error("Keyword does not exist in the collection.");
+        this.Keywords.push(newKeyword);
     }
-
-    addKeywordGroup(keywordGroup: NewRecordGroup): void {
+    addKeywordGroup(keywordGroup: NewRecordGroupItem): void {
         const existingKeywordGroup = this.RecordGroups.find(rg => rg.typeGroupId === keywordGroup.typeGroupId);
         if (existingKeywordGroup) {
             existingKeywordGroup.keywords = keywordGroup.keywords;
@@ -32,8 +34,7 @@ export class NewKeywordCollection implements IKeywordCollection {
         }
         throw new Error("KeywordGroup does not exist in the collection.");
     }
-
-    addMultiKeywordGroup(multiKeywordGroup: NewMultiRecordGroup): void {
+    addMultiKeywordGroup(multiKeywordGroup: NewMultiRecordGroupItem): void {
         const existingMultiKeywordGroup = this.MultiRecordGroups.find(rg => rg.typeGroupId === multiKeywordGroup.typeGroupId);
         if (existingMultiKeywordGroup) {
             existingMultiKeywordGroup.keywords = multiKeywordGroup.keywords;
@@ -41,27 +42,24 @@ export class NewKeywordCollection implements IKeywordCollection {
         }
         throw new Error("MultiKeywordGroup does not exist in the collection.");
     }
-
-    static parse(data: { keywordGuid: string; items: any[] }): NewKeywordCollection {
-        const nkc = new NewKeywordCollection(data.keywordGuid);
+    static parse(data: DefaultKeywordCollection): NewKeywordCollection {
+        const nkc = new NewKeywordCollection(data.keywordGuid, data.items);
         const keys = data.items.filter(item => item.typeGroupId === undefined && item.instanceId === undefined);
-
         keys.forEach(item => {
             item.keywords.forEach((k: any) => {
                 const kw: NewKeyword = NewKeyword.parse(k);
                 nkc.Keywords.push(kw);
             });
         });
-
-        const sikgs = data.items.filter(item => item.typeGroupId !== undefined && item.instanceId === undefined);
+        const sikgs = data.items.filter(item => item.typeGroupId !== undefined && item.instanceId === undefined) as NewRecordGroupItem[];
         sikgs.forEach(item => {
             const sikg = NewRecordGroup.parse(item);
             nkc.RecordGroups.push(sikg);
         });
 
-        const mikgs = data.items.filter(item => item.typeGroupId !== undefined && item.instanceId !== undefined);
+        const mikgs = data.items.filter(item => item.typeGroupId !== undefined && item.instanceId !== undefined) as NewMultiRecordGroupItem[];
         mikgs.forEach(item => {
-            const mikg = NewMultiRecordGroup.parse(item);
+            const mikg: NewMultiRecordGroup = NewMultiRecordGroup.parse(item);
             nkc.MultiRecordGroups.push(mikg);
         });
 

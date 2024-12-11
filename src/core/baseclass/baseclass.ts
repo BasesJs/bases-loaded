@@ -1,17 +1,18 @@
-import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
-
+import { RunRequest, RequestOptions, HttpMethod } from '@/http/axios/httprequest.js';
 export abstract class base {
-    id: string = "";
-    name: string = "";
-    systemName: string = "";
-    constructor(id: string, name: string, systenName: string) {
+    id: string;
+    name: string;
+    systemName: string;
+
+    constructor(id: string, name: string, systemName: string) {
         this.id = id;
         this.name = name;
-        this.systemName = systenName;
+        this.systemName = systemName;
     }
 }
-export async function _getbyid(id: any, endpoint: string) {
-    let options = new RequestOptions(
+
+export async function _getbyid(endpoint: string, id: string | number): Promise<any> {
+    const options = new RequestOptions(
         HttpMethod.GET,
         `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}/${id}`,
         {
@@ -19,7 +20,8 @@ export async function _getbyid(id: any, endpoint: string) {
             'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
         },
         'follow',
-        '');
+        ''
+    );
     const response = await RunRequest(options);
     return response.data;
 }

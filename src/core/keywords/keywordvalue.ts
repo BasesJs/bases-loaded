@@ -3,18 +3,25 @@ export class NewKeywordValue {
       this.value = value;
   }
   value: string;
-  static parse(item: any) {
+  static parse(item: KeywordValueItem): NewKeywordValue {
       return new NewKeywordValue(item.value);
   }
 }
-export class KeywordValue extends NewKeywordValue {
-  constructor(value: string, formattedValue: string) {
-      super(value);
+
+export class KeywordValue implements KeywordValueItem {
+  value: string;
+  formattedValue: string;
+  constructor(value: string, formattedValue: string = '') {
+      this.value = value;
       this.formattedValue = formattedValue;
   }
-  formattedValue: string;
-  static parse(item: any) {
-      return new KeywordValue(item.value, item.formattedValue);
+  static parse(item: KeywordValueItem): KeywordValue {
+      return new KeywordValue(item.value, item.formattedValue ?? '');
   }
+}
+
+export interface KeywordValueItem {
+  formattedValue?: string;
+  value: string;
 }
 

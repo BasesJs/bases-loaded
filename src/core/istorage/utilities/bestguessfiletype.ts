@@ -1,4 +1,5 @@
-export async function bestguessfiletype(fileExtension: string) {
+import { FileType, FileTypeItem } from "@/core/file-types/filetype.js";
+export async function bestguessfiletype(fileExtension: string) : Promise<FileType> {
   let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
   let data = "";
   let request = {
@@ -13,5 +14,6 @@ export async function bestguessfiletype(fileExtension: string) {
       data: data
   };
   const response = await global.bases.client.request(request);
-  return response.data.id;
+  let fileType = FileType.parse(response.data as FileTypeItem);
+  return fileType;
 }

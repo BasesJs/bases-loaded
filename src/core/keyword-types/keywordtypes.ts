@@ -1,15 +1,18 @@
 import { group, _get } from "../baseclass/basegroup.js";
-import { keywordtype } from "./keywordtype.js";
+import { KeywordType, KeywordTypeItem } from "./keywordtype.js";
 
-export const keywordtypes: group = {
+export const KeywordTypes: group = {
   endpoint: "/keyword-types",
-  items: [],
-  async get(searchTerm?: any) {
-    const data = await _get(this.endpoint, searchTerm);
-    data.items.forEach((item: any) => {
-      let kt = keywordtype.parse(item);
-      this.items.push(kt);
-    });
-    return this.items;
-  },
+  items: [] as KeywordType[],
+
+  async get(searchTerm?: string | number): Promise<KeywordType[]> {
+    try {
+      const data = await _get(this.endpoint, searchTerm);
+      this.items = data.items.map((item: KeywordTypeItem) => KeywordType.parse(item));
+      return this.items;
+    } catch (error) {
+      console.error('Error fetching keyword types:', error);
+      return [];
+    }
+  }
 };

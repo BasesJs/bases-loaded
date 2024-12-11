@@ -21,8 +21,11 @@ export class DocumentInfo {
 
     static async create(documentTypeId: string, filePaths: string[], documentDate: Date): Promise<DocumentInfo> {
         const docType = await DocumentType.get(documentTypeId);
+        if(docType === null){
+            throw new Error("DocumentType does not exist");
+        }
         const fileExtension = getFileExtension(filePaths[0]);
-        
+                
         if (!filePaths.every(path => path.split('.').pop() === fileExtension)) {
             throw new Error("All files in a document must have the same file extension.");
         }

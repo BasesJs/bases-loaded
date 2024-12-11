@@ -1,9 +1,20 @@
-import { base, _getbyid } from '../baseclass/baseclass.js'
+import { _getbyid } from '../baseclass/baseclass.js'
 import { NoteTypes } from './notetypes.js'
 
-export class NoteType extends base {
+export class NoteType implements NoteTypeItem {
+    id: string;
+    name: string;
+    systemName: string;
+    color: Color;
+    displayFlags: DisplayFlags;
+    flavor: string;
+    fontId: string;
+    iconId: string;
+    userPrivileges: UserPrivileges
     constructor(id: string, name: string, systemName: string, color: Color, displayFlags: DisplayFlags, flavor: string, fontId: string, iconId: string, userPrivileges: UserPrivileges) {
-        super(id, name, systemName);
+        this.id = id;
+        this.name = name;
+        this.systemName = systemName;
         this.color = color;
         this.displayFlags = displayFlags;
         this.flavor = flavor;
@@ -11,36 +22,44 @@ export class NoteType extends base {
         this.iconId = iconId;
         this.userPrivileges = userPrivileges;
     }
-    color: Color;
-    displayFlags: DisplayFlags;
-    flavor: string;
-    fontId: string;
-    iconId: string;
-    userPrivileges: UserPrivileges
-    static parse(item: any) {
+    static parse(item: NoteTypeItem) {
         return new NoteType(item.id, item.name, item.systemName, Color.parse(item.color), DisplayFlags.parse(item.displayFlags), item.flavor, item.fontId, item.iconId, UserPrivileges.parse(item.userPrivileges));
     }
-    async get(id: string) {
-        let response = await _getbyid(id, NoteTypes.endpoint);
+    async get(id: string | number) {
+        let response = await _getbyid(NoteTypes.endpoint, id);
         return NoteType.parse(response);
     }
 }
 export class Color {
+    r: string;
+    g: string;
+    b: string;
+    a: string;
     constructor(r: string, g: string, b: string, a: string) {
         this.r = r;
         this.g = g;
         this.b = b;
         this.a = a;
     }
-    r: string;
-    g: string;
-    b: string;
-    a: string;
     static parse(item: any) {
         return new Color(item.r, item.g, item.b, item.a);
     }
 }
 export class DisplayFlags {
+    allPages: boolean;
+    allRevisions: boolean;
+    createOpenNoteWindow: boolean;
+    deleteWithPage: boolean;
+    floatOnWindow: boolean;
+    hideNoteWindow: boolean;
+    moveable: boolean;
+    noPrivacyOptions: boolean;
+    open: boolean;
+    privacyNoDelete: boolean;
+    privacyNoModify: boolean;
+    privacyNoView: boolean;
+    stampKeepOriginalSize: boolean;
+    stampTransparent: boolean;
     constructor(allPages: boolean, allRevisions: boolean, createOpenNoteWindow: boolean, deleteWithPage: boolean, floatOnWindow: boolean, hideNoteWindow: boolean, moveable: boolean, noPrivacyOptions: boolean, open: boolean, privacyNoDelete: boolean, privacyNoModify: boolean, privacyNoView: boolean, stampKeepOriginalSize: boolean, stampTransparent: boolean) {
         this.allPages = allPages;
         this.allRevisions = allRevisions;
@@ -57,6 +76,39 @@ export class DisplayFlags {
         this.stampKeepOriginalSize = stampKeepOriginalSize;
         this.stampTransparent = stampTransparent;
     }
+    static parse(item: DisplayFlagsItem) {
+        return new DisplayFlags(item.allPages, item.allRevisions, item.createOpenNoteWindow, item.deleteWithPage, item.floatOnWindow, item.hideNoteWindow, item.moveable, item.noPrivacyOptions, item.open, item.privacyNoDelete, item.privacyNoModify, item.privacyNoView, item.stampKeepOriginalSize, item.stampTransparent);
+    }
+}
+export class UserPrivileges {
+    create: boolean;
+    view: boolean;
+    constructor(create: boolean, view: boolean) {
+        this.create = create;
+        this.view = view;
+    }
+    static parse(item: UserPrivilegesItem) {
+        return new UserPrivileges(item.create, item.view);
+    }
+}
+interface NoteTypeItem {
+    id: string;
+    name: string;
+    systemName: string;
+    color: ColorItem;
+    displayFlags: DisplayFlagsItem;
+    flavor: string;
+    fontId: string;
+    iconId: string;
+    userPrivileges: UserPrivilegesItem;
+}
+interface ColorItem {
+    r: string;
+    g: string;
+    b: string;
+    a: string;
+}
+interface DisplayFlagsItem {
     allPages: boolean;
     allRevisions: boolean;
     createOpenNoteWindow: boolean;
@@ -71,18 +123,8 @@ export class DisplayFlags {
     privacyNoView: boolean;
     stampKeepOriginalSize: boolean;
     stampTransparent: boolean;
-    static parse(item: any) {
-        return new DisplayFlags(item.allPages, item.allRevisions, item.createOpenNoteWindow, item.deleteWithPage, item.floatOnWindow, item.hideNoteWindow, item.moveable, item.noPrivacyOptions, item.open, item.privacyNoDelete, item.privacyNoModify, item.privacyNoView, item.stampKeepOriginalSize, item.stampTransparent);
-    }
 }
-export class UserPrivileges {
-    constructor(create: boolean, view: boolean) {
-        this.create = create;
-        this.view = view;
-    }
+interface UserPrivilegesItem {
     create: boolean;
     view: boolean;
-    static parse(item: any) {
-        return new UserPrivileges(item.create, item.view);
-    }
 }
