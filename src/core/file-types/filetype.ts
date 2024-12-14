@@ -1,7 +1,7 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
+import { _getbyid } from '../baseclass/baseclass.js';
 import { FileTypes } from './filetypes.js';
 import mime from 'mime';
-
+import { RequestOptions, RunRequest, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
 
 export class FileType implements FileTypeItem {
     id: string;
@@ -12,7 +12,12 @@ export class FileType implements FileTypeItem {
         this.name = name;
         this.systemName = systemName;
     }
-
+    static async bestGuess(fileExtension:string): Promise<string | null> {
+        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
+        let options = new RequestOptions(HttpMethod.GET, fullUrl, DefaultHeaders('application/json'), '');
+        const response = await RunRequest(options);
+        return response.data.id;
+    }
     getMimeType(): string | null {
         return mime.getType(this.name);
     }
@@ -27,28 +32,6 @@ export class FileType implements FileTypeItem {
             return FileType.parse(response);
         } catch (error) {
             console.error(`Failed to get FileType with id ${id}:`, error);
-            return null;
-        }
-    }
-
-    static async bestguess(fileExtension: string): Promise<FileType | null> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
-        const request = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: fullUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-            },
-            redirect: 'follow',
-        };
-
-        try {
-            const response = await global.bases.client.request(request);
-            return await FileType.get(response.id);
-        } catch (error) {
-            console.error(`Error in bestguess for extension ${fileExtension}:`, error);
             return null;
         }
     }

@@ -1,4 +1,4 @@
-import { RunRequest, RequestOptions, HttpMethod } from '@/http/axios/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
 export abstract class base {
     id: string;
     name: string;
@@ -15,11 +15,7 @@ export async function _getbyid(endpoint: string, id: string | number): Promise<a
     const options = new RequestOptions(
         HttpMethod.GET,
         `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}/${id}`,
-        {
-            'Content-Type': 'application/json',
-            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-        },
-        'follow',
+        DefaultHeaders('application/json'),
         ''
     );
     const response = await RunRequest(options);

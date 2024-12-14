@@ -1,4 +1,4 @@
-import { group, _get } from '@/core/baseclass/basegroup.js';
+import { group, _get } from '../baseclass/basegroup.js';
 import { CustomQuery, CustomQueryItem } from './customquery.js';
 
 export const CustomQueries: group = {

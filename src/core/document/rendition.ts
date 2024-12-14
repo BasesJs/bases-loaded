@@ -1,5 +1,5 @@
 import { Document } from "./document.js";
-import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
 import { Revision } from "./revision.js";
 
 export class Rendition implements RenditionItem {
@@ -29,11 +29,7 @@ export async function getRenditions(documentId: string, revisionId: string = "la
     const options = new RequestOptions(
         HttpMethod.GET,
         fullUrl,
-        {
-            'Content-Type': 'application/json',
-            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-        },
-        'follow',
+        DefaultHeaders('application/json'),
         ''
     );
 

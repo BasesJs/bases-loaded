@@ -1,6 +1,6 @@
-import { Rendition, getRenditions } from './rendition.js';
+import { Rendition } from './rendition.js';
 import { Document } from "./document.js";
-import { RunRequest, RequestOptions, HttpMethod } from '../../http/axios/httprequest.js';
+import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
 
 export class Revision implements RevisionItem {
     id: string;
@@ -24,11 +24,7 @@ export async function getRevisions(documentId: string): Promise<Revision[]> {
     const options = new RequestOptions(
         HttpMethod.GET,
         fullUrl,
-        {
-            'Content-Type': 'application/json',
-            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-        },
-        'follow',
+        DefaultHeaders('application/json'),
         ''
     );
 

@@ -1,4 +1,4 @@
-import { base, _getbyid } from '@/core/baseclass/baseclass.js';
+import { base, _getbyid } from '../baseclass/baseclass.js';
 import { CustomQueries } from './customqueries.js';
 
 export class CustomQuery implements CustomQueryItem {

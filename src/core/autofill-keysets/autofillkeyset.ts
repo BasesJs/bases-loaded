@@ -1,5 +1,7 @@
-import { base, _getbyid } from '@/core/baseclass/baseclass.js';
+import { base, _getbyid } from '../baseclass/baseclass.js';
 import { AutofillKeysets } from './autofillkeysets.js';
+import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
+
 
 export class AutofillKeyset implements AutofillKeysetItem {
     id: string;
@@ -38,22 +40,10 @@ export class AutofillKeyset implements AutofillKeysetItem {
 
     async getData(primaryValue: string): Promise<any[]> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-        };
-
-        const requestConfig = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: fullUrl,
-            headers
-        };
-        //TODO: replace any's with actual types
+        const options = new RequestOptions(HttpMethod.GET, fullUrl, DefaultHeaders(),'');
         try {
-            const response = await global.bases.client.request(requestConfig);
-            const items: any[] = response.data.items.map((i: any) => i); // Modify with actual logic for processing items
-            return items;
+            const response = await RunRequest(options);
+            return response.data.items;;
         } catch (error) {
             console.error("Error fetching data:", error);
             return [];

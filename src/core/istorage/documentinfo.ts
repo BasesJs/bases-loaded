@@ -1,22 +1,25 @@
 import { DocumentType } from '../document-types/documenttype.js';
-import { bestguessfiletype } from './utilities/bestguessfiletype.js';
 import { FileType } from '../file-types/filetype.js';
+import { NewKeywordCollection } from '../keywordcollection/newkeywordcollection.js';
+import { DefaultKeywordCollection, KeywordCollection } from '../keywordcollection/keywordcollection.js';
 
 export class DocumentInfo {
-    documentType: DocumentType;
-    fileType: FileType;
-    documentDate: Date;
-    filePaths: string[];
-    fileExtension: string;
-    uploadIds: string[];
+    DocumentType: DocumentType;
+    FileType: FileType;
+    DocumentDate: Date;
+    FilePaths: string[];
+    FileExtension: string;
+    UploadIds: string[];
+    //KeywordCollection: DefaultKeywordCollection | KeywordCollection; 
 
     constructor(documentType: DocumentType, fileType: FileType, documentDate: Date, filePaths: string[], fileExtension: string) {
-        this.documentType = documentType;
-        this.fileType = fileType;
-        this.documentDate = documentDate;
-        this.filePaths = filePaths;
-        this.fileExtension = fileExtension;
-        this.uploadIds = [];
+        this.DocumentType = documentType;
+        this.FileType = fileType;
+        this.DocumentDate = documentDate;
+        this.FilePaths = filePaths;
+        this.FileExtension = fileExtension;
+        this.UploadIds = [];
+        //this.KeyowrdCollection = KeyowrdCollection;
     }
 
     static async create(documentTypeId: string, filePaths: string[], documentDate: Date): Promise<DocumentInfo> {
@@ -25,12 +28,20 @@ export class DocumentInfo {
             throw new Error("DocumentType does not exist");
         }
         const fileExtension = getFileExtension(filePaths[0]);
-                
+
         if (!filePaths.every(path => path.split('.').pop() === fileExtension)) {
             throw new Error("All files in a document must have the same file extension.");
         }
 
-        const fileType = await bestguessfiletype(fileExtension);
+        let fileTypeId = await FileType.bestGuess(fileExtension);
+        if (fileTypeId === null) {
+            throw new Error("Could not determine FileType.");
+        }
+        let fileType = await FileType.get(fileTypeId);
+        if (fileType === null) {
+            throw new Error("FileType does not exist.");
+        };       
+
         return new DocumentInfo(docType, fileType, documentDate, filePaths, fileExtension);
     }
 }

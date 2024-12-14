@@ -1,11 +1,12 @@
-import { base, _getbyid } from '@/core/baseclass/baseclass.js';
-import { RunRequest, RequestOptions, HttpMethod } from '@/http/axios/httprequest.js';
-import { Keyword } from '@/core/keywords/keyword.js';
+import { _getbyid } from '../baseclass/baseclass.js';
+import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
+import { Keyword } from '../keywords/keyword.js';
 import { KeywordCollectionItem } from '../keywordcollection/keywordcollection.js';
-import { MultiRecordGroup, MultiRecordGroupItem, RecordGroup, RecordGroupItem } from '@/core/keywords/keywordgroup.js';
-import { FileTypes } from '@/core/file-types/filetypes.js';
+import { MultiRecordGroup, MultiRecordGroupItem, RecordGroup, RecordGroupItem } from '../keywords/keywordgroup.js';
+import { FileTypes } from '../file-types/filetypes.js';
 import { Revision, getRevisions } from './revision.js';
 import { getRenditions } from './rendition.js';
+import * as fs from 'fs/promises';
 
 export class Document implements DocumentItem {
     id: string;
@@ -87,11 +88,7 @@ export class Document implements DocumentItem {
         const options = new RequestOptions(
             HttpMethod.GET,
             fullUrl,
-            {
-                'Content-Type': 'application/json',
-                'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-            },
-            'follow',
+            DefaultHeaders('application/json'),            
             ''
         );
     
@@ -121,18 +118,7 @@ export class Document implements DocumentItem {
                         this.multiRecordGroups.push(mikg);
                     }
                 }
-            });
-            /*  for (const item of data.items) {
-                if (item.typeGroupId && item.groupId) {
-                    const mikg = await MultiRecordGroup.parseAsync(item as MultiRecordGroupItem);
-                    const existingGroup = this.multiRecordGroups.find(grp => grp.typeGroupId === mikg.typeGroupId);
-                    if (existingGroup) {
-                        existingGroup.recordgroups.push(mikg.recordgroups[0]);
-                    } else {
-                        this.multiRecordGroups.push(mikg);
-                    }
-                }
-            } */
+            });            
         } catch (error) {
             console.error('Error fetching keywords:', error);
         }

@@ -31,7 +31,7 @@ export class ImportDocument implements IStorage {
   }
 
   async cancel(): Promise<void> {
-    for (const id of this.documentInfo.uploadIds) {
+    for (const id of this.documentInfo.UploadIds) {
       try {
         const data = await deleteupload(id);
         console.log(data);
@@ -43,12 +43,12 @@ export class ImportDocument implements IStorage {
 }
 
 export async function importBytes(documentInfo: DocumentInfo): Promise<void> {
-  for (const path of documentInfo.filePaths) {
+  for (const path of documentInfo.FilePaths) {
     try {
       const file = await fs.readFile(path);
-      const stageData = await stageupload(documentInfo.fileExtension, file.byteLength);
+      const stageData = await stageupload(documentInfo.FileExtension, file.byteLength);
 
-      documentInfo.uploadIds.push(stageData.id);
+      documentInfo.UploadIds.push(stageData.id);
       const parts = await splitfile(file, stageData.numberOfParts, stageData.filePartSize);
 
       let uploaded = 0;

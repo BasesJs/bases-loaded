@@ -1,6 +1,6 @@
 
-import { basesloaded } from './bases.js';
+import { BasesLoaded } from './bases.js';
 export { };
 declare global {
-    var bases: basesloaded;
+    var bases: BasesLoaded;
 }

@@ -1,31 +1,29 @@
-export class token {
-    constructor() { }
-    access_token: string = "";
-    expires_in: number = 0;
-    token_type: string = "";
-    scope: string = "";
-    expiration: Date = new Date();
-    static create(jsonToken: any) {
-        let tok = new token();
-        tok.access_token = jsonToken.access_token;
-        tok.expires_in = jsonToken.expires_in;
-        tok.token_type = jsonToken.token_type;
-        tok.scope = jsonToken.scope;
-        tok.expiration = new Date(Date.now() + tok.expires_in * 60000);
-        return tok;
-    }
-    isExpired() {
-        if (this.expiration.valueOf() < Date.now())
-            return true;
-        else
-            return false;
-    }
+export interface IToken {
+    access_token: string;
+    expires_in: number;
+    token_type: string;
+    scope: string;
 }
-
-interface IToken {
+export class Token implements IToken {
     access_token: string;
     expires_in: number;
     token_type: string;
     scope: string;
     expiration: Date;
+
+    constructor({ access_token, expires_in, token_type, scope }: IToken) {
+        this.access_token = access_token;
+        this.expires_in = expires_in;
+        this.token_type = token_type;
+        this.scope = scope;
+        this.expiration = new Date(Date.now() + expires_in * 60000);
+    }
+
+    static create(jsonToken: IToken): Token {
+        return new Token(jsonToken);
+    }
+
+    isExpired(): boolean {
+        return this.expiration.valueOf() < Date.now();
+    }
 }

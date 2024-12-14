@@ -1,6 +1,6 @@
 import { base, _getbyid } from '../baseclass/baseclass.js';
 import { DocumentTypes } from './documenttypes.js';
-import { RequestOptions, RunRequest, HttpMethod } from '../../http/axios/httprequest.js';
+import { RequestOptions, RunRequest, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
 import { NewKeywordCollection } from '../keywordcollection/newkeywordcollection.js';
 
 export class DocumentType implements DocumentTypeItem {
@@ -58,10 +58,7 @@ export class DocumentType implements DocumentTypeItem {
 
     async keywordTypes() : Promise<NewKeywordCollection | null> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${DocumentTypes.endpoint}/${this.id}/default-keywords`;
-        const options = new RequestOptions(HttpMethod.GET, fullUrl, {
-            'Content-Type': 'application/json',
-            'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`
-        }, 'follow', '');
+        const options = new RequestOptions(HttpMethod.GET, fullUrl, DefaultHeaders('application/json'),'');
 
         try {
             const response = await RunRequest(options);

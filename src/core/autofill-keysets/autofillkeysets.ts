@@ -1,4 +1,4 @@
-import { group, _get } from '@/core/baseclass/basegroup.js';
+import { group, _get } from '../baseclass/basegroup.js';
 import { AutofillKeyset, AutofillKeysetItem } from './autofillkeyset.js';
 
 export const AutofillKeysets: group = {

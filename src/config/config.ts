@@ -1,13 +1,12 @@
-export const config = {
+export const Config = {
   environment: {
-    name: "development",
-    baseuri: "https://dev-onbase",
-    idpbase: "/idp",
-    apibase: "/api",
-    grant: "password",
-    scope: "evolution",
-    clientid: "3aea53c5-e86a-4752-8f3c-6b24bf188837",
-    secret: "P@ssw0rd",
-    tenant: "OnBase"
+    name: process.env.ENVIRONMENT,
+    idpUri: process.env.IDP_BASE,
+    apiUri: process.env.API_BASE,
+    grant: process.env.GRANT_TYPE,
+    scope: process.env.SCOPE,
+    clientid: process.env.CLIENT_ID,
+    secret: process.env.CLIENT_SECRET,
+    tenant: process.env.TENANT,
   }
 }
