@@ -1,6 +1,6 @@
 import { Keyword, NewKeyword, KeywordItem } from './keyword.js';
 import { KeywordTypeGroup } from '../keyword-type-groups/keywordtypegroup.js';
-import { KeywordCollectionItem, DefaultKeywordCollectionItem } from '@/core/keywordcollection/keywordcollection.js';
+import { KeywordCollectionItem, DefaultKeywordCollectionItem } from '../../core/keywordcollection/keywordcollection.js';
 
 export class RecordGroup implements RecordGroupItem {
     constructor(typeGroupId: string, keywords: Keyword[], instanceId?: string, name?: string) {

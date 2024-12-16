@@ -3,7 +3,7 @@ import { Revision } from "../revisions/revision.js";
 import { Rendition } from "../renditions/rendition.js";
 import { RunRequest } from '../../../http/httprequest.js';
 import { RequestOptions, HttpMethod, ResponseType } from '../../../http/requestoptions.js'
-import { ParamSerializer } from "@/http/utilities/paramserializer.js";
+import { ParamSerializer } from "../../../http/utilities/paramserializer.js";
 import { DefaultHeaders } from '../../../http/utilities/defaultheaders.js';
 
 export async function getContent(documentId: string, revisionId: string = "latest", renditionId: string = "default", contentParams?: ContentParams, accepts: string = "*/*"): Promise<string> {
@@ -21,6 +21,7 @@ export async function getContent(documentId: string, revisionId: string = "lates
   );
   if(options.headers !== undefined){
     options.headers['Accept'] = accepts;
+    options.validateStatus = (status: number) => status >= 200 && status < 300;
   }
   return await RunRequest(options);
 }

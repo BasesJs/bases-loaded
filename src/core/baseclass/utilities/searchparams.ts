@@ -13,7 +13,7 @@ export default class SearchParams {
 
     static create(value: any): SearchParams {
         const idSearch = typeof value === 'number' || !isNaN(value);
-        const paramName = idSearch ? "id" : "systemName";
+        const paramName = idSearch ? "id" : "name";
         return new SearchParams(paramName, value);
     }
 }
