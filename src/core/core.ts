@@ -6,11 +6,13 @@ import { KeywordTypes } from './keyword-types/keywordtypes.js';
 import { AutofillKeysets } from './autofill-keysets/autofillkeysets.js';
 import { CustomQueries } from './custom-queries/customqueries.js';
 import { NoteTypes } from './note-types/notetypes.js';
+import { CurrencyFormats } from './currency-format/currencyformats.js';
 import { Document } from './document/document.js';
 
 export const core = {
     name: "Document Management API",
     endpoint: "/onbase/core",
+    currencyformats: CurrencyFormats,
     filetypes: FileTypes,
     documenttypegroups: DocumentTypeGroups,
     documenttypes: DocumentTypes,

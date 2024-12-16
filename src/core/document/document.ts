@@ -1,11 +1,12 @@
 import { _getbyid } from '../baseclass/baseclass.js';
-import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
+import { RunRequest } from '../../http/httprequest.js';
+import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
 import { Keyword } from '../keywords/keyword.js';
 import { KeywordCollectionItem } from '../keywordcollection/keywordcollection.js';
 import { MultiRecordGroup, MultiRecordGroupItem, RecordGroup, RecordGroupItem } from '../keywords/keywordgroup.js';
 import { FileTypes } from '../file-types/filetypes.js';
-import { Revision, getRevisions } from './revision.js';
-import { getRenditions } from './rendition.js';
+import { Revision, getRevisions } from './revisions/revision.js';
+import { getRenditions } from './renditions/rendition.js';
 import * as fs from 'fs/promises';
 
 export class Document implements DocumentItem {
@@ -58,7 +59,7 @@ export class Document implements DocumentItem {
     }
 
     static async get(id: string, getKeywords = false, getRevisions = false): Promise<Document> {
-        const data = await _getbyid(id, this.endpoint);
+        const data = await _getbyid(this.endpoint, id);
         const doc = Document.parse(data);
 
         if (getKeywords) {
@@ -85,12 +86,7 @@ export class Document implements DocumentItem {
 
     async fetchKeywords(): Promise<void> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${this.id}/keywords`;
-        const options = new RequestOptions(
-            HttpMethod.GET,
-            fullUrl,
-            DefaultHeaders('application/json'),            
-            ''
-        );
+        const options = new RequestOptions(fullUrl, HttpMethod.GET);
     
         try {
             const response = await RunRequest(options);

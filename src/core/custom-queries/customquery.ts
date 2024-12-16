@@ -1,6 +1,8 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
+import { _getbyid } from '../baseclass/baseclass.js';
 import { CustomQueries } from './customqueries.js';
-
+import { Keyword, KeywordItem } from '../keywords/keyword.js';
+import { RunRequest} from '../../http/httprequest.js';
+import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
 export class CustomQuery implements CustomQueryItem {
     id: string;
     name: string;
@@ -26,6 +28,17 @@ export class CustomQuery implements CustomQueryItem {
             DateOptions.parse(item.dateOptions)
         );
     }
+    async getKeywordTypes(): Promise<any[]> {
+        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${CustomQueries.endpoint}/${this.id}/keyword-Types`;
+        const options = new RequestOptions(fullUrl, HttpMethod.GET);
+        try {
+            const response = await RunRequest(options);
+            return response.data.items;
+        } catch (error) {
+            console.error('Error fetching keywords:', error);
+            throw error;
+        }
+    }
 
     static async get(id: string | number): Promise<CustomQuery | null> {
         try {
@@ -40,9 +53,9 @@ export class CustomQuery implements CustomQueryItem {
 
 export class DateOptions implements DateOptionsItem {
     dateSearch: string;
-    defaultDateRange: DateRange;
+    defaultDateRange?: DateRange;
 
-    constructor(dateSearch: string, defaultDateRange: DateRange) {
+    constructor(dateSearch: string, defaultDateRange?: DateRange) {
         this.dateSearch = dateSearch;
         this.defaultDateRange = defaultDateRange;
     }
@@ -50,7 +63,7 @@ export class DateOptions implements DateOptionsItem {
     static parse(item: DateOptionsItem): DateOptions {
         return new DateOptions(
             item.dateSearch,
-            DateRange.parse(item.defaultDateRange)
+            item.defaultDateRange ? DateRange.parse(item.defaultDateRange) : undefined
         );
     }
 }
@@ -79,7 +92,7 @@ export interface CustomQueryItem {
 
 interface DateOptionsItem {
     dateSearch: string;
-    defaultDateRange: DateRangeItem;
+    defaultDateRange?: DateRangeItem;
 }
 
 interface DateRangeItem {

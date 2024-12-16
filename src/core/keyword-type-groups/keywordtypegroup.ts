@@ -1,4 +1,4 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
+import { _getbyid } from '../baseclass/baseclass.js';
 import { KeywordTypeGroups } from './keywordtypegroups.js';
 
 export class KeywordTypeGroup implements KeywordTypeGroupItem {

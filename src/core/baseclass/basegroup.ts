@@ -1,5 +1,6 @@
 import SearchParams from './utilities/searchparams.js';
-import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
+import { RunRequest } from '../../http/httprequest.js';
+import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
 
 
 export interface group {
@@ -8,18 +9,15 @@ export interface group {
     get(searchTerm: string | number): Promise<any>;
 }
 
+//Should Return 200 for all GET's
 export async function _get(endpoint: string, searchTerm?: string | number): Promise<any> {
-    try {
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}`;
-        if (searchTerm) {
-            const params = SearchParams.create(searchTerm).stringify();
-            fullUrl += params;
-        }
-        const options = new RequestOptions(HttpMethod.GET, fullUrl, DefaultHeaders(),'');
-        const response = await RunRequest(options);
-        return response.data;
-    } catch (error) {
-        console.error('Failed to fetch data:', error);
-        throw error;
+    let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}`;
+    if (searchTerm) {
+        const params = SearchParams.create(searchTerm).stringify();
+        fullUrl += params;
     }
+    const options = new RequestOptions(fullUrl, HttpMethod.GET);
+    options.validateStatus = (status: number) => status === 200;
+    const response = await RunRequest(options);
+    return response.data;
 }

@@ -1,6 +1,7 @@
-import { Document } from "./document.js";
-import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
-import { Revision } from "./revision.js";
+import { Document } from "../document.js";
+import { RunRequest} from '../../../http/httprequest.js';
+import { RequestOptions, HttpMethod } from '../../../http/requestoptions.js';
+import { Revision } from "../revisions/revision.js";
 
 export class Rendition implements RenditionItem {
     comment: string;
@@ -26,12 +27,7 @@ export class Rendition implements RenditionItem {
 
 export async function getRenditions(documentId: string, revisionId: string = "latest"): Promise<Rendition[]> {
     const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}/${revisionId}${Rendition.endpoint}`;
-    const options = new RequestOptions(
-        HttpMethod.GET,
-        fullUrl,
-        DefaultHeaders('application/json'),
-        ''
-    );
+    const options = new RequestOptions(fullUrl, HttpMethod.GET);
 
     try {
         const response = await RunRequest(options);

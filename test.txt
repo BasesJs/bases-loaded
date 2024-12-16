@@ -9,34 +9,32 @@ const fs = require('fs');
 require('dotenv').config();
 
 const bases = await LoadBases();
-try {
-    const requestOptions = new RequestOptions(
-        HttpMethod.GET, "https://dev-onbase/api/onbase/core/session/heartbeat", DefaultHeaders(), '');
+try {    
     //await AuthTest();
     //await AFKSTest("117", "INV-34-5056");
     //await CustomQueryTest();
-    // let params = new ContentParams(undefined, ContentContext.Download, undefined, undefined, undefined);
-    // let res = await getContent("149", "latest", "default", undefined, "application/pdf");
-    // if (res.status === 200) {
-    //     const filePath = 'test.pdf';
-    //     console.log(res.data);
-    //     const buffer = Buffer.from(res.data); // Convert ArrayBuffer to Buffer
-    //     fs.writeFile(filePath, buffer, (err) => {
-    //         if (err) {
-    //             console.error('Error saving file:', err);
-    //         } else {
-    //             console.log('File saved:', filePath);
-    //         }
-    //     });
-    // }
-    
+    let params = new ContentParams(undefined, ContentContext.Download, undefined, undefined, undefined);
+    let res = await getContent("149", "latest", "default", params, "*/*");
+    console.log(res.data.length);
+    if (res.status === 200) {
+        const buffer = Buffer.from(res.data, 'binary');
+        console.log(buffer.length);
+        const filePath = 'test.pdf';
+        fs.writeFile(filePath, buffer, (err) => {
+            if (err) {
+                console.error('Error saving blob to file:', err);
+            } else {
+                console.log('Blob saved to file:', filePath);
+            }
+        });
+    }   
 }
 catch (e) {
     console.error(e.message);
 }
-finally {
+finally{
     bases.disconnect()
-        .catch(e => console.error("Something went wrong while disconnecting", e.message));
+    .catch(e => console.error("Something went wrong while disconnecting", e.message));
 }
 
 /*----CALL THIS FUNCTION TO LOGIN----------*/

@@ -1,4 +1,5 @@
-import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
+import { RunRequest} from '../../http/httprequest.js';
+import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
 export abstract class base {
     id: string;
     name: string;
@@ -12,12 +13,11 @@ export abstract class base {
 }
 
 export async function _getbyid(endpoint: string, id: string | number): Promise<any> {
-    const options = new RequestOptions(
-        HttpMethod.GET,
-        `${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}/${id}`,
-        DefaultHeaders('application/json'),
-        ''
-    );
+    const options = new RequestOptions(`${global.bases.apiURI}${global.bases.core.endpoint}${endpoint}/${id}`,HttpMethod.GET);
     const response = await RunRequest(options);
+    if (response.status !== 200) {
+        console.error('Failed to fetch data:', response.status);
+        throw new Error('Failed to fetch data');
+    }
     return response.data;
 }

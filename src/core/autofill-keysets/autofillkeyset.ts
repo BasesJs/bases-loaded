@@ -1,8 +1,8 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
+import { _getbyid } from '../baseclass/baseclass.js';
 import { AutofillKeysets } from './autofillkeysets.js';
-import { RunRequest, RequestOptions, HttpMethod, DefaultHeaders } from '../../http/axios/httprequest.js';
-
-
+import { RunRequest } from '../../http/httprequest.js';
+import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
+import { KeywordValueItem } from '../keywords/keywordvalue.js'; 
 export class AutofillKeyset implements AutofillKeysetItem {
     id: string;
     name: string;
@@ -38,23 +38,35 @@ export class AutofillKeyset implements AutofillKeysetItem {
         }
     }
 
-    async getData(primaryValue: string): Promise<any[]> {
+    async getData(primaryValue: string): Promise<AutofillKeysetDataItem[]> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
-        const options = new RequestOptions(HttpMethod.GET, fullUrl, DefaultHeaders(),'');
-        try {
-            const response = await RunRequest(options);
-            return response.data.items;;
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            return [];
+        const options = new RequestOptions(fullUrl, HttpMethod.GET);
+        const response = await RunRequest(options);
+        if (response.status !== 200) {
+            console.error('Failed to fetch data:', response.status);
+            throw new Error('Failed to fetch data');
         }
+        return response.data.items as AutofillKeysetDataItem[];
+    }
+    async getKeywordTypes(): Promise<any> {
+        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-types`;
+        const options = new RequestOptions(fullUrl, HttpMethod.GET);
+        const response = await RunRequest(options);
+        if (response.status !== 200) {
+            console.error('Failed to fetch data:', response.status);
+            throw new Error('Failed to fetch data');
+        }
+        return response.data.items;
     }
 }
-
 export interface AutofillKeysetItem {
     id: string;
     name: string;
     systemName: string;
     primaryKeywordTypeId: string;
     external: boolean;
+}
+export interface AutofillKeysetDataItem {
+    id: string;
+    keywords: KeywordValueItem[];
 }
