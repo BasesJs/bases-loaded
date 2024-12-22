@@ -11,5 +11,6 @@ export const Config = {
     httpTimeout: process.env.BASES_HTTP_TIMEOUT ?? 10000,
     maxContentLength: process.env.BASES_MAX_CONTENT_LENGTH ?? Infinity,
     maxBodyLength: process.env.BASES_MAX_BODY_LENGTH ?? Infinity,
+    useQueryMetering: process.env.BASES_USE_QUERY_METERING ? process.env.BASES_USE_QUERY_METERING : false
   }
 }

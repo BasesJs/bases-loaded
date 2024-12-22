@@ -14,7 +14,7 @@ export class FileType implements FileTypeItem {
     }
     static async bestGuess(fileExtension:string): Promise<string | null> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
-        let options = new RequestOptions(fullUrl, HttpMethod.GET);
+        let options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
         return response.data.id;
     }
@@ -26,14 +26,9 @@ export class FileType implements FileTypeItem {
         return new FileType(item.id, item.name, item.systemName);
     }
 
-    static async get(id: string | number): Promise<FileType | null> {
-        try {
-            const response = await _getbyid(FileTypes.endpoint, id);
-            return FileType.parse(response);
-        } catch (error) {
-            console.error(`Failed to get FileType with id ${id}:`, error);
-            return null;
-        }
+    static async get(id: string | number): Promise<FileType> {
+        const response = await _getbyid(FileTypes.endpoint, id);
+        return FileType.parse(response.data);
     }
 }
 export interface FileTypeItem {

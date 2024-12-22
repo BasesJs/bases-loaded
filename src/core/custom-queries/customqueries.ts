@@ -6,13 +6,8 @@ export const CustomQueries: group = {
     items: [] as CustomQuery[],
 
     async get(searchTerm?: string | number): Promise<CustomQuery[]> {
-        try {
-            const data = await _get(this.endpoint, searchTerm);
-            this.items = data.items.map((item: CustomQueryItem) => CustomQuery.parse(item));
-            return this.items;
-        } catch (error) {
-            console.error("Error retrieving custom queries:", error);
-            throw error;
-        }
+        const response = await _get(this.endpoint, searchTerm);
+        this.items = response.data.items.map((item: CustomQueryItem) => CustomQuery.parse(item));
+        return this.items as CustomQuery[];
     }
 };

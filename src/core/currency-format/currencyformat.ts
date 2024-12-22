@@ -43,14 +43,9 @@ export class CurrencyFormat implements CurrencyFormatItem {
     static parse(item: CurrencyFormatItem): CurrencyFormat {
         return new CurrencyFormat(item.id, item.name, item.currencySymbol, item.decimalPlaces, item.decimalSymbol, item.groupingDigits, item.groupingSymbol, item.isoCurrencyName, item.hasCurrencySymbol, item.hasGroupSeparator, item.hasLeadingZero, item.hasMinusSign, item.hasWhitespace, item.hasWhitespaceOnNegative, item.isMinusSignAfter, item.isSymbolAfter, item.isSymbolAfterOnNegative, item.isSymbolInsideNegative);
     }
-    static async get(id: string | number): Promise<CurrencyFormat | null> {
-        try {
-            const response = await _getbyid(CurrencyFormats.endpoint, id);
-            return CurrencyFormat.parse(response);
-        } catch (error) {
-            console.error(`Error fetching CurrencyFormat with id ${id}:`, error);
-            return null;
-        }
+    static async get(id: string | number): Promise<CurrencyFormat> {
+        const response = await _getbyid(CurrencyFormats.endpoint, id);
+        return CurrencyFormat.parse(response.data as CurrencyFormatItem);
     }
 }
 export interface CurrencyFormatItem {

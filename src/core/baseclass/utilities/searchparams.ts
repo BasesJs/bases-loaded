@@ -12,8 +12,12 @@ export default class SearchParams {
     }
 
     static create(value: any): SearchParams {
-        const idSearch = typeof value === 'number' || !isNaN(value);
-        const paramName = idSearch ? "id" : "name";
-        return new SearchParams(paramName, value);
+        
+        if(isNaN(Number(value))){
+            return new SearchParams("systemName", value); 
+        }
+        else{
+            return new SearchParams("id", value);
+        }
     }
 }

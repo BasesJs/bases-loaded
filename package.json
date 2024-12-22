@@ -4,7 +4,7 @@
   "description": "Simplified interface for the OnBase Rest API",
   "main": "bases.js",
   "scripts": {
-    "start": "node --env-file=.env ./tests/server.js",
+    "start": "clear && node --env-file=.env ./tests/server.js",
     "dev": "nodemon -r dotenv/config ./tests/server.js"
   },
   "keywords": [

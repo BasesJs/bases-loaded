@@ -1,13 +1,13 @@
-import { _getbyid } from '../baseclass/baseclass.js';
-import { RunRequest } from '../../http/httprequest.js';
-import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
-import { Keyword } from '../keywords/keyword.js';
-import { KeywordCollectionItem } from '../keywordcollection/keywordcollection.js';
-import { MultiRecordGroup, MultiRecordGroupItem, RecordGroup, RecordGroupItem } from '../keywords/keywordgroup.js';
-import { FileTypes } from '../file-types/filetypes.js';
-import { Revision, getRevisions } from './revisions/revision.js';
-import { getRenditions } from './renditions/rendition.js';
-import * as fs from 'fs/promises';
+import { _getbyid } from "../baseclass/baseclass.js";
+import { KeywordValueCollection } from "../keywordcollection/keywordvaluecollection.js";
+import { KeywordCollection } from "../keywordcollection/keywordcollection.js";
+import { Revision, getRevisions } from "./revisions/revision.js";
+import { getRenditions } from "./renditions/rendition.js";
+import { DocumentKeywords } from "./keywords/documentkeywords.js";
+import { DocumentContent, RetrievalOptions } from "./content/documentcontent.js";
+import { getNotes, Note } from "./notes/notes.js";
+import { AxiosResponse } from "axios";
+import { DocumentHistory, HistoryItem } from "./history/documenthistory.js";
 
 export class Document implements DocumentItem {
     id: string;
@@ -18,21 +18,12 @@ export class Document implements DocumentItem {
     documentDate: string;
     status: string;
     captureProperties?: CaptureProperties;
-    keywords: Keyword[] = [];
-    recordGroups: RecordGroup[] = [];
-    multiRecordGroups: MultiRecordGroup[] = [];
+    keywordCollection?: KeywordValueCollection;
     revisions: Revision[] = [];
+    notes: Note[] = [];
+    history: HistoryItem[] = [];
     keywordGuid: string = "";
-    constructor(
-        id: string,
-        name: string,
-        typeId: string,
-        createdByUserId: string,
-        storedDate: string,
-        documentDate: string,
-        status: string,
-        captureProperties?: CaptureProperties
-    ) {
+    constructor(id: string, name: string, typeId: string, createdByUserId: string, storedDate: string,documentDate: string,status: string,captureProperties?: CaptureProperties) {
         this.id = id;
         this.name = name;
         this.typeId = typeId;
@@ -44,92 +35,86 @@ export class Document implements DocumentItem {
     }
 
     static readonly endpoint: string = "/documents";
-
-    static parse(data: DocumentItem): Document {
-        return new Document(
-            data.id,
-            data.name,
-            data.typeId,
-            data.createdByUserId,
-            data.storedDate,
-            data.documentDate,
-            data.status,
-            data.captureProperties ? CaptureProperties.parse(data.captureProperties) : undefined
-        );
+    private static parse(data: DocumentItem): Document {
+        return new Document(data.id, data.name, data.typeId, data.createdByUserId, data.storedDate, data.documentDate, data.status, data.captureProperties ? CaptureProperties.parse(data.captureProperties) : undefined);
     }
-
-    static async get(id: string, getKeywords = false, getRevisions = false): Promise<Document> {
-        const data = await _getbyid(this.endpoint, id);
-        const doc = Document.parse(data);
-
-        if (getKeywords) {
-            await doc.fetchKeywords();
-        }
-
+    /**
+     * @param {string} id - The ID of the document to fetch.
+     * @param {boolean} getRevisions - Whether to fetch the document's revisions. Defaults to false.
+     * @param {boolean} getKeywordOptions - An object containing two properties: "getKeywords" and "unmask". If "getKeywords" is true, the keywords will be fetched. If "unmask" is true, the keywords will be unmasked.
+     * @returns {Promise<Document>} The document object.
+     */
+    static async get(id: string, getRevisions: boolean = false, getKeywordOptions?:{ getKeywords: boolean, unmask: boolean }, getNotes: boolean = false, getHistory: boolean = false): Promise<Document> {
+        const response = await _getbyid(this.endpoint, id);
+        const doc = Document.parse(response.data);
         if (getRevisions) {
-            await doc.fetchRevisions();
+            await doc.getRevisions();
         }
-
+        if (getKeywordOptions) {
+            if(getKeywordOptions.getKeywords){
+            await doc.getKeywords(getKeywordOptions.unmask);
+            }
+        }
+        if(getNotes){
+            await doc.getNotes();
+        }
+        if(getHistory){
+            await doc.getHistory();
+        }
         return doc;
     }
-
-    async fetchRevisions(): Promise<void> {
+    /**
+     * @returns This is a multi-step process that will fetch the document's revisions and renditions and will populate the document's revisions and renditions properties.
+     */
+    async getRevisions(): Promise<void> {
         try {
             this.revisions = await getRevisions(this.id);
             for (const rev of this.revisions) {
                 rev.renditions = await getRenditions(this.id, rev.id);
             }
         } catch (error) {
-            console.error('Error fetching revisions:', error);
+            console.error("Error fetching revisions:", error);
         }
     }
-
-    async fetchKeywords(): Promise<void> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${this.id}/keywords`;
-        const options = new RequestOptions(fullUrl, HttpMethod.GET);
-    
+    /**
+     * @param {string} revisionId - The revision ID to fetch notes for. Defaults to "latest" providing the most recent revision.
+     * @returns This is a multi-step process that will fetch the document's notes and will populate the document's notes properties.
+     */
+    async getNotes(revisionId: string = "latest"): Promise<void> {
         try {
-            const response = await RunRequest(options);
-            const data: DocumentKeywordsResponse = response.data;
-    
-            this.keywordGuid = data.keywordGuid;
-            this.keywords = await Promise.all(
-                data.items.filter(item => !item.typeGroupId && !item.groupId)
-                    .flatMap(item => item.keywords)
-                    .map(async keyword => Keyword.parseAsync(keyword))
-            );
-    
-            this.recordGroups = await Promise.all(
-                data.items.filter(item => item.typeGroupId && !item.groupId)
-                    .map(async item => await RecordGroup.parseAsync(item as RecordGroupItem))
-            );
-    
-            data.items.filter(async (item) => {
-                if (item.typeGroupId && item.groupId) {
-                    const mikg = await MultiRecordGroup.parseAsync(item as MultiRecordGroupItem);
-                    const existingGroup = this.multiRecordGroups.find(grp => grp.typeGroupId === mikg.typeGroupId);
-                    if (existingGroup) {
-                        existingGroup.recordgroups.push(mikg.recordgroups[0]);
-                    } else {
-                        this.multiRecordGroups.push(mikg);
-                    }
-                }
-            });            
+            this.notes = await getNotes(this.id, revisionId);
         } catch (error) {
-            console.error('Error fetching keywords:', error);
+            console.error("Error fetching notes:", error);
         }
     }
-    //TODO: Finish download function
-    async download(revision = "latest", rendition = "default"): Promise<void> {
-        try {
-            const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${this.id}/revisions/${revision}/renditions/${rendition}`;
-            const data = await _getbyid(`${this.id}/revisions/${revision}/renditions/${rendition}`, Document.endpoint);
-            const fileTypeId = data.fileTypeId;
-            const filetype = await FileTypes.get(fileTypeId);
-            // Implement the rest of the download logic
-        } catch (error) {
-            console.error('Error downloading document:', error);
-        }
+    /**
+     * @param unmask This will provide the unmasked values for any keywords that are masked.
+     */
+    async getKeywords(unmask: boolean = true): Promise<void> {
+        const response = await DocumentKeywords(this.id, unmask);
+        this.keywordCollection = await KeywordValueCollection.parse(response.data as KeywordCollection);        
+    }
+    /**
+     * @param {RetrievalOptions} retrievalOptions - An object containing the retrieval options for the document content.
+     * @returns {Promise<AxiosResponse>} The response data provides the document content as a binary string.
+     */
+    async getContent(retrievalOptions: RetrievalOptions =
+        { 
+            revisionId: "latest", 
+            renditionId: "default", 
+            contentParams: undefined, 
+            accepts: "*/*" 
+        }): Promise<AxiosResponse> {
+        return await DocumentContent(this.id, retrievalOptions);
+    }    
+    /**
+     * @param {Date} startDate - The start date of the history to fetch.
+     * @param {Date} endDate - The end date of the history to fetch.
+     * @param {number} userId - The user ID of the user to fetch history for.
+     * @returns {Promise<HistoryItem[]>} The history items for the document.
+     */
+    async getHistory(startDate?: Date, endDate?: Date, userId?: number): Promise<void> {
+        this.history = await DocumentHistory(this.id, startDate, endDate, userId);
     }
 }
 
@@ -162,10 +147,4 @@ interface CapturePropertiesItem {
     reviewStatus?: string;
 }
 
-export interface DocumentKeywordsResponse {
-    items: KeywordCollectionItem[];
-    keywordGuid: string;
-}
-
-
-
+  

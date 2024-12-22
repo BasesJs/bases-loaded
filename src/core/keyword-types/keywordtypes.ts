@@ -6,13 +6,8 @@ export const KeywordTypes: group = {
   items: [] as KeywordType[],
 
   async get(searchTerm?: string | number): Promise<KeywordType[]> {
-    try {
-      const data = await _get(this.endpoint, searchTerm);
-      this.items = data.items.map((item: KeywordTypeItem) => KeywordType.parse(item));
-      return this.items;
-    } catch (error) {
-      console.error('Error fetching keyword types:', error);
-      return [];
-    }
+    const response = await _get(this.endpoint, searchTerm);
+    this.items = response.data.items.map((item: KeywordTypeItem) => KeywordType.parse(item));
+    return this.items;
   }
 };

@@ -6,13 +6,9 @@ export const DocumentTypes: group = {
     items: [] as DocumentType[],
 
     async get(searchTerm?: string | number): Promise<DocumentType[]> {
-        try {
-            const data = await _get(this.endpoint, searchTerm);
-            this.items = data.items.map((it: DocumentTypeItem) => DocumentType.parse(it));
-            return this.items;
-        } catch (error) {
-            console.error('Failed to fetch document types:', error);
-            throw error;
-        }
+        const response= await _get(this.endpoint, searchTerm);        
+        this.items = response.data.items.map((it: DocumentTypeItem) => DocumentType.parse(it));
+        console.log(response.status)
+        return this.items as DocumentType[];
     }
 };

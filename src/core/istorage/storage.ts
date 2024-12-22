@@ -42,34 +42,30 @@ export class ImportDocument implements IStorage {
   }
 }
 
-export async function importBytes(documentInfo: DocumentInfo): Promise<void> {
+export async function importBytes(documentInfo: DocumentInfo, progressCallback?: (progressPercent: number) => void): Promise<void> {
   for (const path of documentInfo.FilePaths) {
-    try {
-      const file = await fs.readFile(path);
-      const stageData = await stageupload(documentInfo.FileExtension, file.byteLength);
+    const file = await fs.readFile(path);
+      const response = await stageupload(documentInfo.FileExtension, file.byteLength);
 
-      documentInfo.UploadIds.push(stageData.id);
-      const parts = await splitfile(file, stageData.numberOfParts, stageData.filePartSize);
+      documentInfo.UploadIds.push(response.data.id);
+      const parts = splitfile(file, response.data.numberOfParts, response.data.filePartSize);
 
       let uploaded = 0;
       const increment = 100 / parts.length;
-
-      for (const part of parts) {
+      await Promise.all(parts.map(async (part) => {
         try {
-          const resp = await uploadpart(stageData.id, part.partNum.toString(), part.bytes);
-          if (resp.statusCode === 200) {
-            console.log(`Uploaded ${part.bytes} bytes of part #${part.partNum}`);
-            uploaded++;
-            console.log(`Uploading: ${Math.round(uploaded * increment)}%`);
+          const resp = await uploadpart(response.data.id, part.partNum.toString(), part.bytes);
+          uploaded++;
+          if (progressCallback) {
+            progressCallback(Math.round(uploaded * increment));
           }
-        } catch (err) {
-          console.error('Failed to upload part:', err);
+        } catch (error) {
           throw new Error('Failed to upload part');
         }
-      }
-    } catch (err) {
-      console.error(`Error processing file ${path}:`, err);
-    }
+      }))
+      .catch((error) => {
+        throw error;
+      });
   }
 }
 

@@ -27,7 +27,7 @@ export class Rendition implements RenditionItem {
 
 export async function getRenditions(documentId: string, revisionId: string = "latest"): Promise<Rendition[]> {
     const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}/${revisionId}${Rendition.endpoint}`;
-    const options = new RequestOptions(fullUrl, HttpMethod.GET);
+    const options = new RequestOptions({ url: fullUrl, method: HttpMethod.GET });
 
     try {
         const response = await RunRequest(options);

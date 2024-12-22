@@ -18,14 +18,9 @@ export class KeywordTypeGroup implements KeywordTypeGroupItem {
         return new KeywordTypeGroup(item.id, item.name, item.systemName, item.storageType);
     }
 
-    static async get(id: string | number): Promise<KeywordTypeGroup | null> {
-        try {
-            const response = await _getbyid(KeywordTypeGroups.endpoint, id);
-            return KeywordTypeGroup.parse(response);
-        } catch (error) {
-            console.error(`Error fetching KeywordTypeGroup with ID ${id}:`, error);
-            return null;
-        }
+    static async get(id: string | number): Promise<KeywordTypeGroup> {
+        const response = await _getbyid(KeywordTypeGroups.endpoint, id);
+        return KeywordTypeGroup.parse(response.data);
     }
 }
 

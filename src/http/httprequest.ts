@@ -1,11 +1,10 @@
 import { setCookie } from './utilities/setcookie.js';
 import { HttpConfig } from './httpconfig.js';
 import { RequestOptions } from './requestoptions.js';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-
-export async function RunRequest(options: RequestOptions): Promise<any> { 
-      const requestOptions = MergeRequest(options, global.bases.httpConfig ?? new HttpConfig()); 
-      
+export async function RunRequest(options: RequestOptions): Promise<AxiosResponse> { 
+      const requestOptions = MergeRequest(options, global.bases.httpConfig ?? new HttpConfig());       
       try{
         let response = await global.bases.client.request(requestOptions);        
         const setCookieHeaders = response.headers["set-cookie"];        
@@ -19,23 +18,12 @@ export async function RunRequest(options: RequestOptions): Promise<any> {
         }
         return response;
       }
-      catch(error: any){
-        if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-          console.log(error.config);
-          //TODO: Handle the error in each call
-          return error;
+      catch(error){
+        throw error;
       }     
 }
 
-function MergeRequest(options: RequestOptions, config: HttpConfig): any {
+function MergeRequest(options: RequestOptions, config: HttpConfig): AxiosRequestConfig {
     return {
         url: options.url,
         method: options.method,

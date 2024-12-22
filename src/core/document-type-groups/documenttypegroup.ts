@@ -1,4 +1,4 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
+import { _getbyid } from '../baseclass/baseclass.js';
 import { DocumentTypeGroups} from './documenttypegroups.js';
 
 export class DocumentTypeGroup implements DocumentTypeGroupItem {
@@ -15,14 +15,9 @@ export class DocumentTypeGroup implements DocumentTypeGroupItem {
         return new DocumentTypeGroup(item.id, item.name, item.systemName);
     }
 
-    static async get(id: string | number): Promise<DocumentTypeGroup | null> {
-        try {
-            const response = await _getbyid(DocumentTypeGroups.endpoint, id);
-            return DocumentTypeGroup.parse(response);
-        } catch (error) {
-            console.error(`Failed to get DocumentTypeGroup with id ${id}:`, error);
-            return null;
-        }
+    static async get(id: string | number): Promise<DocumentTypeGroup> {
+        const response = await _getbyid(DocumentTypeGroups.endpoint, id);
+        return DocumentTypeGroup.parse(response.data) ;
     }
 }
 

@@ -1,7 +1,17 @@
-export function DefaultHeaders() {    
-    return {        
+import { Config } from '../../config/config.js';
+
+export function DefaultHeaders() {   
+    let defaultHeaders:any = {
+        'Content-Type': 'application/json',
         'Accept': '*/*',
-        'Authorization': `${global.bases.identity.token.token_type} ${global.bases.identity.token.access_token}`,
-        'Cookie': global.bases.cookie ?? ''
+        'Authorization': `Bearer ${global.bases.identity.token.access_token}`
+    };
+    if (global.bases.cookie !== undefined) {
+        defaultHeaders['Cookie'] = global.bases.cookie;
     }
+    if(Config.environment.useQueryMetering === true){
+        console.log(Config.environment.useQueryMetering);
+        defaultHeaders['Hyland-License-Type'] = "QueryMetering";
+    }
+    return  defaultHeaders;
 }

@@ -1,7 +1,6 @@
 import { _getbyid } from "../baseclass/baseclass.js";
 import { KeywordTypes } from "./keywordtypes.js";
-import { NewKeyword } from "../keywords/keyword.js";
-import { NewKeywordValue } from "../keywords/keywordvalue.js";
+import { NewKeyword, NewKeywordValue } from "../keywords/newkeyword.js";
 
 export class KeywordType implements KeywordTypeItem {
   id: string;
@@ -56,14 +55,9 @@ export class KeywordType implements KeywordTypeItem {
     );
   }
 
-  static async get(id: string | number): Promise<KeywordType | null> {
-    try {
-      const response = await _getbyid(KeywordTypes.endpoint, id);
-      return KeywordType.parse(response);
-    } catch (error) {
-      console.error(`Error fetching KeywordType with ID: ${id}`, error);
-      return null;
-    }
+  static async get(id: string | number): Promise<KeywordType> {
+    const response = await _getbyid(KeywordTypes.endpoint, id);
+    return KeywordType.parse(response.data);
   }
 
   create(values: string[]): NewKeyword {
@@ -119,7 +113,7 @@ export class MaskSettings {
     );
   }
 }
-export interface KeywordTypeItem {
+export interface KeywordTypeItem extends KeywordTypeBase {
   id: string;
   name: string;
   systemName: string;
@@ -131,14 +125,17 @@ export interface KeywordTypeItem {
   currencyFormatId?: string;
   maskSettings?: MaskSettingsItem;
 }
+export interface KeywordTypeBase {
+  id: string;
+}
 
-interface AlphanumericSettingsItem {
+export interface AlphanumericSettingsItem {
   caseOptions?: string;
   maximumLength?: number;
   storageOptions?: string;
 }
 
-interface MaskSettingsItem {
+export interface MaskSettingsItem {
   fullfieldRequired?: boolean;
   maskString?: string;
   staticCharacters?: string;

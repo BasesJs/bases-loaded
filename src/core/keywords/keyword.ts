@@ -1,79 +1,39 @@
 import { KeywordType } from '../keyword-types/keywordtype.js';
-import { NewKeywordValue, KeywordValue, KeywordValueItem } from './keywordvalue.js';
-
+import { KeywordValueItem, KeywordItem } from "./keywordinterfaces.js";
 export class Keyword implements KeywordItem {
     constructor(id: string, values: KeywordValue[], name: string = "", dataType: string = "") {
         this.typeId = id;
-        this.name = name;
-        this.dataType = dataType;
         this.values = values;
     }
     typeId: string;
-    name: string = "";
-    values: KeywordValue[];
-    dataType?: string = "";
+    values?: KeywordValue[];
+    keywordType?: KeywordType;
     static parse(item: KeywordItem) {
         if (item.typeId === undefined) {
             throw new Error("No TypeId found in keyword");
         }
-        let name: string = "";
-        let datatype: string = "";
-        let values: KeywordValue[] = [];
-        KeywordType.get(item.typeId)
-            .then((keyType: KeywordType | null) => {
-                if (keyType === null) {
-                    throw new Error("KeywordType is null");
-                }
-                name = keyType.name;
-                datatype = keyType.dataType;
-            })
-            .catch((e: any) => { console.log(e); });
-        item.values.forEach((val: any) => {
+        let values: KeywordValue[] = [];        
+        item.values?.forEach((val: any) => {
             values.push(KeywordValue.parse(val));
         });
-        return new Keyword(item.typeId, values, name, datatype);
+        return new Keyword(item.typeId, values);
     }
-    static async parseAsync(item: KeywordItem) {
-        if (item.typeId === undefined) {
+    async getKeywordType() {
+        if (this.typeId === undefined) {
             throw new Error("No TypeId found in keyword");
         }
-        try {
-            const keyType = await KeywordType.get(item.typeId);
-            if (!keyType) {
-                throw new Error("KeywordType is null");
-            }
-    
-            const values = item.values.map(val => KeywordValue.parse(val));
-    
-            return new Keyword(keyType.id, values, keyType.name, keyType.dataType);
-        } catch (e) {
-            console.error(e);
-            throw e; // Consider rethrowing or handling appropriately
-        }
+        this.keywordType = await KeywordType.get(this.typeId);
     }
 }
-export class NewKeyword implements KeywordItem {
-    constructor(id:string, values:NewKeywordValue[]){
-        this.typeId = id;
-        this.values = values;
-    }
-    typeId: string;
-    values: NewKeywordValue[];
-    addValue(value: string) {
-        let newValue = {
-            value: value
-        }
-        this.values.push(newValue);
-    }
-    static parse(item: KeywordItem) : NewKeyword {
-        if (item.typeId === undefined) {
-            throw new Error("No TypeId found in keyword");
-        }        
-        return new NewKeyword(item.typeId, item.values);
-    }
+export class KeywordValue implements KeywordValueItem {
+  value: string;
+  formattedValue: string;
+  constructor(value: string, formattedValue: string = '') {
+      this.value = value;
+      this.formattedValue = formattedValue;
   }
+  static parse(item: KeywordValueItem): KeywordValue {
+      return new KeywordValue(item.value, item.formattedValue ?? '');
+  }
+}
 
-  export interface KeywordItem {
-    typeId: string;
-    values: KeywordValueItem[];
-  }

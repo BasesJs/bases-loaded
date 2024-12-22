@@ -4,12 +4,12 @@ import { NoteType } from "./notetype.js";
 export const NoteTypes: group = {
     endpoint: "/note-types",
     items: [],
-    async get(searchTerm?: any) {
-        const data = await _get(this.endpoint, searchTerm);
-        data.items.forEach((item: any) => {
+    async get(searchTerm?: any): Promise<NoteType[]> {
+        const response = await _get(this.endpoint, searchTerm);
+        response.data.items.forEach((item: any) => {
             let nt = NoteType.parse(item);
             this.items.push(nt);
         });
-        return this.items;
+        return this.items as NoteType[];
     },
 };

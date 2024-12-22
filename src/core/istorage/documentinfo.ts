@@ -1,7 +1,7 @@
 import { DocumentType } from '../document-types/documenttype.js';
 import { FileType } from '../file-types/filetype.js';
-import { NewKeywordCollection } from '../keywordcollection/newkeywordcollection.js';
-import { DefaultKeywordCollection, KeywordCollection } from '../keywordcollection/keywordcollection.js';
+import { KeywordValueCollection } from "../keywordcollection/keywordvaluecollection.js";
+import { KeywordCollection } from '../keywordcollection/keywordcollection.js';
 
 export class DocumentInfo {
     DocumentType: DocumentType;
@@ -10,7 +10,7 @@ export class DocumentInfo {
     FilePaths: string[];
     FileExtension: string;
     UploadIds: string[];
-    //KeywordCollection: DefaultKeywordCollection | KeywordCollection; 
+    //KeywordCollection: KeywordValueCollection | KeywordCollection; 
 
     constructor(documentType: DocumentType, fileType: FileType, documentDate: Date, filePaths: string[], fileExtension: string) {
         this.DocumentType = documentType;

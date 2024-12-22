@@ -25,9 +25,9 @@ export class NoteType implements NoteTypeItem {
     static parse(item: NoteTypeItem) {
         return new NoteType(item.id, item.name, item.systemName, Color.parse(item.color), DisplayFlags.parse(item.displayFlags), item.flavor, item.fontId, item.iconId, UserPrivileges.parse(item.userPrivileges));
     }
-    async get(id: string | number) {
+    async get(id: string | number): Promise<NoteType> {
         let response = await _getbyid(NoteTypes.endpoint, id);
-        return NoteType.parse(response);
+        return NoteType.parse(response.data);
     }
 }
 export class Color {
@@ -91,7 +91,7 @@ export class UserPrivileges {
         return new UserPrivileges(item.create, item.view);
     }
 }
-interface NoteTypeItem {
+export interface NoteTypeItem {
     id: string;
     name: string;
     systemName: string;
@@ -102,13 +102,13 @@ interface NoteTypeItem {
     iconId: string;
     userPrivileges: UserPrivilegesItem;
 }
-interface ColorItem {
+export interface ColorItem {
     r: string;
     g: string;
     b: string;
     a: string;
 }
-interface DisplayFlagsItem {
+export interface DisplayFlagsItem {
     allPages: boolean;
     allRevisions: boolean;
     createOpenNoteWindow: boolean;
@@ -124,7 +124,7 @@ interface DisplayFlagsItem {
     stampKeepOriginalSize: boolean;
     stampTransparent: boolean;
 }
-interface UserPrivilegesItem {
+export interface UserPrivilegesItem {
     create: boolean;
     view: boolean;
 }

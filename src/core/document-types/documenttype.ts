@@ -1,8 +1,8 @@
-import { base, _getbyid } from '../baseclass/baseclass.js';
+import {  _getbyid } from '../baseclass/baseclass.js';
 import { DocumentTypes } from './documenttypes.js';
 import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
 import { RunRequest } from '../../http/httprequest.js';
-import { NewKeywordCollection } from '../keywordcollection/newkeywordcollection.js';
+import { DocumentKeywordTypes } from '../keywordcollection/keywordtypecollection.js';
 
 export class DocumentType implements DocumentTypeItem {
     id: string;
@@ -13,6 +13,7 @@ export class DocumentType implements DocumentTypeItem {
     autofillKeywordSetId: string;
     documentTypeGroupId: string;
     revisionRenditionProperties: RevisionRenditionProperties;
+    documentKeywordTypes?: DocumentKeywordTypes;
 
     constructor(
         id: string,
@@ -47,26 +48,17 @@ export class DocumentType implements DocumentTypeItem {
         );
     }
 
-    static async get(id: string | number): Promise<DocumentType | null> {
-        try {
-            const response = await _getbyid(DocumentTypes.endpoint, id);
-            return DocumentType.parse(response);
-        } catch (error) {
-            console.error(`Failed to get DocumentType with id ${id}:`, error);
-            return null;
-        }
+    static async get(id: string | number): Promise<DocumentType> {
+        const response = await _getbyid(DocumentTypes.endpoint, id);
+        return DocumentType.parse(response.data);
     }
 
-    async keywordTypes() : Promise<NewKeywordCollection | null> {
+    async keywordTypes() : Promise<DocumentKeywordTypes> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${DocumentTypes.endpoint}/${this.id}/default-keywords`;
-        const options = new RequestOptions(fullUrl, HttpMethod.GET);
-        try {
-            const response = await RunRequest(options);
-            return NewKeywordCollection.parse(response.data);
-        } catch (error) {
-            console.error('Error fetching default keywords:', error);
-            throw error;
-        }
+        const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
+        const response = await RunRequest(options);
+        this.documentKeywordTypes = DocumentKeywordTypes.parse(response.data);
+        return this.documentKeywordTypes;
     }    
 }
 

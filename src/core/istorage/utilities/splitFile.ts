@@ -1,4 +1,4 @@
-export async function splitfile(file: any, numberOfParts: number, partSize: number) {
+export function splitfile(file: any, numberOfParts: number, partSize: number) {
     console.log({
         fileSize: file.byteLength,
         partSize: partSize,

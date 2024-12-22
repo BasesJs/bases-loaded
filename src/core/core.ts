@@ -10,20 +10,44 @@ import { CurrencyFormats } from './currency-format/currencyformats.js';
 import { Document } from './document/document.js';
 
 export const core = {
-    name: "Document Management API",
     endpoint: "/onbase/core",
+    autofillkeysets: AutofillKeysets,
     currencyformats: CurrencyFormats,
-    filetypes: FileTypes,
+    customqueries: CustomQueries,
     documenttypegroups: DocumentTypeGroups,
     documenttypes: DocumentTypes,
+    filetypes: FileTypes,
     keywordtypegroups: KeywordTypeGroups,
-    keywordtypes: KeywordTypes,
-    autofillkeysets: AutofillKeysets,
-    customqueries: CustomQueries,
+    keywordtypes: KeywordTypes,    
     notetypes: NoteTypes,
-    async getDocument(id: string, getKeywords: boolean, getRevisions: boolean): Promise<any> {
-        const data = await Document.get(id, getKeywords, getRevisions);
-        return data;
-    }
+    async hydrateCore(resolve?:(message:string)=>any, reject?:(error:any)=>any): Promise<void> {
+        while(global.bases.cookie === undefined){
+            await CurrencyFormats.get();
+        }
+        await Promise.all([
+            FileTypes.get(),
+            DocumentTypeGroups.get(),
+            DocumentTypes.get(),
+            KeywordTypeGroups.get(),
+            KeywordTypes.get(),
+            AutofillKeysets.get(),
+            CustomQueries.get(),
+            CurrencyFormats.get(),
+            NoteTypes.get()            
+        ]).then(async () => {
+            if (resolve) {
+                resolve("Core hydrated");
+            }
+        })
+        .catch((error: any) => {
+            if (reject) {
+                reject(error);
+            }
+        });
+    },
+    // async getDocument(id: string, getKeywords: boolean, getRevisions: boolean): Promise<any> {
+    //     const data = await Document.get(id, getKeywords, getRevisions);
+    //     return data;
+    // }
 }
 

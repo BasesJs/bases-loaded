@@ -2,13 +2,15 @@ import { _getbyid } from '../baseclass/baseclass.js';
 import { AutofillKeysets } from './autofillkeysets.js';
 import { RunRequest } from '../../http/httprequest.js';
 import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
-import { KeywordValueItem } from '../keywords/keywordvalue.js'; 
+import { KeywordValueItem } from '../keywords/keywordinterfaces.js'; 
+import { KeywordTypeBase } from '../keyword-types/keywordtype.js';
 export class AutofillKeyset implements AutofillKeysetItem {
     id: string;
     name: string;
     systemName: string;
     primaryKeywordTypeId: string;
     external: boolean;
+    KeywordTypes?: KeywordTypeBase[];
 
     constructor(id: string, name: string, systemName: string, primaryKeywordTypeId: string, external: boolean) {
         this.id = id;
@@ -28,35 +30,23 @@ export class AutofillKeyset implements AutofillKeysetItem {
         );
     }
 
-    static async get(id: string | number): Promise<AutofillKeyset | null> {
-        try {
-            const response = await _getbyid(AutofillKeysets.endpoint, id);
-            return AutofillKeyset.parse(response);
-        } catch (error) {
-            console.error(`Error fetching AutofillKeyset with id ${id}:`, error);
-            return null;
-        }
+    static async get(id: string | number): Promise<AutofillKeyset> {
+        const response = await _getbyid(AutofillKeysets.endpoint, id);
+            return AutofillKeyset.parse(response.data as AutofillKeyset);
     }
 
     async getData(primaryValue: string): Promise<AutofillKeysetDataItem[]> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
-        const options = new RequestOptions(fullUrl, HttpMethod.GET);
+        const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
-        if (response.status !== 200) {
-            console.error('Failed to fetch data:', response.status);
-            throw new Error('Failed to fetch data');
-        }
-        return response.data.items as AutofillKeysetDataItem[];
+        return response.data.items as AutofillKeysetDataItem[];        
     }
-    async getKeywordTypes(): Promise<any> {
+    async getKeywordTypes(): Promise<KeywordTypeBase[]> {
         const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-types`;
-        const options = new RequestOptions(fullUrl, HttpMethod.GET);
-        const response = await RunRequest(options);
-        if (response.status !== 200) {
-            console.error('Failed to fetch data:', response.status);
-            throw new Error('Failed to fetch data');
-        }
-        return response.data.items;
+            const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
+            const response = await RunRequest(options);
+            this.KeywordTypes = response.data.items as KeywordTypeBase[];
+            return this.KeywordTypes;
     }
 }
 export interface AutofillKeysetItem {

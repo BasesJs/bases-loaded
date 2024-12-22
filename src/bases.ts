@@ -1,6 +1,7 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const axios = require('axios');
+import { AxiosResponse } from 'axios';
 import { Config } from './config/config.js';
 import { Identity } from './identity/identity.js';
 import { core } from './core/core.js';
@@ -21,9 +22,9 @@ export class BasesLoaded {
     cookie?: string;
     core = core;
     httpConfig?: HttpConfig;
-    async connect(username: string, password: string) {
+    async connect(username: string, password: string): Promise<AxiosResponse> {
         this.identity = Identity.create(this.client, username, password);
-        global.bases = this;
+        global.bases = this;        
         return await this.identity.connect();
     }
     isConnected() {
@@ -41,7 +42,7 @@ export class BasesLoaded {
             return;
         }
         let fullUrl = `${Config.environment.apiUri}/onbase/core/session/disconnect`;
-        let options = new RequestOptions(fullUrl, HttpMethod.POST);
+        let options = new RequestOptions({url: fullUrl, method: HttpMethod.POST, headers: DefaultHeaders()});
         let response = await RunRequest(options);
         if (response.status == 204) {
             return true;
@@ -52,7 +53,7 @@ export class BasesLoaded {
     }
     async heartbeat() {
         let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/session/heartbeat`;
-        let options = new RequestOptions(fullUrl, HttpMethod.POST);
+        let options = new RequestOptions({url: fullUrl, method: HttpMethod.POST, headers: DefaultHeaders()});
         let response = await RunRequest(options);
         if (response.status == 204) {
             return true;
