@@ -1,7 +1,6 @@
-import { Keyword } from './keyword.js';
+import { Keyword, KeywordItem } from '../keyword/keyword.js';
 import { KeywordTypeGroup } from '../keyword-type-groups/keywordtypegroup.js';
-import { KeywordCollectionItem} from '../keywordcollection/keywordcollection.js';
-import { KeywordItem, RecordGroupItem, MultiRecordGroupItem } from "./keywordinterfaces.js";
+import { KeywordCollectionItem} from '../keyword-collections/keywordcollections.js';
 
 export class RecordGroup implements RecordGroupItem {
     constructor(typeGroupId: string, keywords: Keyword[], instanceId?: string, name?: string) {
@@ -10,10 +9,11 @@ export class RecordGroup implements RecordGroupItem {
         this.keywords = keywords;
         this.name = name;
     }
-    typeGroupId: string;
-    name: string | undefined;
+    readonly typeGroupId: string;
+    readonly name?: string;
     keywords: Keyword[];
     instanceId?: string;
+    keywordTypeGroup?: KeywordTypeGroup;
     static async parse(item: RecordGroupItem) {
         if (item.keywords === undefined) {
             console.log("Item has no keywords");
@@ -23,49 +23,42 @@ export class RecordGroup implements RecordGroupItem {
         if (!groupcfg) {
             throw new Error("Group configuration is null");
         }
-        return new RecordGroup(item.typeGroupId || '', keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : undefined);
+        const nrg = new RecordGroup(item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : undefined);
+        return nrg;
     }
 } 
-export class MultiRecordGroupChild implements KeywordCollectionItem {
-    constructor(groupId: string, instanceId: string, keywords: Keyword[]) {
-        this.groupId = groupId;
-        this.instanceId = instanceId;
-        this.keywords = keywords;
-    }
-    groupId: string;
-    instanceId: string;
-    keywords: Keyword[];
-    static async parse(item: MultiRecordGroupItem) {
-        let keywords: Keyword[] = await Promise.all(item.keywords.map(async (kw: KeywordItem) => Keyword.parse(kw)));
-        return new MultiRecordGroupChild(item.groupId, item.instanceId, keywords);
-    }
-}
+
 export class MultiRecordGroup {   
     constructor(typeGroupId: string) {
         this.typeGroupId = typeGroupId;
     }
     typeGroupId: string = "";
     name: string = "";
-    records: MultiRecordGroupChild[] = [];        
-    async add(item: MultiRecordGroupItem) {
+    records: RecordGroup[] = [];        
+    async add(item: RecordGroupItem): Promise<void> {
         if(item.typeGroupId === undefined){
             throw new Error("typeGroupId is undefined");
         }
         else if(item.typeGroupId !== this.typeGroupId){
             throw new Error("typeGroupId does not match");
         }
-        this.records.push(await MultiRecordGroupChild.parse(item));
+        this.records.push(await RecordGroup.parse(item));
     }
-    static async parse(item: MultiRecordGroupItem) {
-        const mrg = new MultiRecordGroup(item.typeGroupId);
-        mrg.add(item);
+    static async parse(item: RecordGroupItem) {
+        const mrgc = new MultiRecordGroup(item.typeGroupId);
+        await mrgc.add(item);
         const mrgType: KeywordTypeGroup = await KeywordTypeGroup.get(item.typeGroupId);
         if (mrgType !== null) {
-            mrg.name = mrgType.name;
+            mrgc.name = mrgType.name;
         }
-        return mrg;
+        return mrgc;
     } 
 } 
 
-
+export interface RecordGroupItem extends KeywordCollectionItem {
+    typeGroupId: string;
+    keywords: KeywordItem[];
+    groupId?: string;
+    instanceId?: string;
+}
 

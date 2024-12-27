@@ -1,18 +1,22 @@
 import { _getbyid } from "../baseclass/baseclass.js";
 import { KeywordTypes } from "./keywordtypes.js";
-import { NewKeyword, NewKeywordValue } from "../keywords/newkeyword.js";
+import { KeywordItem} from "../keyword/keyword.js";
+import { KeywordValueItem } from "../keyword/keywordvalue.js";
+import { convertObjectValueToString } from "./utilities/datatypecheck.js";
+import { CurrencyFormat } from "../currency-format/currencyformat.js";
 
 export class KeywordType implements KeywordTypeItem {
-  id: string;
-  name: string;
-  systemName: string;
-  dataType: string;
-  usedForRetrieval: boolean;
-  invisible: boolean;
-  isSecurityMasked: boolean;
-  alphanumericSettings?: AlphanumericSettings;
-  currencyFormatId?: string;
-  maskSettings?: MaskSettings;
+  readonly id: string;
+  readonly name: string;
+  readonly systemName: string;
+  readonly dataType: string;
+  readonly usedForRetrieval: boolean;
+  readonly invisible: boolean;
+  readonly isSecurityMasked: boolean;
+  readonly alphanumericSettings?: AlphanumericSettings;
+  readonly currencyFormatId?: string;
+  readonly maskSettings?: MaskSettings;
+  currencyFormat?: CurrencyFormat;
 
   constructor(
     id: string,
@@ -38,8 +42,8 @@ export class KeywordType implements KeywordTypeItem {
     this.maskSettings = maskSettings;
   }
 
-  static parse(item: KeywordTypeItem): KeywordType {
-    return new KeywordType(
+  static async parse(item: KeywordTypeItem): Promise<KeywordType> {
+    const kt = new KeywordType(
       item.id,
       item.name,
       item.systemName,
@@ -53,19 +57,38 @@ export class KeywordType implements KeywordTypeItem {
       item.currencyFormatId,
       item.maskSettings ? MaskSettings.parse(item.maskSettings) : undefined
     );
+    if(kt.dataType === "Currency"){
+      if(kt.currencyFormatId !== undefined){
+        kt.currencyFormat = await CurrencyFormat.get(kt.currencyFormatId ?? global.bases.core.currencyformats.items[0].id);
+      }      
+    }
+    return kt;
   }
 
   static async get(id: string | number): Promise<KeywordType> {
     const response = await _getbyid(KeywordTypes.endpoint, id);
+    console.log("Response Data:" ,{...response.data});
     return KeywordType.parse(response.data);
   }
 
-  create(values: string[]): NewKeyword {
-    const newValues = values.map(value => new NewKeywordValue(value));
-    return new NewKeyword(this.id, newValues);
-  }
+  /**
+   * Returns a KeywordItem that can be pass for keyword modifications. Dates will convert to Hyland's required Date Strings, YYYY-MM-DDTHH:MM:SS, and should be passed in calculated to the desired local time.
+   * @param values This can inclde a string, number, date or an array of strings, numbers or dates. some soft validation is done to make sure the values are within the correct range for the keyword type.
+   * @returns 
+   */
+  create(values?: string[] | number[] | Date[] | string | number | Date): KeywordItem {  
+    let newValues: KeywordValueItem[] = [];
+    if(!values){      
+      let emptyValue: KeywordValueItem = { value: "" };
+      newValues.push(emptyValue);      
+    }    
+    else{
+        newValues = convertObjectValueToString(values, this);
+    }
+    const keyItem: KeywordItem = { typeId: this.id, values: newValues } as KeywordItem;
+    return keyItem;
+  }  
 }
-
 export class AlphanumericSettings {
   caseOptions?: string;
   maximumLength?: number;

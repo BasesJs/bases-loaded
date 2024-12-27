@@ -2,15 +2,15 @@ import { _getbyid } from '../baseclass/baseclass.js'
 import { NoteTypes } from './notetypes.js'
 
 export class NoteType implements NoteTypeItem {
-    id: string;
-    name: string;
-    systemName: string;
-    color: Color;
-    displayFlags: DisplayFlags;
-    flavor: string;
-    fontId: string;
-    iconId: string;
-    userPrivileges: UserPrivileges
+    readonly id: string;
+    readonly name: string;
+    readonly systemName: string;
+    readonly color: Color;
+    readonly displayFlags: DisplayFlags;
+    readonly flavor: string;
+    readonly fontId: string;
+    readonly iconId: string;
+    readonly userPrivileges: UserPrivileges
     constructor(id: string, name: string, systemName: string, color: Color, displayFlags: DisplayFlags, flavor: string, fontId: string, iconId: string, userPrivileges: UserPrivileges) {
         this.id = id;
         this.name = name;
@@ -31,10 +31,10 @@ export class NoteType implements NoteTypeItem {
     }
 }
 export class Color {
-    r: string;
-    g: string;
-    b: string;
-    a: string;
+    readonly r: string;
+    readonly g: string;
+    readonly b: string;
+    readonly a: string;
     constructor(r: string, g: string, b: string, a: string) {
         this.r = r;
         this.g = g;
@@ -46,20 +46,20 @@ export class Color {
     }
 }
 export class DisplayFlags {
-    allPages: boolean;
-    allRevisions: boolean;
-    createOpenNoteWindow: boolean;
-    deleteWithPage: boolean;
-    floatOnWindow: boolean;
-    hideNoteWindow: boolean;
-    moveable: boolean;
-    noPrivacyOptions: boolean;
-    open: boolean;
-    privacyNoDelete: boolean;
-    privacyNoModify: boolean;
-    privacyNoView: boolean;
-    stampKeepOriginalSize: boolean;
-    stampTransparent: boolean;
+    readonly allPages: boolean;
+    readonly allRevisions: boolean;
+    readonly createOpenNoteWindow: boolean;
+    readonly deleteWithPage: boolean;
+    readonly floatOnWindow: boolean;
+    readonly hideNoteWindow: boolean;
+    readonly moveable: boolean;
+    readonly noPrivacyOptions: boolean;
+    readonly open: boolean;
+    readonly privacyNoDelete: boolean;
+    readonly privacyNoModify: boolean;
+    readonly privacyNoView: boolean;
+    readonly stampKeepOriginalSize: boolean;
+    readonly stampTransparent: boolean;
     constructor(allPages: boolean, allRevisions: boolean, createOpenNoteWindow: boolean, deleteWithPage: boolean, floatOnWindow: boolean, hideNoteWindow: boolean, moveable: boolean, noPrivacyOptions: boolean, open: boolean, privacyNoDelete: boolean, privacyNoModify: boolean, privacyNoView: boolean, stampKeepOriginalSize: boolean, stampTransparent: boolean) {
         this.allPages = allPages;
         this.allRevisions = allRevisions;
@@ -81,8 +81,8 @@ export class DisplayFlags {
     }
 }
 export class UserPrivileges {
-    create: boolean;
-    view: boolean;
+    readonly create: boolean;
+    readonly view: boolean;
     constructor(create: boolean, view: boolean) {
         this.create = create;
         this.view = view;

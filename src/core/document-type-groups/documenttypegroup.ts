@@ -2,9 +2,9 @@ import { _getbyid } from '../baseclass/baseclass.js';
 import { DocumentTypeGroups} from './documenttypegroups.js';
 
 export class DocumentTypeGroup implements DocumentTypeGroupItem {
-    id: string;
-    name: string;
-    systemName: string;
+    readonly id: string;
+    readonly name: string;
+    readonly systemName: string;
     constructor(id: string, name: string, systemName: string) {
         this.id = id;
         this.name = name;

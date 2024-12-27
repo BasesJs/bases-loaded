@@ -1,16 +1,15 @@
 import { DocumentType } from '../document-types/documenttype.js';
 import { FileType } from '../file-types/filetype.js';
-import { KeywordValueCollection } from "../keywordcollection/keywordvaluecollection.js";
-import { KeywordCollection } from '../keywordcollection/keywordcollection.js';
+import { KeywordModifier } from '../keyword-collections/keywordmodifier.js';
 
-export class DocumentInfo {
+export class DocumentImport {
     DocumentType: DocumentType;
     FileType: FileType;
     DocumentDate: Date;
     FilePaths: string[];
     FileExtension: string;
-    UploadIds: string[];
-    //KeywordCollection: KeywordValueCollection | KeywordCollection; 
+    UploadIds?: string[];
+    KeywordCollection?: KeywordModifier;
 
     constructor(documentType: DocumentType, fileType: FileType, documentDate: Date, filePaths: string[], fileExtension: string) {
         this.DocumentType = documentType;
@@ -19,10 +18,9 @@ export class DocumentInfo {
         this.FilePaths = filePaths;
         this.FileExtension = fileExtension;
         this.UploadIds = [];
-        //this.KeyowrdCollection = KeyowrdCollection;
     }
 
-    static async create(documentTypeId: string, filePaths: string[], documentDate: Date): Promise<DocumentInfo> {
+    static async create(documentTypeId: string, filePaths: string[], documentDate: Date): Promise<DocumentImport> {
         const docType = await DocumentType.get(documentTypeId);
         if(docType === null){
             throw new Error("DocumentType does not exist");
@@ -42,7 +40,7 @@ export class DocumentInfo {
             throw new Error("FileType does not exist.");
         };       
 
-        return new DocumentInfo(docType, fileType, documentDate, filePaths, fileExtension);
+        return new DocumentImport(docType, fileType, documentDate, filePaths, fileExtension);
     }
 }
 

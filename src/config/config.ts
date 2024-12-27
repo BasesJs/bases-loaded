@@ -1,3 +1,5 @@
+
+import { FileTypeMimeMap } from "./FileTypeMimeMap.js";
 export const Config = {
   environment: {
     name: process.env.BASES_ENVIRONMENT,
@@ -11,6 +13,8 @@ export const Config = {
     httpTimeout: process.env.BASES_HTTP_TIMEOUT ?? 10000,
     maxContentLength: process.env.BASES_MAX_CONTENT_LENGTH ?? Infinity,
     maxBodyLength: process.env.BASES_MAX_BODY_LENGTH ?? Infinity,
-    useQueryMetering: process.env.BASES_USE_QUERY_METERING ? process.env.BASES_USE_QUERY_METERING : false
-  }
+    useQueryMetering: process.env.BASES_USE_QUERY_METERING ? process.env.BASES_USE_QUERY_METERING : false,
+    imageFileFormatPreference: process.env.BASES_IMAGE_FILE_FORMAT_PREFERENCE ?? "png" //JPG, PNG, TIFF
+  },
+  fileTypeMimeMap: FileTypeMimeMap
 }

@@ -5,9 +5,12 @@ export const CustomQueries: group = {
     endpoint: "/custom-queries",
     items: [] as CustomQuery[],
 
-    async get(searchTerm?: string | number): Promise<CustomQuery[]> {
+    async get(searchTerm?: string | number): Promise<CustomQuery[] | CustomQuery> {
         const response = await _get(this.endpoint, searchTerm);
-        this.items = response.data.items.map((item: CustomQueryItem) => CustomQuery.parse(item));
-        return this.items as CustomQuery[];
+        let returnItems = await Promise.all(response.data.items.map((item: CustomQueryItem) => CustomQuery.parse(item)));
+        if(!searchTerm && global.bases.core.isHydrated === false){
+            this.items = returnItems;
+        }
+        return returnItems.length > 1 ? returnItems : returnItems[0];
     }
 };

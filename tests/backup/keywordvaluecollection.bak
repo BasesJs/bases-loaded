@@ -1,0 +1,90 @@
+import { KeywordItem, Keyword } from '../keywordrecords/keyword.js';
+import { RecordGroup, MultiRecordGroup, RecordGroupItem, MultiRecordGroupItem } from '../keywordrecords/keywordgroup.js';
+
+export interface KeywordCollection {
+    keywordGuid: string;
+    items: KeywordCollectionItem[];
+}
+export interface KeywordCollectionItem {
+    keywords: KeywordItem[];
+    typeGroupId?: string;
+    instanceId?: string;
+    groupId?: string;
+}
+
+export class KeywordValueCollection {
+  constructor(keywordGuid: string, items: KeywordCollectionItem[], /* Keywords?: Keyword[], RecordGroups?: RecordGroup[], MultiRecordGroups?: MultiRecordGroup[] */) {
+    this.keywordGuid = keywordGuid;
+    this.items = items;
+    // this.Keywords = Keywords;
+    // this.RecordGroups = RecordGroups;
+    // this.MultiRecordGroups = MultiRecordGroups;
+  }
+  keywordGuid: string = "";
+  Keywords?: Keyword[];
+  RecordGroups?: RecordGroup[];
+  MultiRecordGroups?: MultiRecordGroup[];
+  items: KeywordCollectionItem[];
+  static async parse(data: KeywordCollection): Promise<KeywordValueCollection> {
+    const mkc = new KeywordValueCollection(data.keywordGuid, data.items);
+    mkc.Keywords = await Promise.all(
+      data.items.filter(item => !item.typeGroupId && !item.groupId)
+        .flatMap(item => item.keywords)
+        .map(keyword => Keyword.parse(keyword))
+    );
+    mkc.RecordGroups = await Promise.all(
+      data.items.filter(item => item.typeGroupId && !item.groupId)
+        .map(async item => await RecordGroup.parse(item as RecordGroupItem))
+    );
+    const groups: MultiRecordGroup[] = [];
+    await Promise.all(
+      data.items.filter(item => item.typeGroupId && item.groupId)
+      .map(async (item) => {
+        const group = await MultiRecordGroup.parse(item as MultiRecordGroupItem);
+        groups.push(group);
+      }
+    ));    
+    mkc.MultiRecordGroups = [];
+    groups.forEach(group => {
+      if(mkc.MultiRecordGroups){
+        const existing = mkc.MultiRecordGroups.find(rg => rg.typeGroupId === group.typeGroupId);
+        if(existing){
+          group.records.forEach(record => {
+            existing.records.push(record);
+          });
+        }
+        else{
+          mkc.MultiRecordGroups.push(group);
+        }
+      }      
+    });
+    return mkc;
+  }
+}
+
+// export class MultiRecordGroup {   
+//     constructor(typeGroupId: string) {
+//         this.typeGroupId = typeGroupId;
+//     }
+//     typeGroupId: string = "";
+//     name: string = "";
+//     records: MultiRecordGroupItem[] = [];        
+//     async add(item: MultiRecordGroupItem) {
+//         if(item.typeGroupId === undefined){
+//             throw new Error("typeGroupId is undefined");
+//         }
+//         else if(item.typeGroupId !== this.typeGroupId){
+//             throw new Error("typeGroupId does not match");
+//         }
+//         this.records.push(await MultiRecordGroupItem.parse(item));
+//     }
+//     static async parse(item: MultiRecordGroupItem) {
+//         const mrg = new MultiRecordGroup(item.typeGroupId);
+//         mrg.add(item);
+//         const mrgType: KeywordTypeGroup = await KeywordTypeGroup.get(item.typeGroupId);
+//         if (mrgType !== null) {
+//             mrg.name = mrgType.name;
+//         }
+//         return mrg;
+//     } 
+// } 

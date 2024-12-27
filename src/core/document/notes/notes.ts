@@ -18,21 +18,21 @@ export async function getNotes(documentId: string, revisionId: string = "latest"
 }
 
 export class Note implements NoteItem {
-    id: string;
-    noteTypeId: string;
-    title: string;
-    text: string;
-    createdUserId: string;
-    created: string;
-    documentId: string;
-    documentRevisionId: string;
-    page: number;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    privileges: UserPrivileges;
-    displayFlags: DisplayFlags;
+    readonly id: string;
+    readonly noteTypeId: string;
+    readonly title: string;
+    readonly text: string;
+    readonly createdUserId: string;
+    readonly created: string;
+    readonly documentId: string;
+    readonly documentRevisionId: string;
+    readonly page: number;
+    readonly x: number;
+    readonly y: number;
+    readonly width: number;
+    readonly height: number;
+    readonly privileges: UserPrivileges;
+    readonly displayFlags: DisplayFlags;
     constructor(id: string, noteTypeId: string, title: string, text: string, createdUserId: string, created: string, documentId: string, documentRevisionId: string, page: number, x: number, y: number, width: number, height: number, privileges: UserPrivileges, displayFlags: DisplayFlags) {
         this.id = id;
         this.noteTypeId = noteTypeId;

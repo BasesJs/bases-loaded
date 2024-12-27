@@ -1,17 +1,17 @@
 import { _getbyid } from '../baseclass/baseclass.js';
 import { CustomQueries } from './customqueries.js';
-//import { Keyword, KeywordItem } from '../keywords/keyword.js';
 import { RunRequest} from '../../http/httprequest.js';
 import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
-import { KeywordTypeBase } from '../keyword-types/keywordtype.js';
+import { KeywordType } from '../keyword-types/keywordtype.js';
+import { KeywordTypes } from '../keyword-types/keywordtypes.js';
 export class CustomQuery implements CustomQueryItem {
-    id: string;
-    name: string;
-    systemName: string;
-    instructions: string;
-    dateOptions: DateOptions;
+    readonly id: string;
+    readonly name: string;
+    readonly systemName: string;
+    readonly instructions: string;
+    readonly dateOptions: DateOptions;
     querytype: string = "DocumentType";
-    KeywordTypes?: KeywordTypeBase[];
+    keywordTypes: KeywordType[] = [];
 
     constructor(id: string, name: string, systemName: string, instructions: string, dateOptions: DateOptions) {
         this.id = id;
@@ -21,21 +21,21 @@ export class CustomQuery implements CustomQueryItem {
         this.dateOptions = dateOptions;
     }
 
-    static parse(item: CustomQueryItem): CustomQuery {
-        return new CustomQuery(
+    static async parse(item: CustomQueryItem): Promise<CustomQuery> {
+        const ncq = new CustomQuery(
             item.id,
             item.name,
             item.systemName,
             item.instructions,
             DateOptions.parse(item.dateOptions)
         );
-    }
-    async getKeywordTypes(): Promise<KeywordTypeBase[]> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${CustomQueries.endpoint}/${this.id}/keyword-Types`;
+        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${CustomQueries.endpoint}/${ncq.id}/keyword-Types`;
         const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
-        this.KeywordTypes = response.data.items as KeywordTypeBase[];
-        return this.KeywordTypes;
+        let keywordTypes = await KeywordTypes.get() as unknown as KeywordType[];
+        const responseIds = response.data.items.map((item: any) => item.id);
+        ncq.keywordTypes = keywordTypes.filter(item => responseIds.includes(item.id));
+        return ncq;
     }
 
     static async get(id: string | number): Promise<CustomQuery> {

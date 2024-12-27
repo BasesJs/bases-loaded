@@ -31,10 +31,10 @@ export class HistoryParams {
 }
 
 export class HistoryItem implements DocumentHistoryItem {
-    action: string;
-    logDate: string;
-    message: string;
-    userId: string;
+    readonly action: string;
+    readonly logDate: string;
+    readonly message: string;
+    readonly userId: string;
     constructor(action: string, logDate: string, message: string, userId: string) {
         this.action = action;
         this.logDate = logDate;

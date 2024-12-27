@@ -4,11 +4,11 @@ import { RequestOptions, HttpMethod } from '../../../http/requestoptions.js';
 import { Revision } from "../revisions/revision.js";
 
 export class Rendition implements RenditionItem {
-    comment: string;
-    created: string;
-    createdByUserId: string;
-    fileTypeId: string;
-    pageCount: string;
+    readonly comment: string;
+    readonly created: string;
+    readonly createdByUserId: string;
+    readonly fileTypeId: string;
+    readonly pageCount: string;
 
     constructor(comment: string, created: string, createdByUserId: string, fileTypeId: string, pageCount: string) {
         this.comment = comment;

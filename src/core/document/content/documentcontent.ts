@@ -2,13 +2,17 @@ import { Document } from "../document.js";
 import { Revision } from "../revisions/revision.js";
 import { Rendition } from "../renditions/rendition.js";
 import { RunRequest } from '../../../http/httprequest.js';
-import { RequestOptions, HttpMethod, ResponseType } from '../../../http/requestoptions.js'
+import { RequestOptions, HttpMethod, ResponseType } from '../../../http/requestoptions.js';
+import { determineMimeType } from "./determineMimeType.js";
 import { ParamSerializer } from "../../../http/utilities/paramserializer.js";
 import { DefaultHeaders } from '../../../http/utilities/defaultheaders.js';
 import { AxiosResponse } from "axios";
 
-export async function DocumentContent(documentId:string, retrievalOptions: RetrievalOptions = { revisionId: "latest", renditionId: "default", contentParams: undefined, accepts: "*/*" }): Promise<AxiosResponse> {
-  let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}/${retrievalOptions.revisionId}${Rendition.endpoint}/${retrievalOptions.renditionId}/content`;
+
+export async function DocumentContent(document:Document, retrievalOptions: RetrievalOptions = { revisionId: "latest", renditionId: "default", contentParams: undefined, accepts: "*/*" }): Promise<AxiosResponse> {
+  retrievalOptions = await determineMimeType(document, retrievalOptions);
+  document.fileExtension = retrievalOptions.fileExtension;
+  let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${document.id}${Revision.endpoint}/${retrievalOptions.revisionId}${Rendition.endpoint}/${retrievalOptions.renditionId}/content`;
   console.log(fullUrl);
   if (retrievalOptions.contentParams !== undefined) {
     fullUrl += `?${ParamSerializer(retrievalOptions.contentParams)}`;
@@ -28,11 +32,13 @@ export async function DocumentContent(documentId:string, retrievalOptions: Retri
   return await RunRequest(options);
 }
 
+
 export interface RetrievalOptions {
   revisionId?: string;
   renditionId?: string;
   contentParams?: ContentParams;
   accepts?: string;
+  fileExtension?: string;
 }
 export interface ContentParams {
   pages?: number;

@@ -1,6 +1,3 @@
-import { KeywordType } from '../keyword-types/keywordtype.js';
-import { KeywordTypeGroup } from '../keyword-type-groups/keywordtypegroup.js';
-
 export class DocumentKeywordTypes implements KeywordTypeCollection{
     keywordOptions: KeywordOptions;
     items: KeywordTypeCollectionItem[];

@@ -6,10 +6,10 @@ export const NoteTypes: group = {
     items: [],
     async get(searchTerm?: any): Promise<NoteType[]> {
         const response = await _get(this.endpoint, searchTerm);
-        response.data.items.forEach((item: any) => {
-            let nt = NoteType.parse(item);
-            this.items.push(nt);
-        });
-        return this.items as NoteType[];
+        let returnItems = await Promise.all(response.data.items.map((item: any) => NoteType.parse(item)));
+        if(!searchTerm && global.bases.core.isHydrated === false){
+            this.items = returnItems;
+        }
+        return returnItems.length > 1 ? returnItems : returnItems[0];
     },
 };

@@ -1,4 +1,4 @@
-import { DocumentInfo } from './documentinfo.js';
+import { DocumentImport } from './documentmodifier.js';
 import * as fs from 'fs/promises';
 import { splitfile } from './utilities/splitFile.js';
 import { uploadpart } from './utilities/uploadpart.js';
@@ -7,47 +7,53 @@ import { stageupload } from './utilities/stageupload.js';
 
 export interface IStorage {
   endpoint: string;
-  documentInfo: DocumentInfo;
+  documentImport: DocumentImport;
   storeAsNew: boolean;
   import(): Promise<void>;
   cancel(): Promise<void>;
 }
 
-export class ImportDocument implements IStorage {
+export class Storage implements IStorage {
   endpoint = `${global.bases.apiURI}${global.bases.core.endpoint}/documents`;
-  documentInfo: DocumentInfo;
+  documentImport: DocumentImport;
   storeAsNew = true;
 
-  constructor(documentInfo: DocumentInfo) {
-    this.documentInfo = documentInfo;
+  constructor(documentImport: DocumentImport) {
+    this.documentImport = documentImport;
   }
 
   async import(): Promise<void> {
     try {
-      await importBytes(this.documentInfo);
+      await importBytes(this.documentImport);
     } catch (err) {
       console.error('Import error:', err);
     }
   }
-
+  /**
+   * This is a multi-step process that will cancel the import process, calling the abort controller and clearing the staged uploads.
+   * @returns void
+   */
   async cancel(): Promise<void> {
-    for (const id of this.documentInfo.UploadIds) {
+    setTimeout(() => {
+      global.bases.abortController.abort();
+    }, 5000);
+    this.documentImport.UploadIds?.forEach(async (id, index, array) => {
       try {
         const data = await deleteupload(id);
-        console.log(data);
+        array.splice(index, 1);
       } catch (err) {
         console.error(`Error deleting upload ID ${id}:`, err);
       }
-    }
+    });    
   }
 }
 
-export async function importBytes(documentInfo: DocumentInfo, progressCallback?: (progressPercent: number) => void): Promise<void> {
-  for (const path of documentInfo.FilePaths) {
+export async function importBytes(documentImport: DocumentImport, progressCallback?: (progressPercent: number) => void): Promise<void> {
+  for (const path of documentImport.FilePaths) {
     const file = await fs.readFile(path);
-      const response = await stageupload(documentInfo.FileExtension, file.byteLength);
+      const response = await stageupload(documentImport.FileExtension, file.byteLength);
 
-      documentInfo.UploadIds.push(response.data.id);
+      documentImport.UploadIds?.push(response.data.id);
       const parts = splitfile(file, response.data.numberOfParts, response.data.filePartSize);
 
       let uploaded = 0;
@@ -73,12 +79,12 @@ export async function importBytes(documentInfo: DocumentInfo, progressCallback?:
 /*
 export class ImportRevision implements IStorage {
   endpoint = `${global.bases.apiURI}${global.bases.core.endpoint}/documents/{docid}/revisions`
-  documentInfo: DocumentInfo;
+  documentImport: DocumentImport;
   storeAsNew = false;  
 }
 export class ImportRendition implements IStorage {
   endpoint = `${global.bases.apiURI}${global.bases.core.endpoint}/revisions`
-  documentInfo: DocumentInfo;
+  documentImport: DocumentImport;
   storeAsNew = false;
 }
 */

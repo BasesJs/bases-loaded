@@ -1,6 +1,7 @@
 import { _getbyid } from "../baseclass/baseclass.js";
-import { KeywordValueCollection } from "../keywordcollection/keywordvaluecollection.js";
-import { KeywordCollection } from "../keywordcollection/keywordcollection.js";
+import { DocumentType } from "../document-types/documenttype.js";
+import { KeywordCollection, KeywordRecordCollection } from "../keyword-collections/keywordcollections.js";
+import { KeywordModifier } from "../keyword-collections/keywordmodifier.js";
 import { Revision, getRevisions } from "./revisions/revision.js";
 import { getRenditions } from "./renditions/rendition.js";
 import { DocumentKeywords } from "./keywords/documentkeywords.js";
@@ -10,19 +11,20 @@ import { AxiosResponse } from "axios";
 import { DocumentHistory, HistoryItem } from "./history/documenthistory.js";
 
 export class Document implements DocumentItem {
-    id: string;
-    name: string;
-    typeId: string;
-    createdByUserId: string;
-    storedDate: string;
-    documentDate: string;
-    status: string;
-    captureProperties?: CaptureProperties;
-    keywordCollection?: KeywordValueCollection;
+    readonly id: string;
+    readonly name: string;
+    readonly typeId: string;
+    readonly createdByUserId: string;
+    readonly storedDate: string;
+    readonly documentDate: string;
+    readonly status: string;
+    readonly captureProperties?: CaptureProperties;
+    keywordRecords?: KeywordRecordCollection;
     revisions: Revision[] = [];
     notes: Note[] = [];
     history: HistoryItem[] = [];
-    keywordGuid: string = "";
+    documentType?: DocumentType;
+    fileExtension?: string;
     constructor(id: string, name: string, typeId: string, createdByUserId: string, storedDate: string,documentDate: string,status: string,captureProperties?: CaptureProperties) {
         this.id = id;
         this.name = name;
@@ -35,8 +37,10 @@ export class Document implements DocumentItem {
     }
 
     static readonly endpoint: string = "/documents";
-    private static parse(data: DocumentItem): Document {
-        return new Document(data.id, data.name, data.typeId, data.createdByUserId, data.storedDate, data.documentDate, data.status, data.captureProperties ? CaptureProperties.parse(data.captureProperties) : undefined);
+    static async parse(data: DocumentItem): Promise<Document> {
+        const doc = new Document(data.id, data.name, data.typeId, data.createdByUserId, data.storedDate, data.documentDate, data.status, data.captureProperties ? CaptureProperties.parse(data.captureProperties) : undefined);
+        doc.documentType = await DocumentType.get(doc.id);
+        return doc;
     }
     /**
      * @param {string} id - The ID of the document to fetch.
@@ -44,21 +48,25 @@ export class Document implements DocumentItem {
      * @param {boolean} getKeywordOptions - An object containing two properties: "getKeywords" and "unmask". If "getKeywords" is true, the keywords will be fetched. If "unmask" is true, the keywords will be unmasked.
      * @returns {Promise<Document>} The document object.
      */
-    static async get(id: string, getRevisions: boolean = false, getKeywordOptions?:{ getKeywords: boolean, unmask: boolean }, getNotes: boolean = false, getHistory: boolean = false): Promise<Document> {
+    static async get(id: string, retrievalOptions?: {
+        getKeywords?: boolean,
+        unmaskKeywords?: boolean,
+        getRevisions?: boolean,
+        getNotes?: boolean,
+        getHistory?: boolean
+    }): Promise<Document> {
         const response = await _getbyid(this.endpoint, id);
-        const doc = Document.parse(response.data);
-        if (getRevisions) {
+        const doc = await Document.parse(response.data);        
+        if(retrievalOptions?.getKeywords){
+            await doc.getKeywords(retrievalOptions.unmaskKeywords);
+        }
+        if(retrievalOptions?.getRevisions){
             await doc.getRevisions();
         }
-        if (getKeywordOptions) {
-            if(getKeywordOptions.getKeywords){
-            await doc.getKeywords(getKeywordOptions.unmask);
-            }
-        }
-        if(getNotes){
+        if(retrievalOptions?.getNotes){
             await doc.getNotes();
         }
-        if(getHistory){
+        if(retrievalOptions?.getHistory){
             await doc.getHistory();
         }
         return doc;
@@ -67,14 +75,7 @@ export class Document implements DocumentItem {
      * @returns This is a multi-step process that will fetch the document's revisions and renditions and will populate the document's revisions and renditions properties.
      */
     async getRevisions(): Promise<void> {
-        try {
-            this.revisions = await getRevisions(this.id);
-            for (const rev of this.revisions) {
-                rev.renditions = await getRenditions(this.id, rev.id);
-            }
-        } catch (error) {
-            console.error("Error fetching revisions:", error);
-        }
+        this.revisions = await getRevisions(this.id);
     }
     /**
      * @param {string} revisionId - The revision ID to fetch notes for. Defaults to "latest" providing the most recent revision.
@@ -92,7 +93,7 @@ export class Document implements DocumentItem {
      */
     async getKeywords(unmask: boolean = true): Promise<void> {
         const response = await DocumentKeywords(this.id, unmask);
-        this.keywordCollection = await KeywordValueCollection.parse(response.data as KeywordCollection);        
+        this.keywordRecords = await KeywordRecordCollection.parse(response.data as KeywordCollection);        
     }
     /**
      * @param {RetrievalOptions} retrievalOptions - An object containing the retrieval options for the document content.
@@ -105,7 +106,7 @@ export class Document implements DocumentItem {
             contentParams: undefined, 
             accepts: "*/*" 
         }): Promise<AxiosResponse> {
-        return await DocumentContent(this.id, retrievalOptions);
+        return await DocumentContent(this, retrievalOptions);
     }    
     /**
      * @param {Date} startDate - The start date of the history to fetch.
@@ -115,6 +116,16 @@ export class Document implements DocumentItem {
      */
     async getHistory(startDate?: Date, endDate?: Date, userId?: number): Promise<void> {
         this.history = await DocumentHistory(this.id, startDate, endDate, userId);
+    }/**
+     *  Runs asynchronously in the case that the keywords have not been fetched yet.
+     * @returns A KeywordCollectionModifier object that can be used to modify the keywords of the document.
+     */
+    async createKeywordModifier(): Promise<KeywordModifier>{        
+        if(!this.keywordRecords){
+            const response = await DocumentKeywords(this.id, true);
+            this.keywordRecords = await KeywordRecordCollection.parse(response.data as KeywordCollection);
+        }
+        return new KeywordModifier(this.keywordRecords, this.id);
     }
 }
 

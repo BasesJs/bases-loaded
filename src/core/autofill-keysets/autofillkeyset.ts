@@ -2,14 +2,14 @@ import { _getbyid } from '../baseclass/baseclass.js';
 import { AutofillKeysets } from './autofillkeysets.js';
 import { RunRequest } from '../../http/httprequest.js';
 import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
-import { KeywordValueItem } from '../keywords/keywordinterfaces.js'; 
+import { KeywordValueItem } from '../keyword/keywordvalue.js'; 
 import { KeywordTypeBase } from '../keyword-types/keywordtype.js';
 export class AutofillKeyset implements AutofillKeysetItem {
-    id: string;
-    name: string;
-    systemName: string;
-    primaryKeywordTypeId: string;
-    external: boolean;
+    readonly id: string;
+    readonly name: string;
+    readonly systemName: string;
+    readonly primaryKeywordTypeId: string;
+    readonly external: boolean;
     KeywordTypes?: KeywordTypeBase[];
 
     constructor(id: string, name: string, systemName: string, primaryKeywordTypeId: string, external: boolean) {

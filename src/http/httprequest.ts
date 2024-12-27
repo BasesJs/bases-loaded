@@ -13,7 +13,7 @@ export async function RunRequest(options: RequestOptions): Promise<AxiosResponse
                 cookie.includes("Cookie.Session.OnBase.Hyland")
             );
             if (sessionCookie) {
-                setCookie(sessionCookie);
+                setCookie(sessionCookie, response.config.url);
             }
         }
         return response;

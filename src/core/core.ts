@@ -7,10 +7,10 @@ import { AutofillKeysets } from './autofill-keysets/autofillkeysets.js';
 import { CustomQueries } from './custom-queries/customqueries.js';
 import { NoteTypes } from './note-types/notetypes.js';
 import { CurrencyFormats } from './currency-format/currencyformats.js';
-import { Document } from './document/document.js';
 
 export const core = {
     endpoint: "/onbase/core",
+    isHydrated: false,
     autofillkeysets: AutofillKeysets,
     currencyformats: CurrencyFormats,
     customqueries: CustomQueries,
@@ -21,9 +21,9 @@ export const core = {
     keywordtypes: KeywordTypes,    
     notetypes: NoteTypes,
     async hydrateCore(resolve?:(message:string)=>any, reject?:(error:any)=>any): Promise<void> {
-        while(global.bases.cookie === undefined){
-            await CurrencyFormats.get();
-        }
+        core.isHydrated = false;
+        //ensure there is a cookie
+        await CurrencyFormats.get();        
         await Promise.all([
             FileTypes.get(),
             DocumentTypeGroups.get(),
@@ -32,11 +32,12 @@ export const core = {
             KeywordTypes.get(),
             AutofillKeysets.get(),
             CustomQueries.get(),
-            CurrencyFormats.get(),
+            //CurrencyFormats.get(),
             NoteTypes.get()            
         ]).then(async () => {
+            core.isHydrated = true;
             if (resolve) {
-                resolve("Core hydrated");
+                resolve(`Core Status: ${core.isHydrated ? "Hydrated" : "Not Hydrated"}`);                
             }
         })
         .catch((error: any) => {
