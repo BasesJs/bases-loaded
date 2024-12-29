@@ -1,3 +1,5 @@
+import { Bases } from '../../../bases.js';
+import { Core } from '../../core.js';
 import { Document } from "../document.js";
 import { RunRequest } from "../../../http/httprequest.js";
 import { RequestOptions, HttpMethod } from "../../../http/requestoptions.js";
@@ -5,7 +7,7 @@ import { DefaultHeaders } from "../../../http/utilities/defaultheaders.js";
 import { UserPrivileges, DisplayFlags } from "../../note-types/notetype.js";
 
 export async function getNotes(documentId: string, revisionId: string = "latest"): Promise<Note[]> {
-    const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}/revisions/${revisionId}/notes`;
+    const fullUrl = `${Bases.apiURI}${Core.endpoint}${Document.endpoint}/${documentId}/revisions/${revisionId}/notes`;
     const options = new RequestOptions({ url: fullUrl, method: HttpMethod.GET, headers: DefaultHeaders() });
 
     try {

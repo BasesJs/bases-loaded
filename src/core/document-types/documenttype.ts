@@ -1,10 +1,11 @@
+import { Bases } from '../../bases.js';
+import { Core } from '../core.js';
 import {  _getbyid } from '../baseclass/baseclass.js';
 import { DocumentTypes } from './documenttypes.js';
 import { RequestOptions, HttpMethod } from '../../http/requestoptions.js';
 import { RunRequest } from '../../http/httprequest.js';
 import { KeywordCollection} from '../keyword-collections/keywordcollections.js';
 import { DocumentKeywordTypes  } from '../keyword-collections/keywordtypecollection.js';
-import { Keyword } from '../keyword/keyword.js';
 
 export class DocumentType implements DocumentTypeItem {
     readonly id: string;
@@ -15,7 +16,7 @@ export class DocumentType implements DocumentTypeItem {
     readonly autofillKeywordSetId: string;
     readonly documentTypeGroupId: string;
     readonly revisionRenditionProperties: RevisionRenditionProperties;
-    readonly KeywordTypeConfiguration?: DocumentKeywordTypes;
+    KeywordTypeConfiguration?: DocumentKeywordTypes;
 
     constructor(
         id: string,
@@ -25,8 +26,7 @@ export class DocumentType implements DocumentTypeItem {
         documentDateDisplayName: string,
         autofillKeywordSetId: string,
         documentTypeGroupId: string,
-        revisionRenditionProperties: RevisionRenditionProperties,
-        keywordTypeConfiguration?: DocumentKeywordTypes
+        revisionRenditionProperties: RevisionRenditionProperties
     ) {
         this.id = id;
         this.name = name;
@@ -36,11 +36,9 @@ export class DocumentType implements DocumentTypeItem {
         this.autofillKeywordSetId = autofillKeywordSetId;
         this.documentTypeGroupId = documentTypeGroupId;
         this.revisionRenditionProperties = revisionRenditionProperties;
-        this.KeywordTypeConfiguration = keywordTypeConfiguration;
     }
 
-    static async parse(item: DocumentTypeItem): Promise<DocumentType> {
-        const ktconfig = await DocumentType.keywordTypes(item.id);
+    static parse(item: DocumentTypeItem): DocumentType {
         return new DocumentType(
             item.id,
             item.name,
@@ -49,8 +47,7 @@ export class DocumentType implements DocumentTypeItem {
             item.documentDateDisplayName,
             item.autofillKeywordSetId,
             item.documentTypeGroupId,
-            RevisionRenditionProperties.parse(item.revisionRenditionProperties),
-            ktconfig
+            RevisionRenditionProperties.parse(item.revisionRenditionProperties)
         );
     }
 
@@ -58,12 +55,13 @@ export class DocumentType implements DocumentTypeItem {
         const response = await _getbyid(DocumentTypes.endpoint, id);
         return DocumentType.parse(response.data);
     }
-    static async keywordTypes(id: string) : Promise<DocumentKeywordTypes | undefined> {       
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${DocumentTypes.endpoint}/${id}/keyword-type-groups`;
+    async getKeywordTypes(id: string) : Promise<DocumentKeywordTypes | undefined> {       
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}${DocumentTypes.endpoint}/${id}/keyword-type-groups`;
         const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
         if(response.status === 200){
-            return DocumentKeywordTypes.parse(response.data); 
+            this.KeywordTypeConfiguration = DocumentKeywordTypes.parse(response.data); 
+            return this.KeywordTypeConfiguration;
         }
         else{
             return undefined;
@@ -71,7 +69,7 @@ export class DocumentType implements DocumentTypeItem {
     }
 
     async DefutlKeywords() : Promise<KeywordCollection> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${DocumentTypes.endpoint}/${this.id}/default-keywords`;
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}${DocumentTypes.endpoint}/${this.id}/default-keywords`;
         const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);     
         return response.data as KeywordCollection;  

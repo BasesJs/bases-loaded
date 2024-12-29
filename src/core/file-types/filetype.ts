@@ -1,3 +1,5 @@
+import { Bases } from '../../bases.js';
+import { Core } from '../core.js';
 import { _getbyid } from '../baseclass/baseclass.js';
 import { FileTypes } from './filetypes.js';
 import mime from 'mime';
@@ -13,7 +15,7 @@ export class FileType implements FileTypeItem {
         this.systemName = systemName;
     }
     static async bestGuess(fileExtension:string): Promise<string | null> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}/default-upload-file-types?extension=${fileExtension}`;
         let options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
         return response.data.id;

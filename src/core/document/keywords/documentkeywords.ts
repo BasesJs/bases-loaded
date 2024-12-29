@@ -1,3 +1,5 @@
+import { Bases } from '../../../bases.js';
+import { Core } from '../../core.js';
 import { Document } from "../document.js";
 import { RunRequest } from "../../../http/httprequest.js";
 import { RequestOptions, HttpMethod } from "../../../http/requestoptions.js";
@@ -8,7 +10,7 @@ export async function DocumentKeywords(
   documentId: string,
   unmask: boolean
 ): Promise<AxiosResponse> {
-  const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}/keywords`;
+  const fullUrl = `${Bases.apiURI}${Core.endpoint}${Document.endpoint}/${documentId}/keywords`;
   const options = new RequestOptions(
     {
       url: fullUrl,

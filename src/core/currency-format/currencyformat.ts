@@ -72,29 +72,3 @@ export interface CurrencyFormatItem {
     isSymbolAfterOnNegative: boolean;
     isSymbolInsideNegative: boolean;
 }
-/*
-{
-    "items": [
-        {
-            "currencySymbol": "$",
-            "decimalPlaces": 2,
-            "decimalSymbol": ".",
-            "groupingDigits": 3,
-            "groupingSymbol": ",",
-            "hasCurrencySymbol": true,
-            "hasGroupSeparator": true,
-            "hasLeadingZero": false,
-            "hasMinusSign": false,
-            "hasWhitespace": false,
-            "hasWhitespaceOnNegative": false,
-            "id": "1002",
-            "isMinusSignAfter": false,
-            "isoCurrencyName": "",
-            "isSymbolAfter": false,
-            "isSymbolAfterOnNegative": false,
-            "isSymbolInsideNegative": true,
-            "name": "USD"
-        }
-    ]
-}
-*/

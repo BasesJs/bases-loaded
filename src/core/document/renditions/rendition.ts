@@ -1,9 +1,12 @@
+import { Core } from "../../core.js";
 import { Document } from "../document.js";
 import { RunRequest} from '../../../http/httprequest.js';
 import { RequestOptions, HttpMethod } from '../../../http/requestoptions.js';
 import { Revision } from "../revisions/revision.js";
+import { Bases } from "../../../bases.js";
 
 export class Rendition implements RenditionItem {
+    static readonly endpoint: string = "/Renditions";
     readonly comment: string;
     readonly created: string;
     readonly createdByUserId: string;
@@ -17,16 +20,13 @@ export class Rendition implements RenditionItem {
         this.fileTypeId = fileTypeId;
         this.pageCount = pageCount;
     }
-
-    static readonly endpoint: string = "/Renditions";
-
     static parse(item: RenditionItem): Rendition {
         return new Rendition(item.comment, item.created, item.createdByUserId, item.fileTypeId, item.pageCount);
     }
 }
 
 export async function getRenditions(documentId: string, revisionId: string = "latest"): Promise<Rendition[]> {
-    const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}/${revisionId}${Rendition.endpoint}`;
+    const fullUrl = `${Bases.apiURI}${Core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}/${revisionId}${Rendition.endpoint}`;
     const options = new RequestOptions({ url: fullUrl, method: HttpMethod.GET });
 
     try {

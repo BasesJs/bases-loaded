@@ -1,3 +1,5 @@
+import { Bases } from '../../../bases.js';
+import { Core } from '../../core.js';
 import { Document } from "../document.js";
 import { Revision } from "../revisions/revision.js";
 import { Rendition } from "../renditions/rendition.js";
@@ -12,7 +14,7 @@ import { AxiosResponse } from "axios";
 export async function DocumentContent(document:Document, retrievalOptions: RetrievalOptions = { revisionId: "latest", renditionId: "default", contentParams: undefined, accepts: "*/*" }): Promise<AxiosResponse> {
   retrievalOptions = await determineMimeType(document, retrievalOptions);
   document.fileExtension = retrievalOptions.fileExtension;
-  let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${document.id}${Revision.endpoint}/${retrievalOptions.revisionId}${Rendition.endpoint}/${retrievalOptions.renditionId}/content`;
+  let fullUrl = `${Bases.apiURI}${Core.endpoint}${Document.endpoint}/${document.id}${Revision.endpoint}/${retrievalOptions.revisionId}${Rendition.endpoint}/${retrievalOptions.renditionId}/content`;
   console.log(fullUrl);
   if (retrievalOptions.contentParams !== undefined) {
     fullUrl += `?${ParamSerializer(retrievalOptions.contentParams)}`;

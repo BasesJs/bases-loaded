@@ -24,13 +24,13 @@ export async function determineMimeType(document:Document, retrievalOptions: Ret
       else{
         rendition = document.documentType?.defaultFileTypeId ?? "16";
       }        
-      let mimeconfig = Config.fileTypeMimeMap.find(item => item.id === rendition);
+      let mimeconfig = Config.core.fileTypeMimeMap.find(item => item.id === rendition);
       if(retrievalOptions.accepts === "*/*"){
         retrievalOptions.accepts = mimeconfig?.mime ?? "*/*";
       }      
       if(retrievalOptions.fileExtension === undefined){
         if(rendition === "2"){
-            retrievalOptions.fileExtension = Config.environment.imageFileFormatPreference ?? mimeconfig?.ext;
+            retrievalOptions.fileExtension = Config.core.imageFileFormatPreference ?? mimeconfig?.ext;
           } 
           else{
             retrievalOptions.fileExtension = mimeconfig?.ext;

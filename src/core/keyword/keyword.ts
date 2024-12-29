@@ -26,6 +26,9 @@ export class Keyword implements KeywordItem {
         }
         this.keywordType = await KeywordType.get(this.typeId);
     }
+    hasValue(): boolean {
+        return this.values !== undefined && this.values.length > 0;
+    }
     /**
      * Attempts to return the formattedValue, then the value as a string.
      * @param index If there are multiple values, this will return the value at the index. The default is 0, or the first value.

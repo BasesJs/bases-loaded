@@ -1,3 +1,5 @@
+import { Bases } from '../../../bases.js';
+import { Core } from '../../core.js';
 import { Document } from "../document.js";
 import { DefaultHeaders } from "../../../http/utilities/defaultheaders.js";
 import { RunRequest } from "../../../http/httprequest.js";
@@ -5,7 +7,7 @@ import { RequestOptions, HttpMethod } from "../../../http/requestoptions.js";
 import { ParamSerializer } from "../../../http/utilities/paramserializer.js";
 
 export async function DocumentHistory(documentId: string, startDate?: Date, endDate?: Date, userId?: number): Promise<HistoryItem[]> {
-    const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}/history`;
+    const fullUrl = `${Bases.apiURI}${Core.endpoint}${Document.endpoint}/${documentId}/history`;
     const params = HistoryParams.create(startDate, endDate, userId);
     const options = new RequestOptions({ url: fullUrl, method: HttpMethod.GET, headers: DefaultHeaders(), params: params, paramsSerializer: ParamSerializer });
     const response = await RunRequest(options);
@@ -51,14 +53,3 @@ export interface DocumentHistoryItem {
     message: string;
     userId: string;
 }
-/*
-{
-    "items": [
-        {
-            "action": "string",
-            "logDate": "2022-08-01T07:36:13.007",
-            "message": "string",
-            "userId": "string"
-        }
-    ]
-}*/

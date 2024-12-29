@@ -1,19 +1,20 @@
-import { setCookie } from './utilities/setcookie.js';
+import { Bases } from '../bases.js';
 import { HttpConfig } from './httpconfig.js';
 import { RequestOptions } from './requestoptions.js';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
+
 export async function RunRequest(options: RequestOptions): Promise<AxiosResponse> { 
-      const requestOptions = MergeRequest(options, global.bases.httpConfig ?? new HttpConfig());       
+      const requestOptions = MergeRequest(options, Bases.instance.httpConfig ?? new HttpConfig());       
       try{
-        let response = await global.bases.client.request(requestOptions);        
+        let response = await Bases.instance.client.request(requestOptions);        
         const setCookieHeaders = response.headers["set-cookie"];        
         if (setCookieHeaders) {
             const sessionCookie = setCookieHeaders.find((cookie: string) => 
                 cookie.includes("Cookie.Session.OnBase.Hyland")
             );
             if (sessionCookie) {
-                setCookie(sessionCookie, response.config.url);
+                Bases.instance.setCookie(sessionCookie, requestOptions.url ?? "");
             }
         }
         return response;

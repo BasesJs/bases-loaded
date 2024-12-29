@@ -7,10 +7,8 @@ export const CustomQueries: group = {
 
     async get(searchTerm?: string | number): Promise<CustomQuery[] | CustomQuery> {
         const response = await _get(this.endpoint, searchTerm);
-        let returnItems = await Promise.all(response.data.items.map((item: CustomQueryItem) => CustomQuery.parse(item)));
-        if(!searchTerm && global.bases.core.isHydrated === false){
-            this.items = returnItems;
-        }
+        let returnItems = await response.data.items.map((item: CustomQueryItem) => CustomQuery.parse(item));
+
         return returnItems.length > 1 ? returnItems : returnItems[0];
     }
 };

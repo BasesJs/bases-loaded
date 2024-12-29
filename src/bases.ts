@@ -3,31 +3,40 @@ const require = createRequire(import.meta.url);
 const axios = require('axios');
 import { Config } from './config/config.js';
 import { Identity } from './identity/identity.js';
-import { core } from './core/core.js';
+import { Core } from './core/core.js';
 import { RunRequest } from './http/httprequest.js';
 import { RequestOptions, HttpMethod } from './http/requestoptions.js';
 import { HttpConfig } from './http/httpconfig.js';
 import { DefaultHeaders } from "./http/utilities/defaultheaders.js";
 
-export class BasesLoaded {
+export class Bases {
     constructor(identity: Identity, httpConfig?: HttpConfig) {
         this.identity = identity;
-        this.httpConfig = httpConfig ?? new HttpConfig();       
-        
+        this.httpConfig = httpConfig ?? new HttpConfig(); 
+        this.core = new Core();
     }
-    apiURI: string = Config.environment.apiUri ?? '';
-    client = axios.create();
+    static instance: Bases;
+    static readonly apiURI: string = Config.environment.apiUri ?? '';
+    cookie?: string;    
     abortController = new AbortController();
-    identity: Identity;
-    cookie?: string;
-    core = core;
+    client = axios.create();    
+    identity: Identity;    
+    core: Core;
     httpConfig?: HttpConfig;
-    async create(identity: Identity, httpConfig?: HttpConfig, hydratecore: boolean = false) {
-        let bases = new BasesLoaded(identity, httpConfig);
-        if(hydratecore){
-            await bases.core.hydrateCore();
+    setCookie(cookieHeader: string, url: string) {
+        let cookie = cookieHeader.split(";")[0];
+        if (this.cookie === undefined || this.cookie !== cookie) {
+            console.log(`Setting cookie set by request to ${url}. New cookie is ${cookie}`);
+            this.cookie = cookie;
+        }  
+    }
+    static async create(identity: Identity, httpConfig?: HttpConfig, hydratecore: boolean = false) {
+        let bases = new Bases(identity, httpConfig);        
+        Bases.instance = bases;
+        if(hydratecore === true){
+            console.log("Hydrating Core...");
+            await Core.hydrateCore((message)=>{console.log(message)}, (error)=>{console.error(error)});
         }
-        global.bases = bases;
         return bases;
     }
     async isConnected() : Promise<boolean> {
@@ -42,7 +51,7 @@ export class BasesLoaded {
         this.abortController.abort("Disconnecting...");
         await setTimeout(async () => {
             this.abortController = new AbortController();
-            let fullUrl = `${Config.environment.apiUri}/onbase/core/session/disconnect`;
+            let fullUrl = `${Bases.apiURI}${Core.endpoint}/session/disconnect`;
             let options = new RequestOptions({ url: fullUrl, method: HttpMethod.POST, headers: DefaultHeaders() });
             let response = await RunRequest(options);
             console.log("Disconnection Response: ", response.status);
@@ -53,7 +62,7 @@ export class BasesLoaded {
             return false;
         }
         try {
-            let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}/session/heartbeat`;
+            let fullUrl = `${Bases.apiURI}${Core.endpoint}/session/heartbeat`;
             let options = new RequestOptions({ url: fullUrl, method: HttpMethod.POST, headers: DefaultHeaders() });
             let response = await RunRequest(options);
             if (response.status == 204) {

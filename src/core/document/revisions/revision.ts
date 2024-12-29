@@ -1,3 +1,5 @@
+import { Bases } from '../../../bases.js';
+import { Core } from '../../core.js';
 import { Rendition, getRenditions } from '../renditions/rendition.js';
 import { Document } from "../document.js";
 import { RunRequest } from '../../../http/httprequest.js';
@@ -23,12 +25,11 @@ export class Revision implements RevisionItem {
 }
 
 export async function getRevisions(documentId: string): Promise<Revision[]> {
-    const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}`;
+    const fullUrl = `${Bases.apiURI}${Core.endpoint}${Document.endpoint}/${documentId}${Revision.endpoint}`;
     const options = new RequestOptions({ url: fullUrl, method: HttpMethod.GET });
     const response = await RunRequest(options);
     return response.data.items.map((item: RevisionItem) => Revision.parse(item));
 }
-
 interface RevisionItem {
     id: string;
     revisionNumber: string;

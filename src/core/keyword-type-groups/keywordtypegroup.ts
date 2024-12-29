@@ -1,3 +1,5 @@
+import { Bases } from '../../bases.js';
+import { Core } from '../core.js';
 import { _getbyid } from '../baseclass/baseclass.js';
 import { KeywordTypeGroups } from './keywordtypegroups.js';
 import { RunRequest } from '../../http/httprequest.js';
@@ -19,15 +21,17 @@ export class KeywordTypeGroup implements KeywordTypeGroupItem {
         this.storageType = storageType;
     }
 
-    static async parse(item: KeywordTypeGroupItem): Promise<KeywordTypeGroup> {
-        const nktg = new KeywordTypeGroup(item.id, item.name, item.systemName, item.storageType);
-        let fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${KeywordTypeGroups.endpoint}/${nktg.id}/keyword-types`;
-        let options = new RequestOptions({ url: fullUrl, method: HttpMethod.GET });
+    static parse(item: KeywordTypeGroupItem): KeywordTypeGroup {
+        return new KeywordTypeGroup(item.id, item.name, item.systemName, item.storageType);
+    }
+    async getKeywordTypes(): Promise<KeywordType[]> {
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}${KeywordTypeGroups.endpoint}/${this.id}/keyword-types`;
+        const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
         let keywordTypes = await KeywordTypes.get() as unknown as KeywordType[];
         const responseIds = response.data.items.map((item: any) => item.id);
-        nktg.keywordTypes = keywordTypes.filter(item => responseIds.includes(item.id));
-        return nktg;
+        this.keywordTypes = keywordTypes.filter(item => responseIds.includes(item.id));
+        return this.keywordTypes;
     }
 
     static async get(id: string | number): Promise<KeywordTypeGroup> {

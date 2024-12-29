@@ -16,7 +16,7 @@ export function DataTypeCheck(keyType: KeywordType, value: string): boolean {
             let date = new Date(value);
         }
         catch(err){
-            return false;
+            throw new Error(`The value ${value} is not compatible with the data type of the keyword type: ${keyType.dataType}, could not be arsed a date.`);
         };
     }
     if(keyType.dataType === "Currency" || keyType.dataType === "SpecificCurrency" || keyType.dataType === "FloatingPoint"){
@@ -24,22 +24,19 @@ export function DataTypeCheck(keyType: KeywordType, value: string): boolean {
     }
     if(keyType.dataType === "Numeric9"){
         if(value.length > 9){
-            return false;
+            throw new Error(`The value ${value} is not compatible with the data type of the keyword type: ${keyType.dataType}, there are more than 9 digits.`);
         }
         return !isNaN(Number(value));
     }
     if(keyType.dataType === "Numeric20"){
         if(value.length > 20){
-            return false;
+            throw new Error(`The value ${value} is not compatible with the data type of the keyword type: ${keyType.dataType}, there are more than 20 digits.`);
         }
         return !isNaN(Number(value));
     }
     if(keyType.dataType === "Alphanumeric"){
-        if(keyType.alphanumericSettings?.maximumLength === undefined){
-            return false;
-        }
-        if(value.length > keyType.alphanumericSettings.maximumLength){
-            return false;
+        if(keyType.alphanumericSettings?.maximumLength !== undefined && value.length > keyType.alphanumericSettings.maximumLength){
+            throw new Error(`The value ${value} is not compatible with the data type of the keyword type: ${keyType.dataType}, the value is longer than the maximum length allowed (${keyType.alphanumericSettings.maximumLength}).`);
         }       
     }
     return true;
@@ -47,67 +44,40 @@ export function DataTypeCheck(keyType: KeywordType, value: string): boolean {
 
 export function convertObjectValueToString(object: any, keyType: KeywordType): KeywordValueItem[] {
     let strArray : string[] = [];
-    if(Array.isArray(object)){
-        object.forEach(item => {
-            if(item instanceof Date){
-                if(!DataTypeCheck(keyType, item.toString())){
-                    throw new Error(`The date ${item} is not compatible with the data type of the keyword type: ${keyType.dataType}`);
-                }
-                strArray.push(convertToHylandDateString(item));
-            }
-            else if (item instanceof Number){
-                if(!DataTypeCheck(keyType, `${item}`)){
-                    throw new Error(`The value ${item} is not compatible with the data type of the keyword type: ${keyType.dataType}`);
-                }
-                strArray.push(item.toString());
-            }
-            else if (item instanceof String){
-                if(keyType.dataType === "Alphanumeric"){
-                    if(!DataTypeCheck(keyType, item.toString())){
-                        throw new Error(`The string's length (${item.length}) is greater than the maximum length allowed (${keyType.alphanumericSettings?.maximumLength})`);
+    switch (true) {
+        case Array.isArray(object):
+            if (object.length > 0) {
+                object.forEach(value => {
+                    if (typeof value === 'string') {
+                        DataTypeCheck(keyType, value)
+                        strArray.push(value);
+                    } else if (typeof value === 'number') {
+                        DataTypeCheck(keyType, value.toString())
+                        strArray.push(`${value}`);
+                    } else if (value instanceof Date) {
+                        DataTypeCheck(keyType, value.toString())
+                        strArray.push(convertToHylandDateString(value));
                     }
-                    strArray.push(item.toString());
-                }
-                else if(keyType.dataType === "Date"){
-                    let date = new Date();
-                    try{
-                        date = parseFromHylandDateString(`${item}`); 
-                    } catch(err){};
-                    try{
-                        date = new Date(`${item}`);
-                    }
-                    catch(err){
-                        throw new Error(`The string is not a valid date, it is ${item}`);
-                    };    
-                    const dateString = convertToHylandDateString(new Date(`${item}`));
-                    if(!DataTypeCheck(keyType, dateString)){
-                        throw new Error(`The string is not a valid date, it is ${item}`);
-                    }
-                    strArray.push(dateString);
-                }
+                });                
+            } else {
+                console.log('Empty array');
             }
-            else{
-                throw new Error(`The object is not a Date, Number or String, it is a ${typeof item}`);
-            }
-        });
-    }
-    else if(object instanceof Date){
-        if(!DataTypeCheck(keyType, object.toString())){
-            throw new Error(`The date ${object} is not compatible with the data type of the keyword type: ${keyType.dataType}`);
-        }
-        strArray.push(convertToHylandDateString(object))
-    }
-    else if (object instanceof Number){
-        if(!DataTypeCheck(keyType, `${object}`)){
-            throw new Error(`The value ${object} is not compatible with the data type of the keyword type: ${keyType.dataType}`);
-        }
-        strArray.push(`${object}`);
-    }
-    else{
-        if(!DataTypeCheck(keyType, object.toString())){
-            throw new Error(`The string's length (${object.length}) is greater than the maximum length allowed (${keyType.alphanumericSettings?.maximumLength})`);
-        }
-        strArray.push(object.toString());
+            break;
+        case typeof object === 'string':
+            DataTypeCheck(keyType, object)
+            strArray.push(object);
+            break;
+        case typeof object === 'number':
+            DataTypeCheck(keyType, object.toString())
+            strArray.push(`${object}`);
+            break;
+        case object instanceof Date:
+            DataTypeCheck(keyType, object.toString())
+            strArray.push(convertToHylandDateString(object));
+            break;
+        default:
+            console.log('Undefined or unknown type');
+            break;
     }
     let returnValues: KeywordValueItem[] = [];
     strArray.forEach(item => {

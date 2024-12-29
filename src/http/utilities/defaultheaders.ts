@@ -1,13 +1,15 @@
 import { Config } from '../../config/config.js';
+import { Bases } from '../../bases.js';
+import { Identity } from '../../identity/identity.js';
 
 export function DefaultHeaders() {   
     let defaultHeaders:any = {
         'Content-Type': 'application/json',
         'Accept': '*/*',
-        'Authorization': `Bearer ${global.bases.identity.token.access_token}`
+        'Authorization': `Bearer ${Identity.instance.token.access_token}`
     };
-    if (global.bases.cookie !== undefined) {
-        defaultHeaders['Cookie'] = global.bases.cookie;
+    if (Bases.instance.cookie !== undefined) {
+        defaultHeaders['Cookie'] = Bases.instance.cookie;
     }
     if(Config.environment.useQueryMetering === true){
         console.log(Config.environment.useQueryMetering);

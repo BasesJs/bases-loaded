@@ -5,7 +5,7 @@ import { Config } from '../config/config.js';
 export class HttpConfig {
   httpAgent?: http.Agent;
   httpsAgent?: https.Agent;
-  timeout?: number = Number(Config.environment.httpTimeout);
+  timeout?: number = Number(Config.axios.httpTimeout);
   onUploadProgress?: (progressEvent: any) => void;
   onDownloadProgress?: (progressEvent: any) => void;
   constructor(httpAgent?: http.Agent, httpsAgent?: https.Agent, timeout?: number, onUploadProgress?: (progressEvent: any) => void, onDownloadProgress?: (progressEvent: any) => void) {

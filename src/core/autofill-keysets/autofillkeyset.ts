@@ -1,3 +1,5 @@
+import { Bases } from '../../bases.js';
+import { Core } from '../core.js';
 import { _getbyid } from '../baseclass/baseclass.js';
 import { AutofillKeysets } from './autofillkeysets.js';
 import { RunRequest } from '../../http/httprequest.js';
@@ -36,13 +38,13 @@ export class AutofillKeyset implements AutofillKeysetItem {
     }
 
     async getData(primaryValue: string): Promise<AutofillKeysetDataItem[]> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-set-data?primaryValue=${primaryValue}`;
         const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
         return response.data.items as AutofillKeysetDataItem[];        
     }
     async getKeywordTypes(): Promise<KeywordTypeBase[]> {
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-types`;
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}${AutofillKeysets.endpoint}/${this.id}/keyword-types`;
             const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
             const response = await RunRequest(options);
             this.KeywordTypes = response.data.items as KeywordTypeBase[];

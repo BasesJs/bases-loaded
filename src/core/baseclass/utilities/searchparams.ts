@@ -1,4 +1,4 @@
-export default class SearchParams {
+export class SearchParams {
     paramname: string;
     params: string[];
 

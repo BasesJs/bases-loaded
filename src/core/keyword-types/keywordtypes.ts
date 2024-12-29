@@ -7,10 +7,10 @@ export const KeywordTypes: group = {
 
   async get(searchTerm?: string | number): Promise<KeywordType[] | KeywordType> {
     const response = await _get(this.endpoint, searchTerm);
-    let returnItems = await Promise.all(response.data.items.map((item: KeywordTypeItem) => KeywordType.parse(item)));
-    if(!searchTerm && global.bases.core.isHydrated === false){
-        this.items = returnItems;
-    }
+    let returnItems: KeywordType[] = [];
+    await response.data.items.forEach(async (item: KeywordTypeItem) => {
+      returnItems.push(await KeywordType.parse(item))
+    });
     return returnItems.length > 1 ? returnItems : returnItems[0];
   }
 };

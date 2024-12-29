@@ -14,13 +14,11 @@ export class DocumentTypeGroup implements DocumentTypeGroupItem {
     static parse(item: DocumentTypeGroupItem): DocumentTypeGroup {
         return new DocumentTypeGroup(item.id, item.name, item.systemName);
     }
-
     static async get(id: string | number): Promise<DocumentTypeGroup> {
         const response = await _getbyid(DocumentTypeGroups.endpoint, id);
         return DocumentTypeGroup.parse(response.data) ;
     }
 }
-
 export interface DocumentTypeGroupItem {
     id: string;
     name: string;

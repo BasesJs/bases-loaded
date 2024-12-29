@@ -1,3 +1,5 @@
+import { Bases } from '../../bases.js';
+import { Core } from '../core.js';
 import { _getbyid } from '../baseclass/baseclass.js';
 import { CustomQueries } from './customqueries.js';
 import { RunRequest} from '../../http/httprequest.js';
@@ -22,20 +24,22 @@ export class CustomQuery implements CustomQueryItem {
     }
 
     static async parse(item: CustomQueryItem): Promise<CustomQuery> {
-        const ncq = new CustomQuery(
+        return new CustomQuery(
             item.id,
             item.name,
             item.systemName,
             item.instructions,
             DateOptions.parse(item.dateOptions)
         );
-        const fullUrl = `${global.bases.apiURI}${global.bases.core.endpoint}${CustomQueries.endpoint}/${ncq.id}/keyword-Types`;
+    }
+    async getKeywordTypes(): Promise<KeywordType[]> {
+        const fullUrl = `${Bases.apiURI}${Core.endpoint}${CustomQueries.endpoint}/${this.id}/keyword-Types`;
         const options = new RequestOptions({url: fullUrl, method: HttpMethod.GET});
         const response = await RunRequest(options);
         let keywordTypes = await KeywordTypes.get() as unknown as KeywordType[];
         const responseIds = response.data.items.map((item: any) => item.id);
-        ncq.keywordTypes = keywordTypes.filter(item => responseIds.includes(item.id));
-        return ncq;
+        this.keywordTypes = keywordTypes.filter(item => responseIds.includes(item.id));
+        return this.keywordTypes;
     }
 
     static async get(id: string | number): Promise<CustomQuery> {

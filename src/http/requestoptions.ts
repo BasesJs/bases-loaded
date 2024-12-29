@@ -1,6 +1,6 @@
 import { DefaultHeaders } from './utilities/defaultheaders.js';
 import { Config } from '../config/config.js';
-import { AxiosRequestConfig } from 'axios';
+import { Bases } from '../bases.js';
 
 export class RequestOptions {
   constructor(
@@ -23,8 +23,8 @@ export class RequestOptions {
     this.headers = requestOptions.headers ?? DefaultHeaders();
     this.data = requestOptions.data;
     this.params = requestOptions.params;
-    this.maxBodyLength = requestOptions.maxBodyLength ?? Number(Config.environment.maxBodyLength);
-    this.maxContentLength = requestOptions.maxContentLength ?? Number(Config.environment.maxContentLength);
+    this.maxBodyLength = requestOptions.maxBodyLength ?? Number(Config.axios.maxBodyLength);
+    this.maxContentLength = requestOptions.maxContentLength ?? Number(Config.axios.maxContentLength);
     this.validateStatus = requestOptions.validateStatus;
     this.paramsSerializer = requestOptions.paramsSerializer;
   }
@@ -37,7 +37,7 @@ export class RequestOptions {
   params?: any;
   maxRedirect: number = 5;
   data?: string;
-  readonly signal: AbortSignal = global.bases.abortController.signal;
+  readonly signal: AbortSignal = Bases.instance.abortController.signal;
   validateStatus?: (conditions: any) => boolean;
   paramsSerializer?: (params: any) => string;
 }

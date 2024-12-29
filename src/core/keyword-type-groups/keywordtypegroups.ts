@@ -7,10 +7,7 @@ export const KeywordTypeGroups: group = {
 
     async get(searchTerm?: string | number): Promise<KeywordTypeGroup[]> {
         const response = await _get(this.endpoint, searchTerm);
-        let returnItems = await Promise.all(response.data.items.map((item: KeywordTypeGroupItem) => KeywordTypeGroup.parse(item)));
-        if(!searchTerm && global.bases.core.isHydrated === false){
-            this.items = returnItems;
-        }
+        let returnItems = await response.data.items.map((item: KeywordTypeGroupItem) => KeywordTypeGroup.parse(item));
         return returnItems.length > 1 ? returnItems : returnItems[0];
     }
 };

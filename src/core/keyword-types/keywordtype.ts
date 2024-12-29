@@ -59,7 +59,7 @@ export class KeywordType implements KeywordTypeItem {
     );
     if(kt.dataType === "Currency"){
       if(kt.currencyFormatId !== undefined){
-        kt.currencyFormat = await CurrencyFormat.get(kt.currencyFormatId ?? global.bases.core.currencyformats.items[0].id);
+        kt.currencyFormat = await CurrencyFormat.get(kt.currencyFormatId); //I believe this is the default currency format
       }      
     }
     return kt;

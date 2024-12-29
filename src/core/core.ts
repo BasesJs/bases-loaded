@@ -7,48 +7,75 @@ import { AutofillKeysets } from './autofill-keysets/autofillkeysets.js';
 import { CustomQueries } from './custom-queries/customqueries.js';
 import { NoteTypes } from './note-types/notetypes.js';
 import { CurrencyFormats } from './currency-format/currencyformats.js';
-
-export const core = {
-    endpoint: "/onbase/core",
-    isHydrated: false,
-    autofillkeysets: AutofillKeysets,
-    currencyformats: CurrencyFormats,
-    customqueries: CustomQueries,
-    documenttypegroups: DocumentTypeGroups,
-    documenttypes: DocumentTypes,
-    filetypes: FileTypes,
-    keywordtypegroups: KeywordTypeGroups,
-    keywordtypes: KeywordTypes,    
-    notetypes: NoteTypes,
-    async hydrateCore(resolve?:(message:string)=>any, reject?:(error:any)=>any): Promise<void> {
-        core.isHydrated = false;
+import { Storage } from './storage/storage.js';
+import { Document } from './document/document.js';
+export class Core {    
+    static readonly endpoint: string = "/onbase/core"; 
+    static isHydrated: boolean = false; 
+    static AutofillKeysets: typeof AutofillKeysets = AutofillKeysets;
+    static CurrencyFormats: typeof CurrencyFormats = CurrencyFormats;
+    static CustomQueries: typeof CustomQueries = CustomQueries;
+    static DocumentTypeGroups: typeof DocumentTypeGroups = DocumentTypeGroups;
+    static DocumentTypes: typeof DocumentTypes = DocumentTypes;    
+    static FileTypes: typeof FileTypes = FileTypes;
+    static KeywordTypeGroups: typeof KeywordTypeGroups = KeywordTypeGroups;
+    static KeywordTypes: typeof KeywordTypes = KeywordTypes;
+    static NoteTypes: typeof NoteTypes = NoteTypes;
+    static Storage: any = new Storage();
+    static async hydrateCore(resolve?: (message: string) => any, reject?: (error: any) => any): Promise<void>{
+        Core.isHydrated = false;
         //ensure there is a cookie
-        await CurrencyFormats.get();        
-        await Promise.all([
-            FileTypes.get(),
-            DocumentTypeGroups.get(),
-            DocumentTypes.get(),
-            KeywordTypeGroups.get(),
-            KeywordTypes.get(),
-            AutofillKeysets.get(),
-            CustomQueries.get(),
-            //CurrencyFormats.get(),
-            NoteTypes.get()            
-        ]).then(async () => {
-            core.isHydrated = true;
-            if (resolve) {
-                resolve(`Core Status: ${core.isHydrated ? "Hydrated" : "Not Hydrated"}`);                
-            }
-        })
-        .catch((error: any) => {
-            if (reject) {
+        try{    
+            new Core();        
+            Core.AutofillKeysets.items = await AutofillKeysets.get();
+            Core.CurrencyFormats.items = await CurrencyFormats.get();       
+            Core.CustomQueries.items = await CustomQueries.get();
+            Core.FileTypes.items = await FileTypes.get();
+            Core.DocumentTypeGroups.items = await DocumentTypeGroups.get();
+            Core.DocumentTypes.items = await DocumentTypes.get();
+            Core.KeywordTypeGroups.items = await KeywordTypeGroups.get();
+            Core.KeywordTypes.items = await KeywordTypes.get();
+            Core.NoteTypes.items = await NoteTypes.get(); 
+            Core.isHydrated = true;
+            if(resolve){
+                resolve(`Core Status: ${Core.isHydrated ? "Hydrated" : "Not Hydrated"}`);
+            }            
+        }
+        catch(error){
+            if(reject){
                 reject(error);
             }
-        });
-    },
-    // async getDocument(id: string, getKeywords: boolean, getRevisions: boolean): Promise<any> {
-    //     const data = await Document.get(id, getKeywords, getRevisions);
-    //     return data;
-    // }
+        }
+    }
+    static async getDocument(id: string, retrievalOptions?: {
+        getKeywords?: boolean,
+        unmaskKeywords?: boolean,
+        getRevisions?: boolean,
+        getNotes?: boolean,
+        getHistory?: boolean
+    }): Promise<Document> {
+        return await Document.get(id, retrievalOptions);
+    }
+    
 }
-
+/*export interface CoreInterface {
+    isHydrated: boolean;
+    autofillkeysets: typeof AutofillKeysets;
+    currencyformats: typeof CurrencyFormats;
+    customqueries: typeof CustomQueries;
+    documenttypegroups: typeof DocumentTypeGroups;
+    documenttypes: typeof DocumentTypes;
+    filetypes: typeof FileTypes;
+    keywordtypegroups: typeof KeywordTypeGroups;
+    keywordtypes: typeof KeywordTypes;
+    notetypes: typeof NoteTypes;
+    storage: typeof Storage;
+    hydrateCore(resolve?: (message: string) => any, reject?: (error: any) => any): Promise<void>;
+    getDocument(id: string, retrievalOptions?: {
+        getKeywords?: boolean,
+        unmaskKeywords?: boolean,
+        getRevisions?: boolean,
+        getNotes?: boolean,
+        getHistory?: boolean
+    }): Promise<Document>
+}*/

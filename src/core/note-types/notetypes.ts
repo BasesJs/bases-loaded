@@ -6,10 +6,7 @@ export const NoteTypes: group = {
     items: [],
     async get(searchTerm?: any): Promise<NoteType[]> {
         const response = await _get(this.endpoint, searchTerm);
-        let returnItems = await Promise.all(response.data.items.map((item: any) => NoteType.parse(item)));
-        if(!searchTerm && global.bases.core.isHydrated === false){
-            this.items = returnItems;
-        }
+        let returnItems = await response.data.items.map((item: any) => NoteType.parse(item));
         return returnItems.length > 1 ? returnItems : returnItems[0];
     },
 };

@@ -6,10 +6,7 @@ export const DocumentTypeGroups: group = {
     items: [] as DocumentTypeGroup[],
     async get(searchTerm?: string | number): Promise<DocumentTypeGroup[]> {
         const response = await _get(this.endpoint, searchTerm);
-        let returnItems = await Promise.all(response.data.items.map((it: DocumentTypeGroupItem) => DocumentTypeGroup.parse(it)));
-        if(!searchTerm && global.bases.core.isHydrated === false){
-            this.items = returnItems;
-        }
+        let returnItems = await response.data.items.map((it: DocumentTypeGroupItem) => DocumentTypeGroup.parse(it));
         return returnItems.length > 1 ? returnItems : returnItems[0];
     }
 }

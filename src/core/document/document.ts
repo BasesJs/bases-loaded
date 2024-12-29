@@ -39,7 +39,7 @@ export class Document implements DocumentItem {
     static readonly endpoint: string = "/documents";
     static async parse(data: DocumentItem): Promise<Document> {
         const doc = new Document(data.id, data.name, data.typeId, data.createdByUserId, data.storedDate, data.documentDate, data.status, data.captureProperties ? CaptureProperties.parse(data.captureProperties) : undefined);
-        doc.documentType = await DocumentType.get(doc.id);
+        doc.documentType = await DocumentType.get(doc.typeId);
         return doc;
     }
     /**

@@ -10,14 +10,16 @@ export class DocumentImport {
     FileExtension: string;
     UploadIds?: string[];
     KeywordCollection?: KeywordModifier;
+    storeAsNew: boolean;
 
-    constructor(documentType: DocumentType, fileType: FileType, documentDate: Date, filePaths: string[], fileExtension: string) {
+    constructor(documentType: DocumentType, fileType: FileType, documentDate: Date, filePaths: string[], fileExtension: string, storeAsNew: boolean = true) {
         this.DocumentType = documentType;
         this.FileType = fileType;
         this.DocumentDate = documentDate;
         this.FilePaths = filePaths;
         this.FileExtension = fileExtension;
         this.UploadIds = [];
+        this.storeAsNew = storeAsNew;
     }
 
     static async create(documentTypeId: string, filePaths: string[], documentDate: Date): Promise<DocumentImport> {
@@ -25,8 +27,8 @@ export class DocumentImport {
         if(docType === null){
             throw new Error("DocumentType does not exist");
         }
-        const fileExtension = getFileExtension(filePaths[0]);
 
+        const fileExtension = getFileExtension(filePaths[0]);
         if (!filePaths.every(path => path.split('.').pop() === fileExtension)) {
             throw new Error("All files in a document must have the same file extension.");
         }
@@ -35,6 +37,7 @@ export class DocumentImport {
         if (fileTypeId === null) {
             throw new Error("Could not determine FileType.");
         }
+        
         let fileType = await FileType.get(fileTypeId);
         if (fileType === null) {
             throw new Error("FileType does not exist.");
