@@ -1,0 +1,165 @@
+{
+    "documentTypeId": "209",
+    "fileTypeId": "16",
+    "documentDate": "2025-01-02",
+    "uploadIds": [
+        {
+            "id": "c3665616-5980-43c2-ba3e-e5cfc8dcb8ab"
+        }
+    ],
+    "keywordCollection": {
+        "keywordGuid": "0ed2e049-4477-44c3-9858-076e92a73b0c",
+        "items": [
+            {
+                "keywords": [
+                    {
+                        "typeId": "296",
+                        "values": [] # <----WHY NO VALUES?
+                    },
+                    {
+                        "typeId": "303",
+                        "values": []
+                    },
+                    {
+                        "typeId": "298",
+                        "values": []
+                    },
+                    {
+                        "typeId": "297",
+                        "values": []
+                    },
+                    {
+                        "typeId": "300",
+                        "values": []
+                    }
+                ]
+            },
+            {
+                "keywords": [
+                    {
+                        "typeId": "288",
+                        "values": []
+                    },
+                    {
+                        "typeId": "286",
+                        "values": []
+                    },
+                    {
+                        "typeId": "2",
+                        "values": []
+                    },
+                    {
+                        "typeId": "285",
+                        "values": []
+                    },
+                    {
+                        "typeId": "287",
+                        "values": []
+                    }
+                ],
+                "typeGroupId": "115"
+            },
+            {
+                "instanceId": "92d36603-f135-499b-980f-ab42af9f9dca",
+                "keywords": [
+                    {
+                        "typeId": "290",
+                        "values": []
+                    },
+                    {
+                        "typeId": "289",
+                        "values": []
+                    },
+                    {
+                        "typeId": "295",
+                        "values": []
+                    },
+                    {
+                        "typeId": "293",
+                        "values": []
+                    },
+                    {
+                        "typeId": "291",
+                        "values": []
+                    },
+                    {
+                        "typeId": "292",
+                        "values": []
+                    },
+                    {
+                        "typeId": "294",
+                        "values": []
+                    }
+                ],
+                "typeGroupId": "116"
+            },
+            {
+                "instanceId": "261e966b-ae1e-40dd-b549-f01fef35fa27",
+                "keywords": [
+                    {
+                        "typeId": "266",
+                        "values": []
+                    },
+                    {
+                        "typeId": "268",
+                        "values": []
+                    },
+                    {
+                        "typeId": "276",
+                        "values": []
+                    },
+                    {
+                        "typeId": "270",
+                        "values": []
+                    },
+                    {
+                        "typeId": "271",
+                        "values": []
+                    },
+                    {
+                        "typeId": "269",
+                        "values": []
+                    },
+                    {
+                        "typeId": "272",
+                        "values": []
+                    },
+                    {
+                        "typeId": "273",
+                        "values": []
+                    },
+                    {
+                        "typeId": "280",
+                        "values": []
+                    }
+                ],
+                "typeGroupId": "118"
+            },
+            {
+                "keywords": [
+                    {
+                        "typeId": "196",
+                        "values": []
+                    },
+                    {
+                        "typeId": "261",
+                        "values": []
+                    },
+                    {
+                        "typeId": "197",
+                        "values": []
+                    },
+                    {
+                        "typeId": "136",
+                        "values": []
+                    },
+                    {
+                        "typeId": "283",
+                        "values": []
+                    }
+                ],
+                "typeGroupId": "119"
+            }
+        ]
+    }
+}

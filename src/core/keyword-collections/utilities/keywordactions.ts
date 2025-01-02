@@ -1,6 +1,11 @@
 import { KeywordItem } from '../../keyword/keyword.js';
 import { KeywordCollectionItem } from '../keywordcollections.js';
 
+export function keywordInItem(item: KeywordCollectionItem, typeId: string): boolean {
+    const key =  item.keywords.find(it => it.typeId === typeId);
+    return key ? true : false;
+}
+
 export async function AddKeyword(item: KeywordCollectionItem, keyword: KeywordItem, index?: number): Promise<void> {
     const kw = await Promise.all(item.keywords.filter(async (it) => {
         if (it.typeId === keyword.typeId) {

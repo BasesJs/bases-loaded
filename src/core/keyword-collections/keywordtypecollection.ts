@@ -9,7 +9,6 @@ export class DocumentKeywordTypes implements KeywordTypeCollection{
         return new DocumentKeywordTypes(data.keywordOptions, data.items);
     }
 }
-
 export interface KeywordTypeCollection{
     keywordOptions: KeywordOptions;
     items: KeywordTypeCollectionItem[];

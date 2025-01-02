@@ -1,39 +1,33 @@
-import {AuthenticationTest } from "./Authentication/Auth-Test.js";
-import { GetDocumentTest } from "./Document/get-document/test-get-document.js";
-import { ModifyDocumentTest } from "./Document/modify-document/test-modify-document.js";
+import { AuthenticationTest } from "./Authentication/Auth-Test.js";
 import { createRequire } from "module";
 import { Core } from "../dist/core/core.js";
 import { Bases } from "../dist/bases.js";
-import { DocumentTypes } from "../dist/core/document-types/documenttypes.js";
+import { Storage } from "../dist/core/storage/storage.js";
 const require = createRequire(import.meta.url);
 require('dotenv').config();
-
 const events = require('events');
-events.EventEmitter.defaultMaxListeners = 10;
+events.EventEmitter.defaultMaxListeners = 25;
+
 const bases = await AuthenticationTest("RESTAPI", "P@ssw0rd");
 try {    
-    const doc = await Core.getDocument("150", {
-        getKeywords: true,
-        unmaskKeywords: true,
-        getRevisions: false,
-        getNotes: false,
-        getHistory: false
-    });    
+    const docImport = await Storage.createDocumentImport("209", ["tests\\resources\\NPS_PS_Intro.mp4"], new Date());
+    const invNumKt = await Core.KeywordTypes.get("Invoice Number");
+    const invNumKw = await invNumKt.create(`INV-2025-${Math.floor(1000 + Math.random() * 9000)}`);
+    const custPOKt = await Core.KeywordTypes.get("Customer PO");
+    const custPOKw = await custPOKt.create(`PO-2025-${Math.floor(1000 + Math.random() * 9000)}`);
+    const amtKt = await Core.KeywordTypes.get("Amount");
+    const amtKw = await amtKt.create("10000.00");
+    const dueKt = await Core.KeywordTypes.get("Due Date");
+    const dueKw = await dueKt.create("2/5/2025");
 
-    const keyMod = await doc.createKeywordModifier();
-    const keyType = Core.KeywordTypes.items.find(kt => kt.name === "customer Id");
-    const newKeyword = keyType.create(["INV1221221", "INV321-12345"]);
-    const existingKeyword = doc.keywordRecords.Keywords.find(kw => kw.typeId === keyType.id);
-    if(existingKeyword.hasValue()){
-        console.log("Keyword exists with value: ", existingKeyword.getValue());
-        await keyMod.updateKeyword(existingKeyword.getValue(), newKeyword);
-    }
-    else{
-        await keyMod.addKeyword(newKeyword);
-    }  
-    console.log("Keywords in Keymod: ", {...keyMod.items[0].keywords[0]});
-    //await keyMod.apply();
+    docImport.KeywordCollection.addKeyword(invNumKw);
+    docImport.KeywordCollection.addKeyword(custPOKw);
+    docImport.KeywordCollection.addKeyword(amtKw);
+    docImport.KeywordCollection.addKeyword(dueKw);
 
+    //console.log(JSON.stringify(docImport.KeywordCollection));
+    await Storage.import(docImport, progressUpdate);
+    
 }
 catch (error) {
     console.error(error);
@@ -42,3 +36,7 @@ finally {
     console.log("Disconnecting...");
     await Bases.instance.disconnect();
 }
+
+function progressUpdate(progress) {
+    console.log(`Import Progress: ${progress}%`);
+  }

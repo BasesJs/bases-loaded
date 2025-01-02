@@ -1,7 +1,7 @@
 import { _getbyid } from "../baseclass/baseclass.js";
 import { DocumentType } from "../document-types/documenttype.js";
 import { KeywordCollection, KeywordRecordCollection } from "../keyword-collections/keywordcollections.js";
-import { KeywordModifier } from "../keyword-collections/keywordmodifier.js";
+import { DocumentKeywordModifier } from "../keyword-collections/keywordmodifier.js";
 import { Revision, getRevisions } from "./revisions/revision.js";
 import { getRenditions } from "./renditions/rendition.js";
 import { DocumentKeywords } from "./keywords/documentkeywords.js";
@@ -120,12 +120,12 @@ export class Document implements DocumentItem {
      *  Runs asynchronously in the case that the keywords have not been fetched yet.
      * @returns A KeywordCollectionModifier object that can be used to modify the keywords of the document.
      */
-    async createKeywordModifier(): Promise<KeywordModifier>{        
+    async createKeywordModifier(): Promise<DocumentKeywordModifier>{        
         if(!this.keywordRecords){
             const response = await DocumentKeywords(this.id, true);
             this.keywordRecords = await KeywordRecordCollection.parse(response.data as KeywordCollection);
         }
-        return new KeywordModifier(this.keywordRecords, this.id);
+        return new DocumentKeywordModifier(this.keywordRecords, this.id);
     }
 }
 

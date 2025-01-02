@@ -7,10 +7,12 @@ import { KeywordValueItem } from "../../keyword/keywordvalue.js";
  * @returns True or False
  */
 export function DataTypeCheck(keyType: KeywordType, value: string): boolean {
-    if (keyType.dataType === "Date" || keyType.dataType === "DateTime") {
+    if (keyType.dataType === "Date" || keyType.dataType === "DateTime") {        
         try{
             let date = parseFromHylandDateString(value); 
-            return true;
+            if(!isNaN(date.getTime())){
+                return true;
+            }
         } catch(err){};
         try{
             let date = new Date(value);
@@ -64,15 +66,24 @@ export function convertObjectValueToString(object: any, keyType: KeywordType): K
             }
             break;
         case typeof object === 'string':
-            DataTypeCheck(keyType, object)
-            strArray.push(object);
+            DataTypeCheck(keyType, object);
+            if(keyType.dataType === "DateTime"){
+                strArray.push(convertToHylandDateString(new Date(object)));
+            }
+            else if(keyType.dataType === "Date"){
+                strArray.push(convertToHylandDateString(new Date(object)).split("T")[0]);
+            }
+            else{
+                strArray.push(object);
+            }            
             break;
         case typeof object === 'number':
             DataTypeCheck(keyType, object.toString())
-            strArray.push(`${object}`);
+            strArray.push(object.toString());
             break;
         case object instanceof Date:
             DataTypeCheck(keyType, object.toString())
+            console.log("Date String: ",convertToHylandDateString(object));
             strArray.push(convertToHylandDateString(object));
             break;
         default:
@@ -85,7 +96,7 @@ export function convertObjectValueToString(object: any, keyType: KeywordType): K
     });
     return returnValues;
 }
-function convertToHylandDateString(date: Date): string {
+export function convertToHylandDateString(date: Date): string {
     let year = date.getFullYear();
     let month = date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
     let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();

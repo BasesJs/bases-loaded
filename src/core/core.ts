@@ -21,7 +21,7 @@ export class Core {
     static KeywordTypeGroups: typeof KeywordTypeGroups = KeywordTypeGroups;
     static KeywordTypes: typeof KeywordTypes = KeywordTypes;
     static NoteTypes: typeof NoteTypes = NoteTypes;
-    static Storage: any = new Storage();
+    static Storage: Storage = new Storage();
     static async hydrateCore(resolve?: (message: string) => any, reject?: (error: any) => any): Promise<void>{
         Core.isHydrated = false;
         //ensure there is a cookie

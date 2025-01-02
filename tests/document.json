@@ -1,297 +1,3198 @@
 {
   "id": "149",
   "name": "CUS Invoice - 5/18/2024",
-  "systemName": "CUS Invoice - 5/18/2024",
   "typeId": "209",
   "createdByUserId": "2",
   "storedDate": "2024-05-18T15:45:44",
   "documentDate": "2024-05-18",
   "status": "Active",
-  "keywords": [
+  "keywordRecords": {
+    "keywordGuid": "c1b01bb3-e665-4118-ada8-e25d73eb17bb",
+    "items": [
+      {
+        "keywords": [
+          {
+            "typeId": "296",
+            "values": [
+              {
+                "formattedValue": "12345",
+                "value": "12345"
+              }
+            ]
+          },
+          {
+            "typeId": "303",
+            "values": []
+          },
+          {
+            "typeId": "298",
+            "values": [
+              {
+                "formattedValue": "6/18/2024",
+                "value": "2024-06-18"
+              }
+            ]
+          },
+          {
+            "typeId": "297",
+            "values": [
+              {
+                "formattedValue": "PO100101",
+                "value": "PO100101"
+              }
+            ]
+          },
+          {
+            "typeId": "300",
+            "values": [
+              {
+                "formattedValue": "$500.00",
+                "value": "500.00"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "keywords": [
+          {
+            "typeId": "288",
+            "values": [
+              {
+                "formattedValue": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb",
+                "value": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb"
+              }
+            ]
+          },
+          {
+            "typeId": "286",
+            "values": [
+              {
+                "formattedValue": "5/18/2024 9:00:00 AM",
+                "value": "2024-05-18T09:00:00"
+              }
+            ]
+          },
+          {
+            "typeId": "2",
+            "values": [
+              {
+                "formattedValue": "THISFILE.PDF",
+                "value": "THISFILE.PDF"
+              }
+            ]
+          },
+          {
+            "typeId": "285",
+            "values": [
+              {
+                "formattedValue": "2719744",
+                "value": "2719744"
+              }
+            ]
+          },
+          {
+            "typeId": "287",
+            "values": [
+              {
+                "formattedValue": "INTEGRATION",
+                "value": "INTEGRATION"
+              }
+            ]
+          }
+        ],
+        "typeGroupId": "115"
+      },
+      {
+        "groupId": "101",
+        "instanceId": "bd6b080b-0610-4f1d-b7d3-697784ee7991",
+        "keywords": [
+          {
+            "typeId": "290",
+            "values": [
+              {
+                "formattedValue": "35",
+                "value": "35"
+              }
+            ]
+          },
+          {
+            "typeId": "289",
+            "values": [
+              {
+                "formattedValue": "Bob Barker",
+                "value": "Bob Barker"
+              }
+            ]
+          },
+          {
+            "typeId": "295",
+            "values": [
+              {
+                "formattedValue": "HOME",
+                "value": "HOME"
+              }
+            ]
+          },
+          {
+            "typeId": "293",
+            "values": [
+              {
+                "formattedValue": "11252 Road Street",
+                "value": "11252 Road Street"
+              }
+            ]
+          },
+          {
+            "typeId": "291",
+            "values": [
+              {
+                "formattedValue": "Townsville",
+                "value": "Townsville"
+              }
+            ]
+          },
+          {
+            "typeId": "292",
+            "values": [
+              {
+                "formattedValue": "OH",
+                "value": "OH"
+              }
+            ]
+          },
+          {
+            "typeId": "294",
+            "values": [
+              {
+                "formattedValue": "44107-    ",
+                "value": "44107"
+              }
+            ]
+          }
+        ],
+        "typeGroupId": "116"
+      },
+      {
+        "groupId": "102",
+        "instanceId": "d925cdb3-0f57-44f8-8f54-be469bc46e4d",
+        "keywords": [
+          {
+            "typeId": "290",
+            "values": [
+              {
+                "formattedValue": "15",
+                "value": "15"
+              }
+            ]
+          },
+          {
+            "typeId": "289",
+            "values": [
+              {
+                "formattedValue": "Jane Barker",
+                "value": "Jane Barker"
+              }
+            ]
+          },
+          {
+            "typeId": "295",
+            "values": [
+              {
+                "formattedValue": "HOME",
+                "value": "HOME"
+              }
+            ]
+          },
+          {
+            "typeId": "293",
+            "values": [
+              {
+                "formattedValue": "11252 Road Street",
+                "value": "11252 Road Street"
+              }
+            ]
+          },
+          {
+            "typeId": "291",
+            "values": [
+              {
+                "formattedValue": "Townsville",
+                "value": "Townsville"
+              }
+            ]
+          },
+          {
+            "typeId": "292",
+            "values": [
+              {
+                "formattedValue": "OH",
+                "value": "OH"
+              }
+            ]
+          },
+          {
+            "typeId": "294",
+            "values": [
+              {
+                "formattedValue": "44107-    ",
+                "value": "44107"
+              }
+            ]
+          }
+        ],
+        "typeGroupId": "116"
+      },
+      {
+        "groupId": "103",
+        "instanceId": "82146a46-aa7b-4df2-aa6d-b0d4b4f6b1ae",
+        "keywords": [
+          {
+            "typeId": "266",
+            "values": [
+              {
+                "formattedValue": "1",
+                "value": "1"
+              }
+            ]
+          },
+          {
+            "typeId": "268",
+            "values": [
+              {
+                "formattedValue": "Byron Scott",
+                "value": "Byron Scott"
+              }
+            ]
+          },
+          {
+            "typeId": "276",
+            "values": []
+          },
+          {
+            "typeId": "270",
+            "values": [
+              {
+                "formattedValue": "12345 Request Drive",
+                "value": "12345 Request Drive"
+              }
+            ]
+          },
+          {
+            "typeId": "271",
+            "values": [
+              {
+                "formattedValue": "Cleveland",
+                "value": "Cleveland"
+              }
+            ]
+          },
+          {
+            "typeId": "269",
+            "values": [
+              {
+                "formattedValue": "bscott@request.gov",
+                "value": "bscott@request.gov"
+              }
+            ]
+          },
+          {
+            "typeId": "272",
+            "values": [
+              {
+                "formattedValue": "Oh",
+                "value": "Oh"
+              }
+            ]
+          },
+          {
+            "typeId": "273",
+            "values": [
+              {
+                "formattedValue": "44321",
+                "value": "44321"
+              }
+            ]
+          },
+          {
+            "typeId": "280",
+            "values": []
+          }
+        ],
+        "typeGroupId": "118"
+      },
+      {
+        "keywords": [
+          {
+            "typeId": "196",
+            "values": []
+          },
+          {
+            "typeId": "261",
+            "values": [
+              {
+                "formattedValue": "B",
+                "value": "B"
+              }
+            ]
+          },
+          {
+            "typeId": "197",
+            "values": [
+              {
+                "formattedValue": "AGA",
+                "value": "AGA"
+              }
+            ]
+          },
+          {
+            "typeId": "136",
+            "values": [
+              {
+                "formattedValue": "YES",
+                "value": "YES"
+              }
+            ]
+          },
+          {
+            "typeId": "283",
+            "values": [
+              {
+                "formattedValue": "222-44-5667",
+                "value": "222-44-5667"
+              }
+            ]
+          }
+        ],
+        "typeGroupId": "119"
+      }
+    ],
+    "Keywords": [
+      {
+        "typeId": "296",
+        "values": [
+          {
+            "value": "12345",
+            "formattedValue": "12345"
+          }
+        ]
+      },
+      {
+        "typeId": "303",
+        "values": []
+      },
+      {
+        "typeId": "298",
+        "values": [
+          {
+            "value": "2024-06-18",
+            "formattedValue": "6/18/2024"
+          }
+        ]
+      },
+      {
+        "typeId": "297",
+        "values": [
+          {
+            "value": "PO100101",
+            "formattedValue": "PO100101"
+          }
+        ]
+      },
+      {
+        "typeId": "300",
+        "values": [
+          {
+            "value": "500.00",
+            "formattedValue": "$500.00"
+          }
+        ]
+      }
+    ],
+    "RecordGroups": [
+      {
+        "typeGroupId": "115",
+        "groupId": "Document Information",
+        "keywords": [
+          {
+            "typeId": "288",
+            "values": [
+              {
+                "value": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb",
+                "formattedValue": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb"
+              }
+            ]
+          },
+          {
+            "typeId": "286",
+            "values": [
+              {
+                "value": "2024-05-18T09:00:00",
+                "formattedValue": "5/18/2024 9:00:00 AM"
+              }
+            ]
+          },
+          {
+            "typeId": "2",
+            "values": [
+              {
+                "value": "THISFILE.PDF",
+                "formattedValue": "THISFILE.PDF"
+              }
+            ]
+          },
+          {
+            "typeId": "285",
+            "values": [
+              {
+                "value": "2719744",
+                "formattedValue": "2719744"
+              }
+            ]
+          },
+          {
+            "typeId": "287",
+            "values": [
+              {
+                "value": "INTEGRATION",
+                "formattedValue": "INTEGRATION"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "typeGroupId": "119",
+        "groupId": "Security",
+        "keywords": [
+          {
+            "typeId": "196",
+            "values": []
+          },
+          {
+            "typeId": "261",
+            "values": [
+              {
+                "value": "B",
+                "formattedValue": "B"
+              }
+            ]
+          },
+          {
+            "typeId": "197",
+            "values": [
+              {
+                "value": "AGA",
+                "formattedValue": "AGA"
+              }
+            ]
+          },
+          {
+            "typeId": "136",
+            "values": [
+              {
+                "value": "YES",
+                "formattedValue": "YES"
+              }
+            ]
+          },
+          {
+            "typeId": "283",
+            "values": [
+              {
+                "value": "222-44-5667",
+                "formattedValue": "222-44-5667"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "MultiRecordGroups": [
+      {
+        "typeGroupId": "116",
+        "name": "Customer Information",
+        "records": [
+          {
+            "typeGroupId": "116",
+            "name": "102",
+            "groupId": "Customer Information",
+            "keywords": [
+              {
+                "typeId": "290",
+                "values": [
+                  {
+                    "value": "15",
+                    "formattedValue": "15"
+                  }
+                ]
+              },
+              {
+                "typeId": "289",
+                "values": [
+                  {
+                    "value": "Jane Barker",
+                    "formattedValue": "Jane Barker"
+                  }
+                ]
+              },
+              {
+                "typeId": "295",
+                "values": [
+                  {
+                    "value": "HOME",
+                    "formattedValue": "HOME"
+                  }
+                ]
+              },
+              {
+                "typeId": "293",
+                "values": [
+                  {
+                    "value": "11252 Road Street",
+                    "formattedValue": "11252 Road Street"
+                  }
+                ]
+              },
+              {
+                "typeId": "291",
+                "values": [
+                  {
+                    "value": "Townsville",
+                    "formattedValue": "Townsville"
+                  }
+                ]
+              },
+              {
+                "typeId": "292",
+                "values": [
+                  {
+                    "value": "OH",
+                    "formattedValue": "OH"
+                  }
+                ]
+              },
+              {
+                "typeId": "294",
+                "values": [
+                  {
+                    "value": "44107",
+                    "formattedValue": "44107-    "
+                  }
+                ]
+              }
+            ],
+            "instanceId": "d925cdb3-0f57-44f8-8f54-be469bc46e4d"
+          }
+        ]
+      },
+      {
+        "typeGroupId": "116",
+        "name": "Customer Information",
+        "records": [
+          {
+            "typeGroupId": "116",
+            "name": "101",
+            "groupId": "Customer Information",
+            "keywords": [
+              {
+                "typeId": "290",
+                "values": [
+                  {
+                    "value": "35",
+                    "formattedValue": "35"
+                  }
+                ]
+              },
+              {
+                "typeId": "289",
+                "values": [
+                  {
+                    "value": "Bob Barker",
+                    "formattedValue": "Bob Barker"
+                  }
+                ]
+              },
+              {
+                "typeId": "295",
+                "values": [
+                  {
+                    "value": "HOME",
+                    "formattedValue": "HOME"
+                  }
+                ]
+              },
+              {
+                "typeId": "293",
+                "values": [
+                  {
+                    "value": "11252 Road Street",
+                    "formattedValue": "11252 Road Street"
+                  }
+                ]
+              },
+              {
+                "typeId": "291",
+                "values": [
+                  {
+                    "value": "Townsville",
+                    "formattedValue": "Townsville"
+                  }
+                ]
+              },
+              {
+                "typeId": "292",
+                "values": [
+                  {
+                    "value": "OH",
+                    "formattedValue": "OH"
+                  }
+                ]
+              },
+              {
+                "typeId": "294",
+                "values": [
+                  {
+                    "value": "44107",
+                    "formattedValue": "44107-    "
+                  }
+                ]
+              }
+            ],
+            "instanceId": "bd6b080b-0610-4f1d-b7d3-697784ee7991"
+          }
+        ]
+      },
+      {
+        "typeGroupId": "118",
+        "name": "Request Information",
+        "records": [
+          {
+            "typeGroupId": "118",
+            "name": "103",
+            "groupId": "Request Information",
+            "keywords": [
+              {
+                "typeId": "266",
+                "values": [
+                  {
+                    "value": "1",
+                    "formattedValue": "1"
+                  }
+                ]
+              },
+              {
+                "typeId": "268",
+                "values": [
+                  {
+                    "value": "Byron Scott",
+                    "formattedValue": "Byron Scott"
+                  }
+                ]
+              },
+              {
+                "typeId": "276",
+                "values": []
+              },
+              {
+                "typeId": "270",
+                "values": [
+                  {
+                    "value": "12345 Request Drive",
+                    "formattedValue": "12345 Request Drive"
+                  }
+                ]
+              },
+              {
+                "typeId": "271",
+                "values": [
+                  {
+                    "value": "Cleveland",
+                    "formattedValue": "Cleveland"
+                  }
+                ]
+              },
+              {
+                "typeId": "269",
+                "values": [
+                  {
+                    "value": "bscott@request.gov",
+                    "formattedValue": "bscott@request.gov"
+                  }
+                ]
+              },
+              {
+                "typeId": "272",
+                "values": [
+                  {
+                    "value": "Oh",
+                    "formattedValue": "Oh"
+                  }
+                ]
+              },
+              {
+                "typeId": "273",
+                "values": [
+                  {
+                    "value": "44321",
+                    "formattedValue": "44321"
+                  }
+                ]
+              },
+              {
+                "typeId": "280",
+                "values": []
+              }
+            ],
+            "instanceId": "82146a46-aa7b-4df2-aa6d-b0d4b4f6b1ae"
+          }
+        ]
+      }
+    ]
+  },
+  "revisions": [
+    {}
+  ],
+  "notes": [
     {
-      "id": "296",
-      "name": "Invoice Number",
-      "values": [
-        {
-          "value": "12345",
-          "formattedValue": "12345"
-        }
-      ],
-      "dataType": "Alphanumeric"
+      "id": "101",
+      "noteTypeId": "101",
+      "title": "CoolNote - 12/22/2024",
+      "text": "test 123",
+      "createdUserId": "2",
+      "created": "2024-12-22T08:29:21",
+      "documentId": "149",
+      "documentRevisionId": "0",
+      "page": 1,
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "privileges": {},
+      "displayFlags": {}
     },
     {
-      "id": "298",
-      "name": "Due Date",
-      "values": [
-        {
-          "value": "2024-06-18",
-          "formattedValue": "6/18/2024"
-        }
-      ],
-      "dataType": "Date"
+      "id": "102",
+      "noteTypeId": "101",
+      "title": "CoolNote - 12/22/2024",
+      "text": "second note",
+      "createdUserId": "2",
+      "created": "2024-12-22T08:29:35",
+      "documentId": "149",
+      "documentRevisionId": "0",
+      "page": 1,
+      "x": 311,
+      "y": 210,
+      "width": 0,
+      "height": 0,
+      "privileges": {},
+      "displayFlags": {}
+    }
+  ],
+  "history": [
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-24T09:04:38.977",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
     },
     {
-      "id": "297",
-      "name": "Customer PO",
-      "values": [
-        {
-          "value": "PO100101",
-          "formattedValue": "PO100101"
-        }
-      ],
-      "dataType": "Alphanumeric"
+      "action": "Accessed Content",
+      "logDate": "2024-12-22T10:47:24.517",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
     },
     {
-      "id": "300",
-      "name": "Amount",
-      "values": [
-        {
-          "value": "500.00",
-          "formattedValue": "$500.00"
-        }
-      ],
-      "dataType": "Currency"
-    }
-  ],
-  "recordgroups": [
+      "action": "Accessed Content",
+      "logDate": "2024-12-22T10:47:24.517",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
     {
-      "id": "115",
-      "name": "Document Information",
-      "keywords": [
-        {
-          "id": "288",
-          "name": "Document Id",
-          "values": [
-            {
-              "value": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb",
-              "formattedValue": "e4dad67b-77e4-439f-8288-0b36d8d6f2eb"
-            }
-          ],
-          "dataType": "Alphanumeric"
-        },
-        {
-          "id": "287",
-          "name": "System of Origin",
-          "values": [
-            {
-              "value": "INTEGRATION",
-              "formattedValue": "INTEGRATION"
-            }
-          ],
-          "dataType": "Alphanumeric"
-        },
-        {
-          "id": "285",
-          "name": "File Size",
-          "values": [
-            {
-              "value": "2719744",
-              "formattedValue": "2719744"
-            }
-          ],
-          "dataType": "Numeric20"
-        },
-        {
-          "id": "2",
-          "name": "File Name",
-          "values": [
-            {
-              "value": "THISFILE.PDF",
-              "formattedValue": "THISFILE.PDF"
-            }
-          ],
-          "dataType": "Alphanumeric"
-        },
-        {
-          "id": "286",
-          "name": "Document DateTime",
-          "values": [
-            {
-              "value": "2024-05-18T09:00:00",
-              "formattedValue": "5/18/2024 9:00:00 AM"
-            }
-          ],
-          "dataType": "DateTime"
-        }
-      ]
-    }
-  ],
-  "multirecordgroups": [
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:47:17.297",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
     {
-      "typeGroupId": "116",
-      "recordgroups": [
-        {
-          "id": "101",
-          "name": "Customer Information",
-          "keywords": [
-            {
-              "id": "293",
-              "name": "Customer Address",
-              "values": [
-                {
-                  "value": "11252 Road Street",
-                  "formattedValue": "11252 Road Street"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "291",
-              "name": "Customer City",
-              "values": [
-                {
-                  "value": "Townsville",
-                  "formattedValue": "Townsville"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "290",
-              "name": "Customer Id",
-              "values": [
-                {
-                  "value": "35",
-                  "formattedValue": "35"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "295",
-              "name": "Customer Address Type",
-              "values": [
-                {
-                  "value": "HOME",
-                  "formattedValue": "HOME"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "294",
-              "name": "Customer ZipCode",
-              "values": [
-                {
-                  "value": "44107",
-                  "formattedValue": "44107-    "
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "292",
-              "name": "Customer State",
-              "values": [
-                {
-                  "value": "OH",
-                  "formattedValue": "OH"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "289",
-              "name": "Customer Name",
-              "values": [
-                {
-                  "value": "Bob Barker",
-                  "formattedValue": "Bob Barker"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            }
-          ],
-          "instanceId": "ea26e033-d34b-40c7-967f-2ad76e5a111a"
-        },
-        {
-          "id": "102",
-          "name": "Customer Information",
-          "keywords": [
-            {
-              "id": "289",
-              "name": "Customer Name",
-              "values": [
-                {
-                  "value": "Jane Barker",
-                  "formattedValue": "Jane Barker"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "290",
-              "name": "Customer Id",
-              "values": [
-                {
-                  "value": "15",
-                  "formattedValue": "15"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "291",
-              "name": "Customer City",
-              "values": [
-                {
-                  "value": "Townsville",
-                  "formattedValue": "Townsville"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "295",
-              "name": "Customer Address Type",
-              "values": [
-                {
-                  "value": "HOME",
-                  "formattedValue": "HOME"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "292",
-              "name": "Customer State",
-              "values": [
-                {
-                  "value": "OH",
-                  "formattedValue": "OH"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "293",
-              "name": "Customer Address",
-              "values": [
-                {
-                  "value": "11252 Road Street",
-                  "formattedValue": "11252 Road Street"
-                }
-              ],
-              "dataType": "Alphanumeric"
-            },
-            {
-              "id": "294",
-              "name": "Customer ZipCode",
-              "values": [
-                {
-                  "value": "44107",
-                  "formattedValue": "44107-    "
-                }
-              ],
-              "dataType": "Alphanumeric"
-            }
-          ],
-          "instanceId": "a3dde5b9-f48d-4044-9c38-59d40b88b235"
-        }
-      ],
-      "name": "Customer Information"
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:47:17.297",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:47:17.297",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:47:17.297",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T10:47:17.187",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T10:47:17.187",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:46:43.547",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:46:43.530",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:46:43.530",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:46:43.530",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T10:46:43.420",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T10:46:43.420",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:45:58.717",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:45:58.717",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T10:45:58.610",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:45:48.953",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T10:45:48.953",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T10:45:48.843",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T09:42:40.853",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T09:42:40.853",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T09:42:40.840",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T09:42:40.840",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:42:39.933",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:42:39.933",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:52.140",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:52.140",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:47.370",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Delete Keyword",
+      "logDate": "2024-12-22T09:36:44.990",
+      "message": "Deleted Keyword (RRM - Request Number) '2' from 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:37.147",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:22.783",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:22.783",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:36:17.580",
+      "message": "Added Keyword (RRM - Request Number) '2' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:36:03.963",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:35:17.080",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:35:17.080",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.337",
+      "message": "Added Keyword (RRM - Requestor Name) 'Byron Scott' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.337",
+      "message": "Added Keyword (RRM - Requestor Zip Code) '44321' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.333",
+      "message": "Added Keyword (RRM - Requestor State) 'Oh' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.333",
+      "message": "Added Keyword (RRM - Requestor Email) 'bscott@request.gov' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.330",
+      "message": "Added Keyword (RRM - Requestor City) 'Cleveland' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.330",
+      "message": "Added Keyword (RRM - Requestor Address) '12345 Request Drive' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.327",
+      "message": "Added Keyword (RRM - Request Number) '1' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.323",
+      "message": "Added Keyword (SSN) '222-44-5667' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.323",
+      "message": "Added Keyword (Sealed) 'YES' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.320",
+      "message": "Added Keyword (Security Access IG) 'AGA' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-12-22T09:27:19.320",
+      "message": "Added Keyword (Security Access CAP) 'B' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:25:53.180",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-22T09:25:46.200",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T09:25:46.050",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-12-22T09:25:46.020",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:25:12.577",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:25:09.577",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:20:14.113",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:19:13.433",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:19:13.433",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:18:29.177",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:18:29.100",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:18:12.507",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:18:12.380",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:17:30.567",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:17:30.567",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:17:16.693",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:17:16.693",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:15:55.723",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:15:55.723",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:13:30.800",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:13:30.770",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:12:41.957",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:12:41.957",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:09:19.910",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:09:19.880",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:07:17.620",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T09:07:17.603",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:55:09.723",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:55:09.723",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:53:59.440",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:53:59.410",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:52:47.973",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:52:47.923",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:52:17.033",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:52:17.033",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:51:59.300",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:51:59.300",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:50:39.330",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:50:39.283",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:50:14.270",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:50:14.270",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:48:34.610",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:48:34.610",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Modified Note",
+      "logDate": "2024-12-22T08:31:33.017",
+      "message": "Modified Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Modified Note",
+      "logDate": "2024-12-22T08:29:37.963",
+      "message": "Modified Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Created Note",
+      "logDate": "2024-12-22T08:29:35.823",
+      "message": "Created Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Modified Note",
+      "logDate": "2024-12-22T08:29:28.793",
+      "message": "Modified Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Created Note",
+      "logDate": "2024-12-22T08:29:21.183",
+      "message": "Created Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-22T08:28:37.747",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-22T08:24:19.873",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:02:52.880",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:01:40.643",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:00:55.707",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T08:00:21.567",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:52:23.407",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:48:35.377",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:46:54.407",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:45:18.343",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:43:20.617",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:41:57.630",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:38:38.287",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:38:17.427",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-22T07:33:40.020",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:25:36.843",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:25:03.860",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:24:36.687",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:23:38.343",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:21:49.983",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:20:26.437",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:14:13.693",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:06:11.740",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:03:35.747",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:03:15.053",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:01:00.913",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T16:00:19.913",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T15:56:28.210",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-21T15:56:13.240",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-21T15:56:12.647",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-15T22:17:30.360",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-15T22:17:10.157",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-15T22:01:37.687",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-15T09:42:06.257",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:12:15.850",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:11:51.047",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:10:16.947",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:02:10.370",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:01:16.100",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:00:48.913",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:00:31.817",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T19:00:05.033",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T18:59:29.307",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T18:51:31.687",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T18:50:11.397",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T18:45:25.463",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-14T18:40:35.097",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-14T15:13:24.630",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-14T15:11:43.970",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-14T15:11:19.553",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T15:10:12.593",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T15:05:58.407",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T15:00:10.687",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:59:07.013",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:55:15.030",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:54:27.477",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:54:04.777",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:53:31.243",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Exported a Document",
+      "logDate": "2024-12-14T14:53:11.640",
+      "message": "Exported (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:52:34.583",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:51:57.353",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:49:56.030",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:41:00.940",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:39:11.647",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:36:30.497",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:35:23.617",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:33:20.907",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:32:12.000",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:27:37.250",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:24:47.563",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:24:16.773",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:23:36.397",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:21:55.703",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:18:51.717",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:17:27.890",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T14:06:05.990",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-14T13:02:17.700",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Mailed a Document",
+      "logDate": "2024-12-14T13:01:59.767",
+      "message": "Mailed Document (149) to External Mail Program",
+      "userId": "101"
+    },
+    {
+      "action": "Mailed a Document",
+      "logDate": "2024-12-14T13:01:34.210",
+      "message": "Mailed Document (149) to External Mail Program",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-12-10T09:05:52.177",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-12-10T09:04:10.147",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-12-10T06:50:45.913",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T18:51:02.480",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:57:56.717",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:57:00.670",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:56:08.873",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:36:34.433",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:32:02.900",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:30:49.273",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-30T08:29:35.930",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:46:41.933",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:32:33.213",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:29:50.383",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:19:02.950",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:15:10.353",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:13:02.430",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:12:21.307",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:12:01.430",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:11:18.210",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:10:58.333",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T15:05:40.440",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T14:37:51.630",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T14:36:15.330",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T14:35:41.657",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T14:15:48.907",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T14:14:25.700",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T14:00:01.680",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:58:22.280",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:58:06.903",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:38:31.753",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:33:24.220",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:32:29.543",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:29:59.373",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:28:06.847",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:27:40.563",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:27:13.983",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-11-29T13:27:10.533",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:26:25.273",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:25:16.970",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-11-29T13:15:30.147",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:13:16.807",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-11-29T13:13:07.000",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:11:59.843",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:09:45.517",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:09:11.510",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T13:08:27.490",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T12:57:12.093",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T12:37:24.930",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T12:32:15.087",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-11-29T12:30:00.477",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:48:33.177",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:46:22.520",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:45:35.313",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:45:16.267",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:42:36.017",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:42:23.733",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:39:45.720",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:36:55.890",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:34:37.903",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:30:45.030",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:28:02.530",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:27:45.920",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:27:30.280",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-24T20:26:17.123",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:15:29.080",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:14:55.063",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:12:35.440",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:12:10.453",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:10:21.377",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:07:12.220",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T21:01:00.147",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:58:49.180",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:58:24.367",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:58:11.180",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:57:01.727",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:56:06.693",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:53:51.070",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:51:09.333",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:49:33.220",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:45:48.213",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:42:31.917",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:41:52.573",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:41:20.807",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:39:52.000",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:37:20.250",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:35:43.187",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:34:14.513",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:32:07.250",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:31:24.203",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:29:07.660",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:25:33.817",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:24:40.773",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:22:57.257",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:20:10.200",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:19:47.467",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:19:21.637",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:17:43.450",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:15:49.983",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:14:07.607",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T20:13:00.247",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T19:12:28.823",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T19:05:48.120",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:59:57.657",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:59:07.410",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:57:38.753",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:55:59.660",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:51:48.517",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:50:43.627",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:45:37.263",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:43:37.903",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:42:01.843",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:15:04.627",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:14:51.250",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:12:20.110",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:10:31.403",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:09:39.057",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T18:08:30.823",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:54:48.417",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:53:15.653",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:51:54.950",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:50:33.513",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:37:51.607",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:36:07.497",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:34:37.090",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T17:29:47.090",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T15:52:34.827",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T15:51:26.607",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T15:50:18.250",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T15:50:03.357",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T14:31:43.370",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T14:30:20.477",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T14:10:58.483",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T14:10:07.403",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T11:38:12.957",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T11:28:13.527",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-23T08:28:57.370",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T16:07:18.727",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Accessed Content",
+      "logDate": "2024-06-22T15:58:36.557",
+      "message": "Accessed content for (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T15:57:35.213",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-06-22T12:22:02.630",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T11:07:46.257",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:35:26.447",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:34:56.610",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:34:39.240",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:33:36.697",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:33:02.270",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:28:46.450",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:24:39.880",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:23:30.977",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:22:01.063",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:21:45.950",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:20:22.063",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:19:56.890",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:12:55.230",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:12:44.807",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:12:32.910",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-06-22T10:12:27.777",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Document Re-Indexed",
+      "logDate": "2024-06-22T10:12:26.143",
+      "message": "Document (149) re-indexed to 'CUS Invoice' from 'CUS Invoice'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.940",
+      "message": "Added Keyword (Customer ZipCode) '44107-    ' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer State) 'OH' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer City) 'Townsville' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer Address) '11252 Road Street' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer Address Type) 'HOME' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer Name) 'Jane Barker' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer Id) '15' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Add Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Added Keyword (Customer Id) '35' to 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Delete Keyword",
+      "logDate": "2024-06-22T10:12:25.923",
+      "message": "Deleted Keyword (Customer Id) '269523c3-d72b-45e4-ba9b-ea232fea3c0b' from 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-06-22T10:11:01.150",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:08:31.073",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:08:21.847",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:08:10.597",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:07:30.470",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:07:16.010",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:06:21.583",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:05:56.177",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:05:31.390",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-22T10:02:17.797",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-20T21:21:58.537",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-06-20T21:21:43.180",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-20T21:19:42.220",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-20T21:18:58.643",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-20T21:17:44.583",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-20T20:40:23.303",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-06-20T19:45:13.073",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-20T17:50:08.693",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:39:09.513",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:15:56.877",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:15:19.923",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:14:38.987",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:14:35.050",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:14:05.207",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:13:57.207",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:12:15.957",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:11:43.627",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:08:17.503",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:07:34.643",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:06:57.173",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:06:44.267",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:05:30.393",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:04:50.660",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-05-18T16:02:13.153",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Document",
+      "logDate": "2024-05-18T15:46:26.487",
+      "message": "Viewed (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Created Document",
+      "logDate": "2024-05-18T15:45:45.343",
+      "message": "Created (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "2"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:09:01.560",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:09:01.560",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-01-01T13:09:01.370",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:07:31.543",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:07:31.527",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-01-01T13:07:31.403",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:04:17.683",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:04:17.683",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-01-01T13:04:17.527",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:03:53.980",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:03:53.980",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-01-01T13:03:53.793",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:00:27.197",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T13:00:27.197",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-01-01T13:00:27.027",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T12:57:28.463",
+      "message": "Viewed Note 102 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Note",
+      "logDate": "2024-01-01T12:57:28.433",
+      "message": "Viewed Note 101 (CoolNote) on (149) 'CUS Invoice - 5/18/2024'",
+      "userId": "101"
+    },
+    {
+      "action": "Viewed Document Keywords",
+      "logDate": "2024-01-01T12:57:27.980",
+      "message": "Viewed keywords on document 149 (CUS Invoice - 5/18/2024)",
+      "userId": "101"
     }
   ],
-  "revisions": [],
-  "keywordGuid": "cd0a9a51-22ad-40e8-ade1-f34ca61b41d0"
+  "documentType": {
+    "id": "209",
+    "name": "CUS Invoice",
+    "systemName": "CUS Invoice",
+    "defaultFileTypeId": "2",
+    "documentDateDisplayName": "Document Date",
+    "documentTypeGroupId": "107",
+    "revisionRenditionProperties": {
+      "revisable": true,
+      "renditionable": true,
+      "commentSettings": {
+        "allowComments": true,
+        "firstRevisionNoComment": false
+      }
+    }
+  }
 }

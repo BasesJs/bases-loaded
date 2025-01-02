@@ -3,14 +3,16 @@ import { KeywordTypeGroup } from '../keyword-type-groups/keywordtypegroup.js';
 import { KeywordCollectionItem} from '../keyword-collections/keywordcollections.js';
 
 export class RecordGroup implements RecordGroupItem {
-    constructor(typeGroupId: string, keywords: Keyword[], instanceId?: string, name?: string) {
+    constructor(typeGroupId: string, keywords: Keyword[], instanceId?: string, name?: string, groupId?: string) {
         this.typeGroupId = typeGroupId;
+        this.groupId = groupId;
         this.instanceId = instanceId;
         this.keywords = keywords;
         this.name = name;
     }
     readonly typeGroupId: string;
     readonly name?: string;
+    readonly groupId?: string;
     keywords: Keyword[];
     instanceId?: string;
     keywordTypeGroup?: KeywordTypeGroup;
@@ -23,7 +25,7 @@ export class RecordGroup implements RecordGroupItem {
         if (!groupcfg) {
             throw new Error("Group configuration is null");
         }
-        const nrg = new RecordGroup(item.typeGroupId, keywords, item.instanceId ? item.instanceId : undefined, groupcfg.name ? groupcfg.name : undefined);
+        const nrg = new RecordGroup(item.typeGroupId, keywords, item.instanceId, item.groupId, groupcfg.name ? groupcfg.name : undefined);
         return nrg;
     }
 } 
